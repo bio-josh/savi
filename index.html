@@ -153,6 +153,33 @@ nav {
 }
 .hero-cta-outline:hover { background: rgba(234,179,8,0.08); }
 
+/* ---- ARENA HEX BOARD ---- */
+.hex-board-area { background: rgba(255,255,255,0.02); border: 1.65px solid var(--gold-500); border-radius: 8px; overflow: hidden; }
+.hex-board-crown { height: 3.3px; background: var(--crown); }
+.hex-board-header { padding: 10px 16px 4px; display: flex; justify-content: space-between; align-items: center; }
+.hex-board-header span:first-child { font-size: 12px; font-weight: 600; color: rgba(234,179,8,0.65); }
+.hex-board-header span:last-child { font-size: 9px; color: rgba(255,255,255,0.25); letter-spacing: 1px; }
+.hex-board-body { display:flex; justify-content:center; padding: 8px 0 16px; overflow-x:auto; }
+.hex-legend { display:flex; justify-content:center; gap:14px; padding: 0 16px 12px; flex-wrap:wrap; }
+.hex-legend-item { display:flex; align-items:center; gap:4px; font-size:9px; color:rgba(255,255,255,0.3); }
+.hex-legend-dot { width:6px; height:6px; border-radius:50%; }
+.arena-hint { text-align:center; font-size:11px; color:rgba(255,255,255,0.2); font-style:italic; margin: 12px 0 24px; }
+.arena-overlay {
+  display:none; position:fixed; top:0; left:0; width:100%; height:100%;
+  background:rgba(15,19,32,0.75); z-index:200;
+  backdrop-filter: blur(8px);
+}
+.arena-popup {
+  position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+  background:rgba(31,43,68,0.95); border:1.65px solid var(--gold-500);
+  border-radius:10px; width:420px; max-width:90%;
+}
+.arena-popup-crown { height:3.3px; background:var(--crown); border-radius:10px 10px 0 0; }
+.arena-popup-inner { padding:20px 24px; }
+.arena-popup-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; }
+.arena-popup-close { background:none; border:none; color:rgba(255,255,255,0.3); font-size:18px; cursor:pointer; font-family:'Chakra Petch',sans-serif; }
+.arena-popup-close:hover { color:rgba(255,255,255,0.6); }
+
 /* ---- TOGGLE BAR ---- */
 .toggle-bar {
   display: inline-flex; gap: 0; background: var(--deep-900);
@@ -173,24 +200,24 @@ nav {
 .layer { display: none; }
 .layer.active { display: block; }
 
-/* ---- KPI SECTION (LIGHT BG) ---- */
-.kpi-outer { background: var(--light-surface); border: 1.65px solid var(--deep-700); border-radius: 8px; overflow: hidden; }
+/* ---- KPI SECTION (DARK BG) ---- */
+.kpi-outer { background: rgba(255,255,255,0.03); border: 1.65px solid var(--gold-500); border-radius: 8px; overflow: hidden; }
 .kpi-header-bar { background: var(--deep-950); padding: 14px 24px; display: flex; justify-content: space-between; align-items: center; }
 .kpi-header-bar h2 { font-size: 16px; font-weight: 700; color: rgba(255,255,255,0.9); margin:0; }
 .kpi-header-bar span { font-size: 10px; color: rgba(255,255,255,0.3); letter-spacing: 1.5px; text-transform: uppercase; }
 .kpi-body { padding: 20px 24px; }
 
-/* Function cards (light bg) */
+/* Function cards (dark bg) */
 .func-card {
-  background: #fff; border: 1.65px solid var(--deep-600); border-radius: 6px;
+  background: rgba(255,255,255,0.03); border: 1.65px solid var(--gold-500); border-radius: 6px;
   padding: 20px; transition: all 0.2s; cursor: pointer;
 }
-.func-card:hover { box-shadow: 0 4px 20px rgba(44,61,94,0.1); transform: translateY(-2px); }
+.func-card:hover { box-shadow: 0 8px 30px rgba(0,0,0,0.3); transform: translateY(-2px); }
 .func-card-icon { width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 18px; margin-bottom: 12px; }
-.func-card h3 { font-size: 15px; font-weight: 700; color: var(--deep-950); margin-bottom: 4px; }
-.func-card .func-count { font-size: 11px; font-weight: 600; color: var(--deep-600); margin-bottom: 8px; }
-.func-card p { font-size: 11.5px; color: #64748b; line-height: 1.6; }
-.func-card .func-examples { font-size: 10.5px; color: #94a3b8; margin-top: 10px; padding-top: 10px; border-top: 1px solid #e2e8f0; line-height: 1.5; }
+.func-card h3 { font-size: 15px; font-weight: 700; color: var(--gold-400); margin-bottom: 4px; }
+.func-card .func-count { font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.4); margin-bottom: 8px; }
+.func-card p { font-size: 11.5px; color: rgba(255,255,255,0.5); line-height: 1.6; }
+.func-card .func-examples { font-size: 10.5px; color: rgba(255,255,255,0.3); margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.06); line-height: 1.5; }
 .icon-cli { background: rgba(96,165,250,0.12); }
 .icon-med { background: rgba(244,114,182,0.12); }
 .icon-com { background: rgba(234,179,8,0.12); }
@@ -208,19 +235,19 @@ nav {
 }
 .back-btn:hover { color: var(--gold-300); }
 .subfunc-card {
-  background: #fff; border: 1px solid #e2e8f0; border-radius: 6px;
+  background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 6px;
   padding: 16px 20px; margin-bottom: 12px;
 }
-.subfunc-card h4 { font-size: 13px; font-weight: 700; color: var(--deep-800); margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
-.subfunc-card h4 span { font-size: 11px; font-weight: 500; color: #94a3b8; }
-.kpi-row { display: flex; justify-content: space-between; align-items: center; padding: 5px 0; border-bottom: 1px solid #f1f5f9; font-size: 12px; color: #475569; }
+.subfunc-card h4 { font-size: 13px; font-weight: 700; color: rgba(255,255,255,0.85); margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+.subfunc-card h4 span { font-size: 11px; font-weight: 500; color: rgba(255,255,255,0.35); }
+.kpi-row { display: flex; justify-content: space-between; align-items: center; padding: 5px 0; border-bottom: 1px solid rgba(255,255,255,0.04); font-size: 12px; color: rgba(255,255,255,0.6); }
 .kpi-row:last-child { border-bottom: none; }
 .avail-badge { font-size: 9px; font-weight: 600; padding: 2px 8px; border-radius: 10px; letter-spacing: 0.3px; flex-shrink: 0; }
-.avail-public { background: rgba(74,222,128,0.12); color: #16a34a; }
-.avail-partial { background: rgba(234,179,8,0.12); color: #a27c02; }
-.avail-private { background: rgba(239,68,68,0.08); color: #dc2626; }
+.avail-public { background: rgba(74,222,128,0.12); color: #4ade80; }
+.avail-partial { background: rgba(234,179,8,0.15); color: var(--gold-300); }
+.avail-private { background: rgba(239,68,68,0.1); color: #f87171; }
 .source-tags { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 4px; }
-.source-tag { font-size: 9px; padding: 2px 8px; border-radius: 10px; background: #f1f5f9; color: #94a3b8; font-weight: 500; }
+.source-tag { font-size: 9px; padding: 2px 8px; border-radius: 10px; background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.35); font-weight: 500; }
 
 /* ---- PROBLEM / SOLUTION ---- */
 .ps-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
@@ -455,6 +482,14 @@ footer a { color: var(--gold-500); text-decoration: none; }
   .ps-grid { grid-template-columns: 1fr; }
   .email-form { flex-direction: column; }
   footer { padding: 24px 16px; }
+  .hex-board-area { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .hex-board-body { min-width: 500px; padding: 4px 0 10px; }
+  .hex-board-header { padding: 8px 12px 2px; }
+  .hex-board-header span:first-child { font-size: 10px; }
+  .hex-legend { gap: 8px; padding: 0 10px 10px; }
+  .hex-legend-item { font-size: 8px; }
+  .metrics-strip-arena { flex-wrap: wrap; }
+  .metrics-strip-arena .metric-card { min-width: calc(50% - 6px); flex: none; }
 }
 @media (max-width: 380px) {
   .hero h1 { font-size: 22px; }
@@ -548,32 +583,65 @@ footer a { color: var(--gold-500); text-decoration: none; }
 <div id="page-platform" class="page">
   <div class="container section">
     <div class="section-label">Platform</div>
-    <div class="section-title">Three layers of competitive intelligence</div>
-    <div class="section-sub">From executive scorecard down to individual KPI definitions. Every metric is governed, sourced from public data, and mapped to the biopharma launch timeline.</div>
+    <div class="section-title">Competitive landscape at a glance</div>
+    <div class="section-sub">The Indication Arena maps your competitive set across all six biopharma functions. Each hex encodes a composite score. Drill into any function for governed KPIs sourced from public data.</div>
 
     <div class="toggle-bar">
-      <button class="active" onclick="setLayer(0)">Executive Scorecard</button>
+      <button class="active" onclick="setLayer(0)">Indication Arena</button>
       <button onclick="setLayer(1)">Function Overview</button>
       <button onclick="setLayer(2)">Sub-Function KPIs</button>
     </div>
 
-    <!-- Layer 0: Executive Scorecard -->
+    <!-- Layer 0: Indication Arena -->
     <div id="layer-0" class="layer active">
-      <div class="crown-panel" style="margin-bottom:24px">
-        <div class="crown-bar"></div>
-        <div class="crown-header">
-          <span class="crown-header-title">COMPETITIVE POSITION SCORE</span>
-          <span class="crown-header-badge">Composite Index</span>
+      <div class="metrics-strip" style="margin-bottom:16px">
+        <div class="metric-card"><div class="metric-crown"></div><div class="metric-inner"><div class="metric-val">47</div><div class="metric-lbl">Active Trials</div></div></div>
+        <div class="metric-card"><div class="metric-crown"></div><div class="metric-inner"><div class="metric-val">12</div><div class="metric-lbl">Pipeline Assets</div></div></div>
+        <div class="metric-card"><div class="metric-crown"></div><div class="metric-inner"><div class="metric-val">89%</div><div class="metric-lbl">Formulary Coverage</div></div></div>
+        <div class="metric-card"><div class="metric-crown"></div><div class="metric-inner"><div class="metric-val">6</div><div class="metric-lbl">Functions Tracked</div></div></div>
+      </div>
+      <div class="hex-board-area" style="margin-bottom:8px">
+        <div class="hex-board-crown"></div>
+        <div class="hex-board-header">
+          <span>INDICATION ARENA</span>
+          <span>METex14 NSCLC &middot; Competitive Landscape</span>
         </div>
-        <div class="crown-body">
-          <p style="font-size:13px;color:rgba(255,255,255,0.5);margin-bottom:8px">Composite index across all 6 functions, weighted by launch phase. One number that tells you where you stand vs. your competitive set.</p>
+        <div class="hex-board-body"><svg id="hexBoard" style="display:block;"></svg></div>
+        <div class="hex-legend">
+          <div class="hex-legend-item"><div class="hex-legend-dot" style="background:#60a5fa;"></div>Clinical</div>
+          <div class="hex-legend-item"><div class="hex-legend-dot" style="background:#4ade80;"></div>Regulatory</div>
+          <div class="hex-legend-item"><div class="hex-legend-dot" style="background:#eab308;"></div>Commercial</div>
+          <div class="hex-legend-item"><div class="hex-legend-dot" style="background:#f472b6;"></div>Medical Affairs</div>
+          <div class="hex-legend-item"><div class="hex-legend-dot" style="background:#c084fc;"></div>Market Access</div>
+          <div class="hex-legend-item"><div class="hex-legend-dot" style="background:#fb923c;"></div>Patient Advocacy</div>
         </div>
       </div>
+      <div class="arena-hint">Double-click any hex to see function KPI breakdown</div>
       <div class="grid-2">
         <div class="crown-card"><div class="crown-bar"></div><div class="crown-card-inner"><h3>Evidence Strength</h3><p>Publication velocity + guideline adoption + HTA outcomes. Measures how effectively your evidence strategy competes.</p></div></div>
         <div class="crown-card"><div class="crown-bar"></div><div class="crown-card-inner"><h3>Market Readiness</h3><p>Formulary coverage + pricing position + access restrictions. Quantifies your payer readiness vs. the competitive set.</p></div></div>
         <div class="crown-card"><div class="crown-bar"></div><div class="crown-card-inner"><h3>Clinical Momentum</h3><p>Trial portfolio + enrollment velocity + readout cadence. Tracks development pace and clinical execution signals.</p></div></div>
         <div class="crown-card"><div class="crown-bar"></div><div class="crown-card-inner"><h3>Launch Execution</h3><p>Hiring velocity + KOL positioning + regulatory milestones. Monitors commercial and field medical deployment.</p></div></div>
+      </div>
+
+      <div id="arena-overlay" class="arena-overlay" onclick="closeArenaPopup()">
+        <div class="arena-popup" onclick="event.stopPropagation()">
+          <div class="arena-popup-crown"></div>
+          <div class="arena-popup-inner">
+            <div class="arena-popup-header">
+              <span id="arena-popup-title" style="font-size:16px;font-weight:700;color:var(--gold-400);"></span>
+              <div style="display:flex;align-items:center;gap:12px;">
+                <span id="arena-popup-score" style="font-size:24px;font-weight:700;color:#fff;"></span>
+                <button class="arena-popup-close" onclick="closeArenaPopup()">&times;</button>
+              </div>
+            </div>
+            <div id="arena-popup-bars"></div>
+            <div id="arena-popup-kpis"></div>
+            <div style="margin-top:16px;text-align:center;">
+              <span style="font-size:11px;color:var(--gold-500);cursor:pointer;letter-spacing:0.5px;" onclick="closeArenaPopup();goPage('intelligence');">View full intelligence drill-down &rarr;</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -585,7 +653,7 @@ footer a { color: var(--gold-500); text-decoration: none; }
           <span>96 KPIs &middot; 6 Functions</span>
         </div>
         <div class="kpi-body">
-          <p style="font-size:13px;color:#475569;margin-bottom:20px">One platform that gives Medical, Commercial, and Executive leadership a shared, governed view of the competitive landscape.</p>
+          <p style="font-size:13px;color:rgba(255,255,255,0.45);margin-bottom:20px">One platform that gives Medical, Commercial, and Executive leadership a shared, governed view of the competitive landscape.</p>
           <div class="grid-3" id="func-grid">
             <div class="func-card" onclick="showFunc('ma')"><div class="func-card-icon icon-med">&#x1F3E5;</div><h3>Medical Affairs</h3><div class="func-count">30 KPIs &middot; 49% public &middot; P0</div><p>Publication velocity, congress share-of-voice, KOL network mapping, MSL deployment tracking, and HEOR contribution scoring.</p><div class="func-examples">Sub-functions: Pubs &amp; Evidence, Congress Strategy, KOL Engagement, MSL Ops, ISS Governance, HEOR Contribution</div></div>
             <div class="func-card" onclick="showFunc('reg')"><div class="func-card-icon icon-reg">&#x1F4DC;</div><h3>Regulatory</h3><div class="func-count">15 KPIs &middot; 62% public &middot; P2</div><p>FDA approval timelines, expedited designations, AdComm vote tracking, label scope analysis, Orange Book patent monitoring.</p><div class="func-examples">Sub-functions: IND/NDA, FDA Meetings, AdComm, Label &amp; Exclusivity, Post-Market</div></div>
@@ -1441,6 +1509,92 @@ function hideKpiPopup() {
   var popup = document.getElementById('kpi-popup');
   if (popup) popup.style.display = 'none';
 }
+
+/* ---- Indication Arena Hex Board ---- */
+(function(){
+  var FC=['#60a5fa','#4ade80','#eab308','#f472b6','#c084fc','#fb923c'];
+  var FL=['Clinical','Regulatory','Commercial','Medical Affairs','Market Access','Patient Advocacy'];
+  var ASSETS={
+    TEP:{name:'TEPMETKO',ref:true,b:0.18,sc:[0.9,0.85,0.7,0.8,0.75,0.6]},
+    TAB:{name:'Tabrecta',ref:false,b:0.13,sc:[0.7,0.7,0.6,0.5,0.65,0.4]},
+    RYB:{name:'Rybrevant',ref:false,b:0.10,sc:[0.8,0.75,0.8,0.6,0.7,0.5]},
+    SAV:{name:'Savolitinib',ref:false,b:0.07,sc:[0.5,0.4,0.3,0.35,0.4,0.3]},
+    AMV:{name:'Amivantamab',ref:false,b:0.09,sc:[0.75,0.65,0.7,0.55,0.6,0.45]},
+    ELA:{name:'Elacestrant',ref:false,b:0.06,sc:[0.4,0.35,0.25,0.3,0.35,0.2]},
+  };
+  var GRID=[];for(var r=0;r<3;r++)for(var c=0;c<6;c++)GRID.push({r:r,c:c});
+  var FILLS={1:'TEP',2:'TAB',3:'RYB',7:'AMV',8:'SAV',9:'ELA'};
+  var S=44,GAP=8;
+  function hexPts(cx,cy,s){var p=[];for(var i=0;i<6;i++){var a=Math.PI/180*(60*i-30);p.push([cx+s*Math.cos(a),cy+s*Math.sin(a)]);}return p.map(function(v){return v[0].toFixed(1)+','+v[1].toFixed(1)}).join(' ');}
+  function hexC(r,c){var w=Math.sqrt(3)*S,h=2*S,xOff=(r%2===1)?(w+GAP)/2:0;return{x:c*(w+GAP)+w/2+xOff,y:r*(h*0.75+GAP)+h/2};}
+  var svg=document.getElementById('hexBoard');
+  if(!svg) return;
+  var pad=14;var mnX=9999,mnY=9999,mxX=0,mxY=0;
+  GRID.forEach(function(sl){var ct=hexC(sl.r,sl.c);mnX=Math.min(mnX,ct.x-S*0.87);mxX=Math.max(mxX,ct.x+S*0.87);mnY=Math.min(mnY,ct.y-S);mxY=Math.max(mxY,ct.y+S);});
+  var vw=mxX-mnX+pad*2,vh=mxY-mnY+pad*2,ox=-mnX+pad,oy=-mnY+pad;
+  svg.setAttribute('viewBox','0 0 '+vw.toFixed(0)+' '+vh.toFixed(0));
+  svg.setAttribute('width',Math.min(vw,820));
+  svg.setAttribute('height',vh*Math.min(vw,820)/vw);
+  var d='<defs><filter id="gl" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur in="SourceGraphic" stdDeviation="3" result="b"/><feComposite in="SourceGraphic" in2="b" operator="over"/></filter>';
+  Object.entries(ASSETS).forEach(function(e){var k=e[0],a=e[1];d+='<linearGradient id="f_'+k+'" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="rgba(255,255,255,'+(a.b+0.04).toFixed(2)+')"/><stop offset="100%" stop-color="rgba(255,255,255,'+(a.b*0.3).toFixed(2)+')"/></linearGradient>';});
+  d+='</defs>';var markup=d;
+  GRID.forEach(function(sl,idx){
+    var ctr=hexC(sl.r,sl.c),cx=ctr.x+ox,cy=ctr.y+oy,pts=hexPts(cx,cy,S),ak=FILLS[idx];
+    if(ak){
+      var a=ASSETS[ak],sw=a.ref?2.5:1.65;
+      markup+='<g class="hex-asset" data-key="'+ak+'" style="cursor:pointer">';
+      markup+='<polygon points="'+pts+'" fill="url(#f_'+ak+')" stroke="#ca9a04" stroke-width="'+sw+'"/>';
+      if(a.ref)markup+='<polygon points="'+hexPts(cx,cy,S-4)+'" fill="none" stroke="rgba(234,179,8,0.12)" stroke-width="1" filter="url(#gl)"/>';
+      var avg=Math.round(a.sc.reduce(function(x,y){return x+y},0)/6*100);
+      markup+='<text x="'+cx+'" y="'+(cy-S*0.32)+'" text-anchor="middle" fill="'+(a.ref?'#eab308':'rgba(255,255,255,0.8)')+'" font-size="14" font-weight="700" font-family="Chakra Petch">'+avg+'</text>';
+      markup+='<text x="'+cx+'" y="'+(cy-S*0.16)+'" text-anchor="middle" fill="'+(a.ref?'rgba(234,179,8,0.7)':'rgba(255,255,255,0.55)')+'" font-size="7.5" font-weight="500" font-family="Chakra Petch">'+a.name+'</text>';
+      var bw=S*0.09,bMax=S*0.26,total=6*bw+5*2,sx=cx-total/2,by=cy-S*0.01;
+      a.sc.forEach(function(v,i){var bx=sx+i*(bw+2),bh=v*bMax;markup+='<rect x="'+bx.toFixed(1)+'" y="'+(by+bMax-bh).toFixed(1)+'" width="'+bw.toFixed(1)+'" height="'+bh.toFixed(1)+'" rx="1" fill="'+FC[i]+'" opacity="0.8"/>';});
+      a.sc.forEach(function(v,i){var bx=sx+i*(bw+2)+bw/2;markup+='<text x="'+bx.toFixed(1)+'" y="'+(by+bMax+7).toFixed(1)+'" text-anchor="middle" fill="rgba(255,255,255,0.2)" font-size="3.8" font-family="Chakra Petch">'+FL[i].split(' ')[0].substring(0,3).toUpperCase()+'</text>';});
+      markup+='</g>';
+    } else {
+      markup+='<polygon points="'+pts+'" fill="rgba(255,255,255,0.012)" stroke="rgba(255,255,255,0.06)" stroke-width="1.2" stroke-dasharray="4,3"/>';
+      markup+='<text x="'+cx+'" y="'+(cy+3.5)+'" text-anchor="middle" fill="rgba(255,255,255,0.05)" font-size="12" font-family="Chakra Petch">+</text>';
+    }
+  });
+  svg.innerHTML=markup;
+
+  // Double-click popup data
+  var KPI_DATA={
+    TEP:{name:'TEPMETKO',kpis:['Pub velocity: 18/yr','Tier-1 SOV: 32%','RWE studies: 5','Citation impact: 142','Guideline velocity: 8 mo','KOL depth: 47','MSL timing: L-12','Trials: 4 active','Formulary: 89%','ASP: $18,400/mo']},
+    TAB:{name:'Tabrecta',kpis:['Pub velocity: 24/yr','Tier-1 SOV: 38%','RWE studies: 3','Citation impact: 186','Guideline velocity: 6 mo','KOL depth: 62','MSL timing: L-18','Trials: 6 active','Formulary: 92%','ASP: $19,200/mo']},
+    RYB:{name:'Rybrevant',kpis:['Pub velocity: 8/yr','Tier-1 SOV: 18%','RWE studies: 2','Citation impact: 62','Guideline velocity: 14 mo','KOL depth: 38','MSL timing: L-14','Trials: 3 active','Formulary: 78%','ASP: $22,100/mo']},
+    SAV:{name:'Savolitinib',kpis:['Pub velocity: 3/yr','Tier-1 SOV: 6%','RWE studies: 0','Citation impact: 28','Guideline velocity: N/A','KOL depth: 12','MSL timing: L-6','Trials: 2 active','Formulary: 34%','ASP: $15,800/mo']},
+    AMV:{name:'Amivantamab',kpis:['Pub velocity: 12/yr','Tier-1 SOV: 22%','RWE studies: 3','Citation impact: 95','Guideline velocity: 10 mo','KOL depth: 41','MSL timing: L-14','Trials: 5 active','Formulary: 82%','ASP: $21,500/mo']},
+    ELA:{name:'Elacestrant',kpis:['Pub velocity: 2/yr','Tier-1 SOV: 4%','RWE studies: 0','Citation impact: 15','Guideline velocity: N/A','KOL depth: 8','MSL timing: L-4','Trials: 1 active','Formulary: 18%','ASP: $12,400/mo']},
+  };
+
+  svg.addEventListener('dblclick', function(e){
+    var g = e.target.closest('.hex-asset');
+    if(!g) return;
+    var key = g.getAttribute('data-key');
+    var asset = ASSETS[key];
+    var data = KPI_DATA[key];
+    var overlay = document.getElementById('arena-overlay');
+    document.getElementById('arena-popup-title').textContent = data.name;
+    var avg = Math.round(asset.sc.reduce(function(x,y){return x+y},0)/6*100);
+    document.getElementById('arena-popup-score').textContent = avg;
+    var barsHtml = '<div style="display:flex;gap:8px;align-items:flex-end;height:50px;margin-bottom:6px;">';
+    asset.sc.forEach(function(v,i){
+      barsHtml += '<div style="flex:1;display:flex;flex-direction:column;align-items:center;">';
+      barsHtml += '<div style="width:100%;height:'+Math.round(v*44)+'px;background:'+FC[i]+';opacity:0.8;border-radius:2px;"></div>';
+      barsHtml += '<div style="font-size:8px;color:rgba(255,255,255,0.3);margin-top:3px;">'+FL[i].split(' ')[0].substr(0,3).toUpperCase()+'</div>';
+      barsHtml += '</div>';
+    });
+    barsHtml += '</div>';
+    document.getElementById('arena-popup-bars').innerHTML = barsHtml;
+    var kpisHtml = data.kpis.map(function(k){return '<div style="padding:4px 0;border-bottom:1px solid rgba(255,255,255,0.04);font-size:12px;color:rgba(255,255,255,0.6);">'+k+'</div>';}).join('');
+    document.getElementById('arena-popup-kpis').innerHTML = kpisHtml;
+    overlay.style.display = 'block';
+  });
+
+  window.closeArenaPopup = function(){ document.getElementById('arena-overlay').style.display = 'none'; };
+})();
 
 /* ---- Global click-outside handler for KPI popup ---- */
 document.addEventListener('click', function(e) {
