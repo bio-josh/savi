@@ -9,9 +9,10 @@
 <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 /* ============================================================
-   SAVI BIO — LANDING PAGE v0.7.1
+   SAVI BIO — MULTI-PAGE SITE v0.9
    Hextech Command Center Design System
    Color: Dark Navy-Blue-Grey + Gold
+   5-page architecture: Home, Platform, Intelligence, Insights, Collaborate
    ============================================================ */
 
 *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
@@ -38,6 +39,7 @@ body {
 
 .container { max-width: 1140px; margin: 0 auto; padding: 0 32px; }
 
+/* ---- NAV ---- */
 nav {
   position: fixed; top:0; left:0; width:100%; z-index:100;
   padding: 16px 40px;
@@ -49,6 +51,7 @@ nav {
 .nav-logo {
   font-size: 22px; font-weight: 700; letter-spacing: 1px;
   text-decoration: none; display: flex; align-items: center; gap: 6px;
+  cursor: pointer;
 }
 .nav-logo .savi { color: var(--gold-400); }
 .nav-logo .bio { color: rgba(255,255,255,0.9); }
@@ -57,9 +60,10 @@ nav {
 .nav-links a {
   color: rgba(255,255,255,0.45); text-decoration: none; font-size: 12px;
   font-weight: 500; padding: 7px 12px; border-radius: 6px; transition: all 0.2s;
-  letter-spacing: 0.3px;
+  letter-spacing: 0.3px; cursor: pointer;
 }
 .nav-links a:hover { color: rgba(255,255,255,0.85); }
+.nav-links a.active { color: var(--gold-400); }
 .nav-cta {
   background: rgba(234,179,8,0.12) !important;
   border: 1px solid rgba(234,179,8,0.3) !important;
@@ -67,8 +71,53 @@ nav {
 }
 .nav-cta:hover { background: rgba(234,179,8,0.2) !important; color: var(--gold-300) !important; }
 
+/* ---- PAGES ---- */
+.page { display: none; padding-top: 80px; min-height: 100vh; }
+.page.active { display: block; }
+
+/* ---- SECTION HELPERS ---- */
+.section { padding: 80px 0; }
+.section-label { font-size: 11px; font-weight: 600; color: var(--gold-400); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px; }
+.section-title { font-size: 28px; font-weight: 700; color: #fff; margin-bottom: 10px; }
+.section-sub { font-size: 14px; color: rgba(255,255,255,0.4); margin-bottom: 36px; max-width: 640px; line-height: 1.7; }
+
+/* ---- CROWN PANEL ---- */
+.crown-panel {
+  background: rgba(255,255,255,0.03); border: 1.65px solid var(--gold-500);
+  border-radius: 10px; overflow: hidden; transition: all 0.25s;
+}
+.crown-panel:hover { box-shadow: 0 8px 30px rgba(0,0,0,0.25); }
+.crown-bar { height: 3.3px; background: var(--crown); }
+.crown-header { padding: 14px 24px 8px; display: flex; justify-content: space-between; align-items: center; }
+.crown-header-title { font-size: 14px; font-weight: 700; color: var(--gold-400); letter-spacing: 0.5px; }
+.crown-header-badge { font-size: 10px; color: rgba(255,255,255,0.3); letter-spacing: 1.5px; text-transform: uppercase; }
+.crown-body { padding: 8px 24px 24px; }
+
+/* ---- CROWN CARD (smaller) ---- */
+.crown-card {
+  background: rgba(255,255,255,0.03); border: 1.65px solid var(--gold-500);
+  border-radius: 8px; overflow: hidden; transition: all 0.25s;
+}
+.crown-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
+.crown-card-inner { padding: 24px 20px; }
+.crown-card h3 { font-size: 16px; font-weight: 700; color: rgba(234,179,8,0.8); margin-bottom: 8px; }
+.crown-card p { font-size: 12px; color: rgba(255,255,255,0.5); line-height: 1.6; }
+
+/* ---- METRIC STRIP ---- */
+.metrics-strip { display: flex; gap: 12px; margin-bottom: 20px; }
+.metric-card { flex: 1; background: rgba(255,255,255,0.03); border: 1.65px solid var(--gold-500); border-radius: 6px; overflow: hidden; text-align: center; }
+.metric-crown { height: 3.3px; background: var(--crown); }
+.metric-inner { padding: 12px 8px; }
+.metric-val { font-size: 22px; font-weight: 700; color: #fff; }
+.metric-lbl { font-size: 9px; color: rgba(255,255,255,0.35); text-transform: uppercase; letter-spacing: 0.8px; margin-top: 2px; }
+
+/* ---- GRIDS ---- */
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+
+/* ---- HERO ---- */
 .hero {
-  padding: 160px 0 80px; text-align: center; position: relative;
+  padding: 120px 0 80px; text-align: center; position: relative;
 }
 .hero::before {
   content:''; position:absolute; top:0; left:50%; transform:translateX(-50%);
@@ -92,55 +141,90 @@ nav {
 .hero-cta {
   display: inline-block; background: linear-gradient(135deg, var(--gold-500), var(--gold-400));
   color: var(--deep-950); padding: 14px 40px; border-radius: 8px;
-  font-size: 14px; font-weight: 700; text-decoration: none; transition: all 0.25s; border: none;
+  font-size: 14px; font-weight: 700; text-decoration: none; transition: all 0.25s;
+  border: none; cursor: pointer; font-family: 'Chakra Petch', sans-serif;
 }
 .hero-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(234,179,8,0.25); }
-
-.demo-section { padding: 0 0 80px; }
-.demo-panel {
-  border: 1.65px solid var(--gold-500); border-radius: 10px; overflow: hidden;
-  background: var(--deep-950); box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+.hero-cta-outline {
+  display: inline-block; border: 1.65px solid var(--gold-500); color: var(--gold-400);
+  padding: 13px 36px; border-radius: 8px; font-size: 14px; font-weight: 700;
+  text-decoration: none; transition: all 0.25s; margin-left: 12px;
+  cursor: pointer; font-family: 'Chakra Petch', sans-serif; background: none;
 }
-.demo-crown { height: 3.3px; background: var(--crown); }
-.demo-header { padding: 14px 24px 8px; display: flex; justify-content: space-between; align-items: center; }
-.demo-header-title { font-size: 14px; font-weight: 700; color: var(--gold-400); letter-spacing: 0.5px; }
-.demo-header-badge { font-size: 10px; color: rgba(255,255,255,0.3); letter-spacing: 1.5px; text-transform: uppercase; }
-.demo-body { padding: 8px 24px 24px; }
+.hero-cta-outline:hover { background: rgba(234,179,8,0.08); }
 
-.metrics-strip { display: flex; gap: 12px; margin-bottom: 16px; }
-.metric-card { flex: 1; background: rgba(255,255,255,0.03); border: 1.65px solid var(--gold-500); border-radius: 6px; overflow: hidden; text-align: center; }
-.metric-crown { height: 3.3px; background: var(--crown); }
-.metric-inner { padding: 12px 8px; }
-.metric-val { font-size: 22px; font-weight: 700; color: #fff; }
-.metric-lbl { font-size: 9px; color: rgba(255,255,255,0.35); text-transform: uppercase; letter-spacing: 0.8px; margin-top: 2px; }
+/* ---- TOGGLE BAR ---- */
+.toggle-bar {
+  display: inline-flex; gap: 0; background: var(--deep-900);
+  border: 1.65px solid var(--gold-500); border-radius: 8px; overflow: hidden;
+  margin-bottom: 28px;
+}
+.toggle-bar button {
+  padding: 10px 20px; font-size: 12px; font-weight: 600; border: none;
+  background: none; color: rgba(255,255,255,0.4); cursor: pointer;
+  font-family: 'Chakra Petch', sans-serif; transition: all 0.2s;
+  letter-spacing: 0.3px; border-right: 1px solid rgba(255,255,255,0.06);
+}
+.toggle-bar button:last-child { border-right: none; }
+.toggle-bar button.active { background: rgba(234,179,8,0.12); color: var(--gold-400); }
+.toggle-bar button:hover:not(.active) { color: rgba(255,255,255,0.7); }
 
-.hex-board-area { background: rgba(255,255,255,0.02); border: 1.65px solid var(--gold-500); border-radius: 8px; overflow: hidden; }
-.hex-board-crown { height: 3.3px; background: var(--crown); }
-.hex-board-header { padding: 10px 16px 4px; display: flex; justify-content: space-between; align-items: center; }
-.hex-board-header span:first-child { font-size: 12px; font-weight: 600; color: rgba(234,179,8,0.65); }
-.hex-board-header span:last-child { font-size: 9px; color: rgba(255,255,255,0.25); letter-spacing: 1px; }
-.hex-board-body { display:flex; justify-content:center; padding: 8px 0 16px; overflow-x:auto; }
-.hex-legend { display:flex; justify-content:center; gap:14px; padding: 0 16px 12px; flex-wrap:wrap; }
-.hex-legend-item { display:flex; align-items:center; gap:4px; font-size:9px; color:rgba(255,255,255,0.3); }
-.hex-legend-dot { width:6px; height:6px; border-radius:50%; }
+/* ---- LAYER VIEWS ---- */
+.layer { display: none; }
+.layer.active { display: block; }
 
-.product-section { padding: 80px 0; }
-.section-label { font-size: 11px; font-weight: 600; color: var(--gold-400); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px; }
-.section-title { font-size: 28px; font-weight: 700; color: #fff; margin-bottom: 10px; }
-.section-sub { font-size: 14px; color: rgba(255,255,255,0.4); margin-bottom: 36px; max-width: 600px; }
-.product-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-.product-card { background: rgba(255,255,255,0.03); border: 1.65px solid var(--gold-500); border-radius: 8px; overflow: hidden; transition: all 0.25s; }
-.product-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
-.product-card-crown { height: 3.3px; background: var(--crown); }
-.product-card-inner { padding: 24px 20px; }
-.product-card-icon { font-size: 28px; margin-bottom: 14px; }
-.product-card h3 { font-size: 16px; font-weight: 700; color: rgba(234,179,8,0.8); margin-bottom: 8px; }
-.product-card p { font-size: 12px; color: rgba(255,255,255,0.5); line-height: 1.6; }
+/* ---- KPI SECTION (LIGHT BG) ---- */
+.kpi-outer { background: var(--light-surface); border: 1.65px solid var(--deep-700); border-radius: 8px; overflow: hidden; }
+.kpi-header-bar { background: var(--deep-950); padding: 14px 24px; display: flex; justify-content: space-between; align-items: center; }
+.kpi-header-bar h2 { font-size: 16px; font-weight: 700; color: rgba(255,255,255,0.9); margin:0; }
+.kpi-header-bar span { font-size: 10px; color: rgba(255,255,255,0.3); letter-spacing: 1.5px; text-transform: uppercase; }
+.kpi-body { padding: 20px 24px; }
 
-.ps-section { padding: 80px 0; }
+/* Function cards (light bg) */
+.func-card {
+  background: #fff; border: 1.65px solid var(--deep-600); border-radius: 6px;
+  padding: 20px; transition: all 0.2s; cursor: pointer;
+}
+.func-card:hover { box-shadow: 0 4px 20px rgba(44,61,94,0.1); transform: translateY(-2px); }
+.func-card-icon { width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 18px; margin-bottom: 12px; }
+.func-card h3 { font-size: 15px; font-weight: 700; color: var(--deep-950); margin-bottom: 4px; }
+.func-card .func-count { font-size: 11px; font-weight: 600; color: var(--deep-600); margin-bottom: 8px; }
+.func-card p { font-size: 11.5px; color: #64748b; line-height: 1.6; }
+.func-card .func-examples { font-size: 10.5px; color: #94a3b8; margin-top: 10px; padding-top: 10px; border-top: 1px solid #e2e8f0; line-height: 1.5; }
+.icon-cli { background: rgba(96,165,250,0.12); }
+.icon-med { background: rgba(244,114,182,0.12); }
+.icon-com { background: rgba(234,179,8,0.12); }
+.icon-mka { background: rgba(192,132,252,0.12); }
+.icon-reg { background: rgba(74,222,128,0.12); }
+.icon-pat { background: rgba(251,146,60,0.12); }
+
+/* ---- SUB-FUNCTION DETAIL VIEW ---- */
+.func-detail { display: none; }
+.func-detail.active { display: block; }
+.back-btn {
+  background: none; border: none; color: var(--gold-400); font-size: 12px;
+  font-weight: 600; cursor: pointer; font-family: 'Chakra Petch', sans-serif;
+  padding: 0; margin-bottom: 16px; letter-spacing: 0.3px;
+}
+.back-btn:hover { color: var(--gold-300); }
+.subfunc-card {
+  background: #fff; border: 1px solid #e2e8f0; border-radius: 6px;
+  padding: 16px 20px; margin-bottom: 12px;
+}
+.subfunc-card h4 { font-size: 13px; font-weight: 700; color: var(--deep-800); margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+.subfunc-card h4 span { font-size: 11px; font-weight: 500; color: #94a3b8; }
+.kpi-row { display: flex; justify-content: space-between; align-items: center; padding: 5px 0; border-bottom: 1px solid #f1f5f9; font-size: 12px; color: #475569; }
+.kpi-row:last-child { border-bottom: none; }
+.avail-badge { font-size: 9px; font-weight: 600; padding: 2px 8px; border-radius: 10px; letter-spacing: 0.3px; flex-shrink: 0; }
+.avail-public { background: rgba(74,222,128,0.12); color: #16a34a; }
+.avail-partial { background: rgba(234,179,8,0.12); color: #a27c02; }
+.avail-private { background: rgba(239,68,68,0.08); color: #dc2626; }
+.source-tags { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 4px; }
+.source-tag { font-size: 9px; padding: 2px 8px; border-radius: 10px; background: #f1f5f9; color: #94a3b8; font-weight: 500; }
+
+/* ---- PROBLEM / SOLUTION ---- */
 .ps-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
 .ps-panel { background: rgba(255,255,255,0.03); backdrop-filter: blur(16px); border: 1.65px solid var(--gold-500); border-radius: 8px; overflow: hidden; }
-.ps-crown { height: 3.3px; background: var(--crown); }
 .ps-header { padding: 12px 20px 4px; font-size: 13px; font-weight: 600; color: rgba(234,179,8,0.65); }
 .ps-body { padding: 8px 20px 20px; }
 .ps-body h3 { font-size: 20px; font-weight: 700; color: #fff; margin-bottom: 16px; }
@@ -151,76 +235,44 @@ nav {
 .ps-dot.red { background: #f87171; }
 .ps-dot.green { background: #4ade80; }
 
-.kpi-section { padding: 80px 0; }
-.kpi-outer { background: var(--light-surface); border: 1.65px solid var(--deep-700); border-radius: 8px; overflow: hidden; }
-.kpi-header-bar { background: var(--deep-950); padding: 14px 24px; display: flex; justify-content: space-between; align-items: center; }
-.kpi-header-bar h2 { font-size: 16px; font-weight: 700; color: rgba(255,255,255,0.9); margin:0; }
-.kpi-header-bar span { font-size: 10px; color: rgba(255,255,255,0.3); letter-spacing: 1.5px; text-transform: uppercase; }
-.kpi-body { padding: 20px 24px; }
-.kpi-subtitle { font-size: 13px; color: #475569; margin-bottom: 24px; max-width: 640px; }
-.kpi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
-.kpi-card { background: #fff; border: 1.65px solid var(--deep-600); border-radius: 6px; padding: 20px; transition: all 0.2s; }
-.kpi-card:hover { box-shadow: 0 4px 20px rgba(44,61,94,0.1); transform: translateY(-2px); }
-.kpi-icon { width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 18px; margin-bottom: 12px; }
-.kpi-card h3 { font-size: 15px; font-weight: 700; color: var(--deep-950); margin-bottom: 6px; }
-.kpi-card .kpi-count { font-size: 11px; font-weight: 600; color: var(--deep-600); margin-bottom: 8px; }
-.kpi-card p { font-size: 11.5px; color: #64748b; line-height: 1.6; }
-.kpi-card .kpi-examples { font-size: 10.5px; color: #94a3b8; margin-top: 10px; padding-top: 10px; border-top: 1px solid #e2e8f0; line-height: 1.5; }
-.icon-cli { background: rgba(96,165,250,0.12); }
-.icon-med { background: rgba(244,114,182,0.12); }
-.icon-com { background: rgba(234,179,8,0.12); }
-.icon-mka { background: rgba(192,132,252,0.12); }
-.icon-reg { background: rgba(74,222,128,0.12); }
-.icon-pat { background: rgba(251,146,60,0.12); }
+/* ---- COMPLIANCE BOX ---- */
+.compliance-panel {
+  border: 1.65px solid var(--gold-500); border-radius: 10px; overflow: hidden;
+  margin-top: 36px;
+}
+.compliance-inner { padding: 24px; }
+.compliance-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; font-size: 13px; }
+.compliance-col h4 { font-size: 12px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 12px; }
+.compliance-col.measure h4 { color: #4ade80; }
+.compliance-col.never h4 { color: #f87171; }
+.compliance-col ul { list-style: none; }
+.compliance-col li { padding: 4px 0; color: rgba(255,255,255,0.5); display: flex; align-items: flex-start; gap: 8px; }
+.compliance-col.measure li::before { content: "\2713"; color: #4ade80; font-weight: 700; }
+.compliance-col.never li::before { content: "\2717"; color: #f87171; font-weight: 700; }
 
-.data-section { padding: 80px 0; text-align: center; }
-.data-section h2 { font-size: 24px; font-weight: 700; color: var(--gold-400); margin-bottom: 8px; }
-.data-section .sub { font-size: 14px; color: rgba(255,255,255,0.35); margin-bottom: 32px; max-width: 560px; margin-left: auto; margin-right: auto; }
-.data-tags { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; max-width: 800px; margin: 0 auto 32px; }
-.data-tag { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07); padding: 7px 16px; border-radius: 6px; font-size: 12px; color: rgba(255,255,255,0.5); font-weight: 500; transition: all 0.2s; }
-.data-tag:hover { border-color: rgba(234,179,8,0.25); color: rgba(255,255,255,0.75); }
-.arch-flow { display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap; margin-top: 16px; }
-.arch-step { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); padding: 10px 20px; border-radius: 6px; font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.6); }
-.arch-arrow { color: var(--gold-500); font-size: 16px; }
-
-.insights-section { padding: 80px 0; }
-.insights-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-.insight-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px; padding: 24px; transition: all 0.2s; }
+/* ---- INSIGHTS ---- */
+.insight-card {
+  background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 8px; padding: 24px; transition: all 0.2s;
+}
 .insight-card:hover { border-color: rgba(234,179,8,0.2); }
 .insight-tag { font-size: 10px; font-weight: 600; color: var(--gold-500); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 10px; }
 .insight-card h3 { font-size: 15px; font-weight: 700; color: rgba(255,255,255,0.85); margin-bottom: 8px; line-height: 1.4; }
 .insight-card p { font-size: 12px; color: rgba(255,255,255,0.35); line-height: 1.6; }
-.insight-card .insight-date { font-size: 10px; color: rgba(255,255,255,0.2); margin-top: 14px; }
+.insight-date { font-size: 10px; color: rgba(255,255,255,0.2); margin-top: 14px; }
 
-.pricing-section { padding: 80px 0; }
-.pricing-panel { background: rgba(255,255,255,0.03); border: 1.65px solid var(--gold-500); border-radius: 10px; overflow: hidden; max-width: 800px; margin: 0 auto; }
-.pricing-crown { height: 3.3px; background: var(--crown); }
-.pricing-inner { padding: 48px 40px; text-align: center; }
-.pricing-inner h2 { font-size: 28px; font-weight: 700; color: #fff; margin-bottom: 12px; }
-.pricing-inner .pricing-sub { font-size: 14px; color: rgba(255,255,255,0.4); margin-bottom: 36px; max-width: 500px; margin-left: auto; margin-right: auto; }
-.pricing-features { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; text-align: left; margin-bottom: 36px; max-width: 560px; margin-left: auto; margin-right: auto; }
-.pricing-feature { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; color: rgba(255,255,255,0.6); padding: 8px 0; }
-.pricing-check { color: var(--gold-400); font-size: 16px; flex-shrink: 0; margin-top: 1px; }
-.pricing-cta { display: inline-block; background: linear-gradient(135deg, var(--gold-500), var(--gold-400)); color: var(--deep-950); padding: 14px 40px; border-radius: 8px; font-size: 14px; font-weight: 700; text-decoration: none; transition: all 0.25s; }
-.pricing-cta:hover { transform: translateY(-2px); box-shadow: 0 6px 24px rgba(234,179,8,0.2); }
-.pricing-note { font-size: 11px; color: rgba(255,255,255,0.2); margin-top: 16px; }
+/* ---- COLLABORATE ---- */
+.collab-card { margin-bottom: 20px; }
+.collab-card .crown-card-inner h3 { font-size: 18px; }
+.collab-bullets { list-style: none; margin-top: 14px; }
+.collab-bullets li {
+  padding: 8px 0; font-size: 12px; color: rgba(255,255,255,0.5);
+  border-bottom: 1px solid rgba(255,255,255,0.04); display: flex; align-items: flex-start; gap: 10px;
+}
+.collab-bullets li:last-child { border-bottom: none; }
+.collab-bullets li::before { content: "\25C6"; color: var(--gold-500); font-size: 8px; margin-top: 4px; flex-shrink: 0; }
 
-.partner-section { padding: 80px 0; }
-.partner-panel { background: rgba(255,255,255,0.03); backdrop-filter: blur(16px); border: 1.65px solid var(--gold-500); border-radius: 8px; overflow: hidden; }
-.partner-crown { height: 3.3px; background: var(--crown); }
-.partner-header { padding: 14px 24px 6px; font-size: 14px; font-weight: 700; color: var(--gold-400); }
-.partner-body { padding: 8px 24px 24px; }
-.partner-subtitle { font-size: 14px; color: rgba(255,255,255,0.4); margin-bottom: 24px; max-width: 600px; }
-.partner-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 24px; }
-.partner-box { background: rgba(255,255,255,0.04); border: 1.65px solid var(--gold-500); border-radius: 6px; overflow: hidden; }
-.partner-box-crown { height: 3.3px; background: var(--crown); }
-.partner-box-inner { padding: 20px; }
-.partner-box h3 { font-size: 15px; font-weight: 700; color: rgba(234,179,8,0.55); margin-bottom: 8px; }
-.partner-box p { font-size: 12px; color: rgba(255,255,255,0.5); line-height: 1.6; }
-.partner-cta-row { text-align: center; }
-.partner-cta { display: inline-block; background: linear-gradient(135deg, var(--gold-500), var(--gold-400)); color: var(--deep-950); padding: 12px 36px; border-radius: 8px; font-size: 14px; font-weight: 700; text-decoration: none; transition: all 0.25s; }
-.partner-cta:hover { transform: translateY(-2px); box-shadow: 0 6px 24px rgba(234,179,8,0.2); }
-
+/* ---- ACCESS CTA ---- */
 .access-section { padding: 80px 0; text-align: center; }
 .access-section h2 { font-size: 28px; font-weight: 700; color: #fff; margin-bottom: 10px; }
 .access-section p { font-size: 14px; color: rgba(255,255,255,0.35); margin-bottom: 28px; }
@@ -231,145 +283,60 @@ nav {
 .email-form button { background: linear-gradient(135deg, var(--gold-500), var(--gold-400)); color: var(--deep-950); padding: 12px 28px; border: none; border-radius: 8px; font-size: 13px; font-weight: 700; cursor: pointer; font-family: 'Chakra Petch', sans-serif; white-space: nowrap; transition: all 0.2s; }
 .email-form button:hover { box-shadow: 0 4px 16px rgba(234,179,8,0.25); }
 
+/* ---- FOOTER ---- */
 footer { padding: 32px 40px; text-align: center; border-top: 1px solid rgba(255,255,255,0.04); }
 footer p { font-size: 11px; color: rgba(255,255,255,0.15); }
 footer a { color: var(--gold-500); text-decoration: none; }
 
-/* --- Tablet breakpoint --- */
-@media (max-width: 900px) {
-  .product-grid, .insights-grid { grid-template-columns: 1fr 1fr; }
-  .kpi-grid { grid-template-columns: 1fr 1fr; }
-  .partner-grid { grid-template-columns: 1fr; }
+/* ---- TIMELINE ---- */
+.timeline-bar {
+  display: flex; align-items: center; justify-content: space-between;
+  background: rgba(255,255,255,0.02); border: 1.65px solid var(--gold-500);
+  border-radius: 8px; overflow: hidden; margin-top: 24px;
 }
+.timeline-bar .crown-bar { width: 100%; }
+.timeline-inner { display: flex; justify-content: space-between; padding: 14px 20px; width: 100%; }
+.timeline-mark { font-size: 11px; color: rgba(255,255,255,0.3); font-weight: 500; }
+.timeline-mark.highlight { color: var(--gold-400); font-weight: 700; }
 
-/* --- Mobile breakpoint --- */
+/* ---- RESPONSIVE ---- */
+@media (max-width: 900px) {
+  .grid-3 { grid-template-columns: 1fr 1fr; }
+  .ps-grid { grid-template-columns: 1fr; }
+  .compliance-grid { grid-template-columns: 1fr; }
+}
 @media (max-width: 768px) {
-  /* Nav */
   nav { padding: 12px 16px; }
   .nav-links a:not(.nav-cta) { display: none; }
   .nav-cta { font-size: 11px !important; padding: 6px 14px !important; }
   .nav-logo { font-size: 19px; }
-
-  /* Container */
   .container { padding: 0 16px; }
-
-  /* Hero */
-  .hero { padding: 110px 0 48px; }
-  .hero-badge { font-size: 10px; padding: 5px 14px; margin-bottom: 20px; letter-spacing: 1.5px; }
-  .hero h1 { font-size: 26px; line-height: 1.2; margin-bottom: 14px; }
-  .hero p { font-size: 14px; line-height: 1.6; margin-bottom: 24px; }
-  .hero-cta { padding: 12px 32px; font-size: 13px; }
-
-  /* Demo / Command Center */
-  .demo-section { padding: 0 0 48px; }
-  .demo-header { padding: 10px 14px 6px; flex-direction: column; align-items: flex-start; gap: 2px; }
-  .demo-header-title { font-size: 12px; }
-  .demo-header-badge { font-size: 9px; }
-  .demo-body { padding: 6px 12px 14px; }
-  .metrics-strip { flex-wrap: wrap; gap: 8px; }
-  .metric-card { min-width: calc(50% - 4px); flex: none; }
+  .hero { padding: 80px 0 48px; }
+  .hero h1 { font-size: 26px; }
+  .hero p { font-size: 14px; }
+  .hero-cta-outline { margin-left: 0; margin-top: 10px; }
+  .section { padding: 48px 0; }
+  .section-title { font-size: 22px; }
+  .grid-2, .grid-3 { grid-template-columns: 1fr; }
+  .metrics-strip { flex-wrap: wrap; }
+  .metric-card { min-width: calc(50% - 6px); flex: none; }
   .metric-val { font-size: 18px; }
-  .metric-lbl { font-size: 8px; }
-  .metric-inner { padding: 10px 6px; }
-
-  /* Hex Board */
-  .hex-board-area { overflow-x: auto; -webkit-overflow-scrolling: touch; }
-  .hex-board-body { min-width: 500px; padding: 4px 0 10px; }
-  .hex-board-header { padding: 8px 12px 2px; }
-  .hex-board-header span:first-child { font-size: 10px; }
-  .hex-legend { gap: 8px; padding: 0 10px 10px; }
-  .hex-legend-item { font-size: 8px; }
-
-  /* Product Section */
-  .product-section { padding: 48px 0; }
-  .section-label { font-size: 10px; letter-spacing: 1.5px; margin-bottom: 8px; }
-  .section-title { font-size: 22px; margin-bottom: 8px; }
-  .section-sub { font-size: 13px; margin-bottom: 24px; }
-  .product-grid { grid-template-columns: 1fr; gap: 12px; }
-  .product-card-inner { padding: 18px 16px; }
-  .product-card-icon { font-size: 24px; margin-bottom: 10px; }
-  .product-card h3 { font-size: 14px; }
-  .product-card p { font-size: 12px; }
-
-  /* Problem / Solution */
-  .ps-section { padding: 48px 0; }
-  .ps-grid { grid-template-columns: 1fr; gap: 14px; }
-  .ps-body h3 { font-size: 17px; margin-bottom: 12px; }
-  .ps-list li { font-size: 12px; padding: 10px 0; }
-
-  /* KPI Section */
-  .kpi-section { padding: 48px 0; }
-  .kpi-header-bar { padding: 12px 14px; flex-direction: column; align-items: flex-start; gap: 4px; }
-  .kpi-header-bar h2 { font-size: 14px; }
-  .kpi-body { padding: 14px; }
-  .kpi-subtitle { font-size: 12px; margin-bottom: 16px; }
-  .kpi-grid { grid-template-columns: 1fr; gap: 12px; }
-  .kpi-card { padding: 16px; }
-  .kpi-card h3 { font-size: 14px; }
-  .kpi-card .kpi-count { font-size: 10px; }
-  .kpi-card p { font-size: 11px; }
-  .kpi-card .kpi-examples { font-size: 10px; }
-
-  /* Data Section */
-  .data-section { padding: 48px 0; }
-  .data-section h2 { font-size: 20px; }
-  .data-section .sub { font-size: 13px; margin-bottom: 20px; }
-  .data-tags { gap: 6px; margin-bottom: 20px; }
-  .data-tag { padding: 5px 12px; font-size: 11px; }
-  .arch-flow { gap: 6px; }
-  .arch-step { padding: 8px 12px; font-size: 11px; }
-  .arch-arrow { font-size: 12px; }
-
-  /* Insights Section */
-  .insights-section { padding: 48px 0; }
-  .insights-grid { grid-template-columns: 1fr; gap: 12px; }
-  .insight-card { padding: 18px; }
-  .insight-card h3 { font-size: 14px; }
-
-  /* Pricing Section */
-  .pricing-section { padding: 48px 0; }
-  .pricing-inner { padding: 32px 20px; }
-  .pricing-inner h2 { font-size: 22px; }
-  .pricing-inner .pricing-sub { font-size: 13px; margin-bottom: 24px; }
-  .pricing-features { grid-template-columns: 1fr; gap: 8px; margin-bottom: 24px; }
-  .pricing-feature { font-size: 12px; }
-  .pricing-cta { padding: 12px 32px; font-size: 13px; }
-
-  /* Partners Section */
-  .partner-section { padding: 48px 0; }
-  .partner-grid { grid-template-columns: 1fr; gap: 12px; }
-  .partner-subtitle { font-size: 13px; }
-  .partner-box-inner { padding: 16px; }
-  .partner-box h3 { font-size: 14px; }
-  .partner-box p { font-size: 12px; }
-
-  /* Access / CTA Section */
-  .access-section { padding: 48px 0; }
-  .access-section h2 { font-size: 22px; }
-  .access-section p { font-size: 13px; margin-bottom: 20px; }
-  .email-form { flex-direction: column; gap: 8px; }
-  .email-form input { padding: 12px 14px; font-size: 13px; }
-  .email-form button { padding: 12px 20px; font-size: 13px; }
-
-  /* Footer */
+  .toggle-bar { flex-wrap: wrap; }
+  .toggle-bar button { font-size: 11px; padding: 8px 14px; }
+  .ps-grid { grid-template-columns: 1fr; }
+  .email-form { flex-direction: column; }
   footer { padding: 24px 16px; }
-  footer p { font-size: 10px; }
 }
-
-/* --- Small phone breakpoint --- */
 @media (max-width: 380px) {
   .hero h1 { font-size: 22px; }
-  .hero p { font-size: 13px; }
-  .section-title { font-size: 20px; }
   .metric-card { min-width: 100%; }
-  .pricing-inner { padding: 24px 14px; }
 }
 </style>
 </head>
 <body>
 
 <nav>
-  <a href="#" class="nav-logo">
+  <a class="nav-logo" onclick="goPage('home')">
     <span class="savi">savi</span>
     <svg viewBox="0 0 20 22" fill="none" xmlns="http://www.w3.org/2000/svg">
       <polygon points="10,1 18.66,5.5 18.66,16.5 10,21 1.34,16.5 1.34,5.5" stroke="#eab308" stroke-width="1.5" fill="none"/>
@@ -377,213 +344,384 @@ footer a { color: var(--gold-500); text-decoration: none; }
     <span class="bio">bio</span>
   </a>
   <div class="nav-links">
-    <a href="#platform">Platform</a>
-    <a href="#product">Product</a>
-    <a href="#insights">Insights</a>
-    <a href="#data">Data</a>
-    <a href="#pricing">Pricing</a>
-    <a href="#partners">Partners</a>
-    <a href="#access" class="nav-cta">Request Access</a>
+    <a onclick="goPage('platform')" data-page="platform">Platform</a>
+    <a onclick="goPage('intelligence')" data-page="intelligence">Intelligence</a>
+    <a onclick="goPage('insights')" data-page="insights">Insights</a>
+    <a onclick="goPage('collaborate')" data-page="collaborate">Collaborate</a>
+    <a onclick="goPage('collaborate')" class="nav-cta">Get in Touch</a>
   </div>
 </nav>
 
-<div class="container">
-  <div class="hero">
-    <div class="hero-badge">Now Building &mdash; Early Access Coming Soon</div>
-    <h1>Competitive intelligence for <em>biopharma</em>, powered by AI agents</h1>
-    <p>Savi is an agentic platform that continuously monitors public data sources to track KPIs across all six biopharma launch functions &mdash; so your team can make faster, better-informed decisions.</p>
-    <a href="#access" class="hero-cta">Request Early Access</a>
-  </div>
-</div>
-
-<div class="container demo-section" id="platform">
-  <div class="demo-panel">
-    <div class="demo-crown"></div>
-    <div class="demo-header">
-      <span class="demo-header-title">STRATEGIC COMMAND CENTER</span>
-      <span class="demo-header-badge">METex14 NSCLC &mdash; Live Demo</span>
+<!-- ============================================================
+     PAGE: HOME
+     ============================================================ -->
+<div id="page-home" class="page active">
+  <div class="container">
+    <div class="hero">
+      <div class="hero-badge">Now Building &mdash; Design Partners Welcome</div>
+      <h1>Competitive intelligence for <em>biopharma</em>, powered by AI agents</h1>
+      <p>Savi is an agentic platform that continuously monitors public data sources to track KPIs across all six biopharma launch functions &mdash; so your team sees what competitors signal before they announce it.</p>
+      <button class="hero-cta" onclick="goPage('platform')">See the Platform</button>
+      <button class="hero-cta-outline" onclick="goPage('collaborate')">Work With Us</button>
     </div>
-    <div class="demo-body">
-      <div class="metrics-strip">
-        <div class="metric-card"><div class="metric-crown"></div><div class="metric-inner"><div class="metric-val">47</div><div class="metric-lbl">Active Trials</div></div></div>
-        <div class="metric-card"><div class="metric-crown"></div><div class="metric-inner"><div class="metric-val">12</div><div class="metric-lbl">Pipeline Assets</div></div></div>
-        <div class="metric-card"><div class="metric-crown"></div><div class="metric-inner"><div class="metric-val">89%</div><div class="metric-lbl">Formulary Coverage</div></div></div>
-        <div class="metric-card"><div class="metric-crown"></div><div class="metric-inner"><div class="metric-val">6</div><div class="metric-lbl">Functions Tracked</div></div></div>
-      </div>
-      <div class="hex-board-area">
-        <div class="hex-board-crown"></div>
-        <div class="hex-board-header">
-          <span>INDICATION ARENA</span>
-          <span>Competitive Landscape</span>
+  </div>
+
+  <div class="container" style="padding-bottom:60px">
+    <div class="metrics-strip">
+      <div class="metric-card"><div class="metric-crown"></div><div class="metric-inner"><div class="metric-val">96</div><div class="metric-lbl">KPIs Tracked</div></div></div>
+      <div class="metric-card"><div class="metric-crown"></div><div class="metric-inner"><div class="metric-val">6</div><div class="metric-lbl">Biopharma Functions</div></div></div>
+    </div>
+  </div>
+
+  <div class="container section">
+    <div class="section-label">Signals</div>
+    <div class="section-title">What competitors reveal before they announce it</div>
+    <div class="section-sub">Every KPI maps to a phase on the launch timeline &mdash; from L-48 months pre-launch through L+48 post-launch. We track the signals that predict competitive moves.</div>
+    <div class="grid-2">
+      <div class="crown-card"><div class="crown-bar"></div><div class="crown-card-inner"><h3>Pre-Launch Signals</h3><p>MSL deployment timing from LinkedIn, sales force hiring velocity, brand domain registration, IND/NDA filing cadence, KOL positioning months before approval.</p></div></div>
+      <div class="crown-card"><div class="crown-bar"></div><div class="crown-card-inner"><h3>Evidence Velocity</h3><p>Publication rates per quarter, guideline inclusion speed, congress abstract share of voice, RWE study counts, citation impact tracking across the competitive set.</p></div></div>
+      <div class="crown-card"><div class="crown-bar"></div><div class="crown-card-inner"><h3>Market Access Readiness</h3><p>ICER value-based price benchmarks vs WAC, Part D formulary coverage, prior auth restriction rates, HTA outcomes across NICE/CADTH/G-BA.</p></div></div>
+      <div class="crown-card"><div class="crown-bar"></div><div class="crown-card-inner"><h3>Competitive Positioning</h3><p>KOL network overlap via Sunshine Act, competitive trial design analysis, enrollment velocity comparisons, label scope vs target product profile.</p></div></div>
+    </div>
+    <div class="timeline-bar">
+      <div style="width:100%">
+        <div class="crown-bar"></div>
+        <div class="timeline-inner">
+          <span class="timeline-mark">L-48</span>
+          <span class="timeline-mark">L-24</span>
+          <span class="timeline-mark">L-12</span>
+          <span class="timeline-mark highlight">PDUFA</span>
+          <span class="timeline-mark">L+12</span>
+          <span class="timeline-mark">L+24</span>
+          <span class="timeline-mark">L+48</span>
         </div>
-        <div class="hex-board-body"><svg id="hexBoard" style="display:block;"></svg></div>
-        <div class="hex-legend">
-          <div class="hex-legend-item"><div class="hex-legend-dot" style="background:#60a5fa;"></div>Clinical</div>
-          <div class="hex-legend-item"><div class="hex-legend-dot" style="background:#4ade80;"></div>Regulatory</div>
-          <div class="hex-legend-item"><div class="hex-legend-dot" style="background:#eab308;"></div>Commercial</div>
-          <div class="hex-legend-item"><div class="hex-legend-dot" style="background:#f472b6;"></div>Medical Affairs</div>
-          <div class="hex-legend-item"><div class="hex-legend-dot" style="background:#c084fc;"></div>Market Access</div>
-          <div class="hex-legend-item"><div class="hex-legend-dot" style="background:#fb923c;"></div>Patient Advocacy</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container section">
+    <div class="ps-grid">
+      <div class="ps-panel"><div class="crown-bar"></div><div class="ps-header">THE PROBLEM</div><div class="ps-body"><h3>Competitive intelligence in biopharma is broken</h3><ul class="ps-list"><li><span class="ps-dot red"></span>CI teams manually pull data from dozens of disconnected sources</li><li><span class="ps-dot red"></span>Insights arrive weeks or months after competitive events</li><li><span class="ps-dot red"></span>Analysts spend 80% of time on data wrangling, not analysis</li><li><span class="ps-dot red"></span>No single view across Medical Affairs, Commercial, Market Access, Clinical, Regulatory, and Patient Advocacy</li></ul></div></div>
+      <div class="ps-panel"><div class="crown-bar"></div><div class="ps-header">OUR SOLUTION</div><div class="ps-body"><h3>Always-on AI agents that do the work for you</h3><ul class="ps-list"><li><span class="ps-dot green"></span>Automated ingestion from public data sources, updated continuously</li><li><span class="ps-dot green"></span>Governed metrics across all six biopharma functions via a semantic layer</li><li><span class="ps-dot green"></span>AI agents that surface insights, not just dashboards that display data</li><li><span class="ps-dot green"></span>Built on a compliance-first architecture &mdash; bright-line rules enforced at the data layer</li></ul></div></div>
+    </div>
+  </div>
+
+  <div class="container access-section">
+    <h2>Be the first to know when Savi launches</h2>
+    <p>Join our early access list and we'll notify you when the platform is ready for design partners.</p>
+    <div class="email-form"><input type="email" placeholder="Your work email"><button type="submit">Request Access</button></div>
+  </div>
+</div>
+
+<!-- ============================================================
+     PAGE: PLATFORM
+     ============================================================ -->
+<div id="page-platform" class="page">
+  <div class="container section">
+    <div class="section-label">Platform</div>
+    <div class="section-title">Three layers of competitive intelligence</div>
+    <div class="section-sub">From executive scorecard down to individual KPI definitions. Every metric is governed, sourced from public data, and mapped to the biopharma launch timeline.</div>
+
+    <div class="toggle-bar">
+      <button class="active" onclick="setLayer(0)">Executive Scorecard</button>
+      <button onclick="setLayer(1)">Function Overview</button>
+      <button onclick="setLayer(2)">Sub-Function KPIs</button>
+    </div>
+
+    <!-- Layer 0: Executive Scorecard -->
+    <div id="layer-0" class="layer active">
+      <div class="crown-panel" style="margin-bottom:24px">
+        <div class="crown-bar"></div>
+        <div class="crown-header">
+          <span class="crown-header-title">COMPETITIVE POSITION SCORE</span>
+          <span class="crown-header-badge">Composite Index</span>
+        </div>
+        <div class="crown-body">
+          <p style="font-size:13px;color:rgba(255,255,255,0.5);margin-bottom:8px">Composite index across all 6 functions, weighted by launch phase. One number that tells you where you stand vs. your competitive set.</p>
+        </div>
+      </div>
+      <div class="grid-2">
+        <div class="crown-card"><div class="crown-bar"></div><div class="crown-card-inner"><h3>Evidence Strength</h3><p>Publication velocity + guideline adoption + HTA outcomes. Measures how effectively your evidence strategy competes.</p></div></div>
+        <div class="crown-card"><div class="crown-bar"></div><div class="crown-card-inner"><h3>Market Readiness</h3><p>Formulary coverage + pricing position + access restrictions. Quantifies your payer readiness vs. the competitive set.</p></div></div>
+        <div class="crown-card"><div class="crown-bar"></div><div class="crown-card-inner"><h3>Clinical Momentum</h3><p>Trial portfolio + enrollment velocity + readout cadence. Tracks development pace and clinical execution signals.</p></div></div>
+        <div class="crown-card"><div class="crown-bar"></div><div class="crown-card-inner"><h3>Launch Execution</h3><p>Hiring velocity + KOL positioning + regulatory milestones. Monitors commercial and field medical deployment.</p></div></div>
+      </div>
+    </div>
+
+    <!-- Layer 1: Function Overview -->
+    <div id="layer-1" class="layer">
+      <div class="kpi-outer">
+        <div class="kpi-header-bar">
+          <h2>KPIs Across Biopharma Launch Functions</h2>
+          <span>96 KPIs &middot; 6 Functions</span>
+        </div>
+        <div class="kpi-body">
+          <p style="font-size:13px;color:#475569;margin-bottom:20px">One platform that gives Medical, Commercial, and Executive leadership a shared, governed view of the competitive landscape.</p>
+          <div class="grid-3" id="func-grid">
+            <div class="func-card" onclick="showFunc('ma')"><div class="func-card-icon icon-med">&#x1F3E5;</div><h3>Medical Affairs</h3><div class="func-count">30 KPIs &middot; 49% public &middot; P0</div><p>Publication velocity, congress share-of-voice, KOL network mapping, MSL deployment tracking, and HEOR contribution scoring.</p><div class="func-examples">Sub-functions: Pubs &amp; Evidence, Congress Strategy, KOL Engagement, MSL Ops, ISS Governance, HEOR Contribution</div></div>
+            <div class="func-card" onclick="showFunc('reg')"><div class="func-card-icon icon-reg">&#x1F4DC;</div><h3>Regulatory</h3><div class="func-count">15 KPIs &middot; 62% public &middot; P2</div><p>FDA approval timelines, expedited designations, AdComm vote tracking, label scope analysis, Orange Book patent monitoring.</p><div class="func-examples">Sub-functions: IND/NDA, FDA Meetings, AdComm, Label &amp; Exclusivity, Post-Market</div></div>
+            <div class="func-card" onclick="showFunc('comm')"><div class="func-card-icon icon-com">&#x1F4CA;</div><h3>Commercial</h3><div class="func-count">14 KPIs &middot; 17% public &middot; P1</div><p>Launch readiness signals, prescriber universe sizing, DTC ad detection, revenue vs analyst consensus, and market share proxies.</p><div class="func-examples">Sub-functions: Launch Readiness, Prescriber Targeting, DTC/Promo, Share of Voice, Access</div></div>
+            <div class="func-card" onclick="showFunc('access')"><div class="func-card-icon icon-mka">&#x1F3DB;</div><h3>Market Access</h3><div class="func-count">14 KPIs &middot; 15% public &middot; P2</div><p>Formulary coverage tracking, ASP pricing analysis, HTA decision monitoring across ICER/NICE/CADTH/G-BA, and IRA impact modeling.</p><div class="func-examples">Sub-functions: Payer Coverage, Pricing/ASP, HEOR/Value, IRA Impact</div></div>
+            <div class="func-card" onclick="showFunc('clin')"><div class="func-card-icon icon-cli">&#x1F52C;</div><h3>Clinical</h3><div class="func-count">12 KPIs &middot; 58% public &middot; P2</div><p>Trial portfolio tracking, enrollment velocity, endpoint design analysis, PI overlap detection, and readout monitoring.</p><div class="func-examples">Sub-functions: Trial Portfolio, Trial Design, Enrollment, Investigators, Readouts</div></div>
+            <div class="func-card" onclick="showFunc('pa')"><div class="func-card-icon icon-pat">&#x1F91D;</div><h3>Patient Advocacy</h3><div class="func-count">11 KPIs &middot; 28% public &middot; P1</div><p>Advocacy org funding analysis, patient assistance program benchmarking, unmet need scoring from FDA PFDD transcripts.</p><div class="func-examples">Sub-functions: Advocacy Orgs, Patient Voice, Hub/PAP</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sub-function detail views -->
+      <div id="detail-ma" class="func-detail">
+        <div class="kpi-outer">
+          <div class="kpi-header-bar"><h2>Medical Affairs</h2><span>30 KPIs &middot; 6 Sub-Functions</span></div>
+          <div class="kpi-body">
+            <button class="back-btn" onclick="hideFunc()">&larr; Back to all functions</button>
+            <div class="subfunc-card"><h4>Publications &amp; Evidence <span>6 KPIs</span></h4><div class="kpi-row"><span>Publication velocity (peer-reviewed pubs/quarter)</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>Tier-1 journal share of voice</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>RWE / registry studies opened</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>Citation impact (2-yr window)</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>Guideline inclusion velocity</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>Evidence quality contribution to payer dossier</span><span class="avail-badge avail-partial">Partial</span></div><div class="source-tags"><span class="source-tag">PubMed</span><span class="source-tag">OpenAlex</span><span class="source-tag">ClinicalTrials.gov</span><span class="source-tag">NCCN</span><span class="source-tag">ICER</span></div></div>
+            <div class="subfunc-card"><h4>Congress Strategy <span>5 KPIs</span></h4><div class="kpi-row"><span>Abstract share of voice</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>Oral + late-breaker count</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>Faculty appearances</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>Post-congress insight adoption rate</span><span class="avail-badge avail-private">Internal</span></div><div class="kpi-row"><span>Social/media share of voice (congress week)</span><span class="avail-badge avail-partial">Partial</span></div><div class="source-tags"><span class="source-tag">ASCO</span><span class="source-tag">ESMO</span><span class="source-tag">ASH</span><span class="source-tag">Twitter/X</span></div></div>
+            <div class="subfunc-card"><h4>KOL Engagement <span>6 KPIs</span></h4><div class="kpi-row"><span>KOL network depth (Tier 1/2/3)</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>Competitive KOL overlap (Sunshine Act)</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>KOL spend depth by competitor</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>KOL faculty share at Tier-1 congresses</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>Pre-launch KOL positioning timing</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>Advisory board quality score</span><span class="avail-badge avail-private">Internal</span></div><div class="source-tags"><span class="source-tag">CMS Open Payments</span><span class="source-tag">PubMed</span><span class="source-tag">Congress programs</span></div></div>
+            <div class="subfunc-card"><h4>MSL Operations <span>5 KPIs</span></h4><div class="kpi-row"><span>MSL deployment timing (first hire)</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>MSL team size growth curve</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>MSL geographic coverage density</span><span class="avail-badge avail-partial">Partial</span></div><div class="kpi-row"><span>MSL insights adopted internally</span><span class="avail-badge avail-private">Internal</span></div><div class="kpi-row"><span>MSL resource allocation efficiency</span><span class="avail-badge avail-partial">Partial</span></div><div class="source-tags"><span class="source-tag">LinkedIn</span><span class="source-tag">NCCN center list</span></div></div>
+            <div class="subfunc-card"><h4>ISS Governance <span>3 KPIs</span></h4><div class="kpi-row"><span>Investigator-initiated studies open</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>IIS publications yield</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>IIS review cycle time</span><span class="avail-badge avail-private">Internal</span></div><div class="source-tags"><span class="source-tag">ClinicalTrials.gov</span><span class="source-tag">PubMed</span></div></div>
+            <div class="subfunc-card"><h4>HEOR Contribution <span>5 KPIs</span></h4><div class="kpi-row"><span>ICER value-based price benchmark vs WAC</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>HTA assessment outcomes (ICER/NICE/CADTH/G-BA)</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>SLR protocols registered (PROSPERO)</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>Patient outcome proxies (diagnostic rates)</span><span class="avail-badge avail-partial">Partial</span></div><div class="kpi-row"><span>Evidence velocity index (composite)</span><span class="avail-badge avail-public">Public</span></div><div class="source-tags"><span class="source-tag">ICER</span><span class="source-tag">NICE</span><span class="source-tag">CADTH</span><span class="source-tag">G-BA</span><span class="source-tag">PROSPERO</span></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div id="detail-reg" class="func-detail">
+        <div class="kpi-outer">
+          <div class="kpi-header-bar"><h2>Regulatory</h2><span>15 KPIs &middot; 5 Sub-Functions</span></div>
+          <div class="kpi-body">
+            <button class="back-btn" onclick="hideFunc()">&larr; Back to all functions</button>
+            <div class="subfunc-card"><h4>IND / NDA <span>4 KPIs</span></h4><div class="kpi-row"><span>IND filing date</span><span class="avail-badge avail-partial">Partial</span></div><div class="kpi-row"><span>NDA/BLA acceptance date</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>PDUFA date</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>Expedited program designations</span><span class="avail-badge avail-public">Public</span></div><div class="source-tags"><span class="source-tag">FDA.gov</span><span class="source-tag">Press releases</span><span class="source-tag">SEC 8-K</span></div></div>
+            <div class="subfunc-card"><h4>AdComm <span>2 KPIs</span></h4><div class="kpi-row"><span>Advisory Committee vote outcome</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>AdComm briefing document quality score</span><span class="avail-badge avail-public">Public</span></div><div class="source-tags"><span class="source-tag">FDA AdComm briefing docs</span></div></div>
+            <div class="subfunc-card"><h4>Label &amp; Exclusivity <span>5 KPIs</span></h4><div class="kpi-row"><span>Approved indication scope vs target</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>Boxed warning presence</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>Orange Book exclusivity expiry</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>Orange Book patents listed</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>Paragraph IV certifications filed</span><span class="avail-badge avail-public">Public</span></div><div class="source-tags"><span class="source-tag">FDA Orange Book</span><span class="source-tag">Drugs@FDA</span></div></div>
+            <div class="subfunc-card"><h4>Post-Market <span>3 KPIs</span></h4><div class="kpi-row"><span>PMR/PMC commitments tracker</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>FAERS adverse event signal count</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>Warning letters / OPDP enforcement</span><span class="avail-badge avail-public">Public</span></div><div class="source-tags"><span class="source-tag">FDA FAERS</span><span class="source-tag">FDA OPDP</span><span class="source-tag">FDA PMR/PMC</span></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div id="detail-comm" class="func-detail">
+        <div class="kpi-outer">
+          <div class="kpi-header-bar"><h2>Commercial</h2><span>14 KPIs &middot; 3 Sub-Functions</span></div>
+          <div class="kpi-body">
+            <button class="back-btn" onclick="hideFunc()">&larr; Back to all functions</button>
+            <div class="subfunc-card"><h4>Launch Readiness <span>4 KPIs</span></h4><div class="kpi-row"><span>Sales force hiring velocity</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>Commercial team buildout (leadership)</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>Brand domain registration</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>Brand trademark filing</span><span class="avail-badge avail-public">Public</span></div><div class="source-tags"><span class="source-tag">LinkedIn</span><span class="source-tag">WHOIS</span><span class="source-tag">USPTO</span></div></div>
+            <div class="subfunc-card"><h4>Share of Voice &amp; Revenue <span>4 KPIs</span></h4><div class="kpi-row"><span>Revenue vs analyst consensus</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>Product revenue growth (10-Q)</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>TRx/NRx market share</span><span class="avail-badge avail-private">Paid</span></div><div class="kpi-row"><span>Gross-to-net ratio</span><span class="avail-badge avail-partial">Partial</span></div><div class="source-tags"><span class="source-tag">SEC EDGAR 10-Q</span><span class="source-tag">Seeking Alpha</span><span class="source-tag">SSR Health</span></div></div>
+            <div class="subfunc-card"><h4>DTC / Promo &amp; Access <span>6 KPIs</span></h4><div class="kpi-row"><span>DTC TV ad detection + est. spend</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>Branded website traffic (est.)</span><span class="avail-badge avail-partial">Partial</span></div><div class="kpi-row"><span>Social activation speed (approval day)</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>Medicare Part D prescriber universe size</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>Prescriber concentration (HHI)</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>Co-pay card launch timing</span><span class="avail-badge avail-public">Public</span></div><div class="source-tags"><span class="source-tag">iSpot.tv</span><span class="source-tag">SimilarWeb</span><span class="source-tag">CMS Part D</span><span class="source-tag">NeedyMeds</span></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div id="detail-access" class="func-detail">
+        <div class="kpi-outer">
+          <div class="kpi-header-bar"><h2>Market Access</h2><span>14 KPIs &middot; 4 Sub-Functions</span></div>
+          <div class="kpi-body">
+            <button class="back-btn" onclick="hideFunc()">&larr; Back to all functions</button>
+            <div class="subfunc-card"><h4>Payer Coverage <span>5 KPIs</span></h4><div class="kpi-row"><span>Medicare Part D covered-lives %</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>Preferred-tier status %</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>Prior-auth / step-therapy restriction rate</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>Commercial payer coverage (top 10 plans)</span><span class="avail-badge avail-partial">Partial</span></div><div class="kpi-row"><span>Medicaid preferred drug list status</span><span class="avail-badge avail-public">Public</span></div><div class="source-tags"><span class="source-tag">CMS Formulary Finder</span><span class="source-tag">State Medicaid PDLs</span></div></div>
+            <div class="subfunc-card"><h4>Pricing / ASP <span>3 KPIs</span></h4><div class="kpi-row"><span>CMS Average Sales Price (Part B)</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>WAC at launch + annual increases</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>Implied net price (SSR Health method)</span><span class="avail-badge avail-partial">Partial</span></div><div class="source-tags"><span class="source-tag">CMS ASP Files</span><span class="source-tag">SSR Health</span><span class="source-tag">46brooklyn</span></div></div>
+            <div class="subfunc-card"><h4>HEOR / Value Assessment <span>4 KPIs</span></h4><div class="kpi-row"><span>ICER value-based price range</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>NICE recommendation</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>CADTH reimbursement recommendation</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>G-BA benefit assessment</span><span class="avail-badge avail-public">Public</span></div><div class="source-tags"><span class="source-tag">ICER</span><span class="source-tag">NICE</span><span class="source-tag">CADTH</span><span class="source-tag">G-BA</span></div></div>
+            <div class="subfunc-card"><h4>IRA Impact <span>2 KPIs</span></h4><div class="kpi-row"><span>IRA negotiation eligibility clock</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>IRA Maximum Fair Price (if selected)</span><span class="avail-badge avail-public">Public</span></div><div class="source-tags"><span class="source-tag">CMS IRA announcements</span></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div id="detail-clin" class="func-detail">
+        <div class="kpi-outer">
+          <div class="kpi-header-bar"><h2>Clinical</h2><span>12 KPIs &middot; 3 Sub-Functions</span></div>
+          <div class="kpi-body">
+            <button class="back-btn" onclick="hideFunc()">&larr; Back to all functions</button>
+            <div class="subfunc-card"><h4>Trial Portfolio &amp; Design <span>5 KPIs</span></h4><div class="kpi-row"><span>Active trial count by phase</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>Pivotal trial status</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>Primary endpoint novelty</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>Comparator choice</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>Planned enrollment (N per arm)</span><span class="avail-badge avail-public">Public</span></div><div class="source-tags"><span class="source-tag">ClinicalTrials.gov</span><span class="source-tag">FDA reviews</span></div></div>
+            <div class="subfunc-card"><h4>Enrollment &amp; Sites <span>3 KPIs</span></h4><div class="kpi-row"><span>Enrollment velocity (pts/site/month)</span><span class="avail-badge avail-partial">Partial</span></div><div class="kpi-row"><span>Enrollment completion delay</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>Site count growth curve</span><span class="avail-badge avail-public">Public</span></div><div class="source-tags"><span class="source-tag">ClinicalTrials.gov</span></div></div>
+            <div class="subfunc-card"><h4>Investigators &amp; Readouts <span>4 KPIs</span></h4><div class="kpi-row"><span>PI overlap with competitors</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>PI publication productivity (H-index)</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>Topline readout events</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>Efficacy delta vs comparator</span><span class="avail-badge avail-public">Public</span></div><div class="source-tags"><span class="source-tag">PubMed</span><span class="source-tag">OpenAlex</span><span class="source-tag">SEC 8-K</span><span class="source-tag">NEJM / Lancet</span></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div id="detail-pa" class="func-detail">
+        <div class="kpi-outer">
+          <div class="kpi-header-bar"><h2>Patient Advocacy</h2><span>11 KPIs &middot; 3 Sub-Functions</span></div>
+          <div class="kpi-body">
+            <button class="back-btn" onclick="hideFunc()">&larr; Back to all functions</button>
+            <div class="subfunc-card"><h4>Advocacy Orgs <span>3 KPIs</span></h4><div class="kpi-row"><span>Advocacy org scale (IRS Form 990 revenue)</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>Pharma donor footprint in org</span><span class="avail-badge avail-partial">Partial</span></div><div class="kpi-row"><span>Advocacy org program spend on indication</span><span class="avail-badge avail-partial">Partial</span></div><div class="source-tags"><span class="source-tag">ProPublica 990s</span><span class="source-tag">Org annual reports</span></div></div>
+            <div class="subfunc-card"><h4>Patient Voice <span>2 KPIs</span></h4><div class="kpi-row"><span>FDA PFDD meeting mentions</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>Unmet need score (PFDD-derived via NLP)</span><span class="avail-badge avail-public">Public</span></div><div class="source-tags"><span class="source-tag">FDA PFDD transcripts</span></div></div>
+            <div class="subfunc-card"><h4>Hub / PAP <span>6 KPIs</span></h4><div class="kpi-row"><span>Patient Assistance Program launch timing</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>Co-pay benefit level vs comp set</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>Free drug program existence + eligibility</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>Hub conversion rate</span><span class="avail-badge avail-private">Internal</span></div><div class="kpi-row"><span>Time-to-first-fill</span><span class="avail-badge avail-private">Internal</span></div><div class="kpi-row"><span>Persistence at 6/12 months</span><span class="avail-badge avail-partial">Partial</span></div><div class="source-tags"><span class="source-tag">NeedyMeds</span><span class="source-tag">RxAssist</span><span class="source-tag">CMS Part D</span></div></div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</div>
 
-<div class="container product-section" id="product">
-  <div class="section-label">Product</div>
-  <div class="section-title">An intelligence platform built for biopharma launch teams</div>
-  <div class="section-sub">From L-48 months through post-launch, Savi tracks your competitive landscape across all six functions using governed, auditable data.</div>
-  <div class="product-grid">
-    <div class="product-card"><div class="product-card-crown"></div><div class="product-card-inner"><div class="product-card-icon">&#x1F50D;</div><h3>Continuous Data Ingestion</h3><p>AI agents automatically pull from 15+ public sources &mdash; ClinicalTrials.gov, FDA, SEC EDGAR, PubMed, CMS, ICER/NICE/CADTH, and more.</p></div></div>
-    <div class="product-card"><div class="product-card-crown"></div><div class="product-card-inner"><div class="product-card-icon">&#x1F3DB;</div><h3>Governed Semantic Layer</h3><p>96 KPIs organized across 6 functions with compliance bright lines enforced at the data layer &mdash; not just by prompts.</p></div></div>
-    <div class="product-card"><div class="product-card-crown"></div><div class="product-card-inner"><div class="product-card-icon">&#x2B22;</div><h3>Indication Arenas</h3><p>Hexagonal competitive landscape maps per indication. Compare every asset across functional scores at a glance.</p></div></div>
-    <div class="product-card"><div class="product-card-crown"></div><div class="product-card-inner"><div class="product-card-icon">&#x1F916;</div><h3>AI Agent Workflows</h3><p>Agents surface insights, not dashboards. Ask questions in natural language and get governed answers backed by traceable sources.</p></div></div>
-    <div class="product-card"><div class="product-card-crown"></div><div class="product-card-inner"><div class="product-card-icon">&#x1F512;</div><h3>Compliance-First Architecture</h3><p>Bright-line rules enforced architecturally: no prescribing-to-revenue joins, no MSL compensation tracking.</p></div></div>
-    <div class="product-card"><div class="product-card-crown"></div><div class="product-card-inner"><div class="product-card-icon">&#x1F4CA;</div><h3>Launch Timeline Intelligence</h3><p>Track competitor milestones from IND filing through LOE across L-48 to L+48 months around PDUFA date.</p></div></div>
-  </div>
-</div>
-
-<div class="container ps-section">
-  <div class="ps-grid">
-    <div class="ps-panel"><div class="ps-crown"></div><div class="ps-header">THE PROBLEM</div><div class="ps-body"><h3>Competitive intelligence in biopharma is broken</h3><ul class="ps-list"><li><span class="ps-dot red"></span>CI teams manually pull data from dozens of disconnected sources</li><li><span class="ps-dot red"></span>Insights arrive weeks or months after competitive events</li><li><span class="ps-dot red"></span>Analysts spend 80% of time on data wrangling, not analysis</li><li><span class="ps-dot red"></span>No single view across Medical Affairs, Commercial, Market Access, Clinical, Regulatory, and Patient Advocacy</li></ul></div></div>
-    <div class="ps-panel"><div class="ps-crown"></div><div class="ps-header">OUR SOLUTION</div><div class="ps-body"><h3>Always-on AI agents that do the work for you</h3><ul class="ps-list"><li><span class="ps-dot green"></span>Automated ingestion from 15+ public data sources, updated continuously</li><li><span class="ps-dot green"></span>Governed metrics across all six biopharma functions via a semantic layer</li><li><span class="ps-dot green"></span>AI agents that surface insights, not just dashboards that display data</li><li><span class="ps-dot green"></span>Built on a compliance-first architecture &mdash; bright-line rules enforced at the data layer</li></ul></div></div>
-  </div>
-</div>
-
-<div class="container kpi-section">
-  <div class="kpi-outer">
-    <div class="kpi-header-bar">
-      <h2>KPIs Across Biopharma Launch Functions</h2>
-      <span>96 KPIs &middot; 6 Functions</span>
+    <!-- Layer 2: Sub-function KPIs (direct access) -->
+    <div id="layer-2" class="layer">
+      <p style="font-size:13px;color:rgba(255,255,255,0.4);margin-bottom:20px">Select a function to explore its sub-function KPIs in detail.</p>
+      <div class="grid-3">
+        <div class="crown-card" style="cursor:pointer" onclick="setLayer(1);setTimeout(function(){showFunc('ma')},50)"><div class="crown-bar"></div><div class="crown-card-inner"><h3>Medical Affairs</h3><p>6 sub-functions &middot; 30 KPIs</p></div></div>
+        <div class="crown-card" style="cursor:pointer" onclick="setLayer(1);setTimeout(function(){showFunc('reg')},50)"><div class="crown-bar"></div><div class="crown-card-inner"><h3>Regulatory</h3><p>5 sub-functions &middot; 15 KPIs</p></div></div>
+        <div class="crown-card" style="cursor:pointer" onclick="setLayer(1);setTimeout(function(){showFunc('comm')},50)"><div class="crown-bar"></div><div class="crown-card-inner"><h3>Commercial</h3><p>3 sub-functions &middot; 14 KPIs</p></div></div>
+        <div class="crown-card" style="cursor:pointer" onclick="setLayer(1);setTimeout(function(){showFunc('access')},50)"><div class="crown-bar"></div><div class="crown-card-inner"><h3>Market Access</h3><p>4 sub-functions &middot; 14 KPIs</p></div></div>
+        <div class="crown-card" style="cursor:pointer" onclick="setLayer(1);setTimeout(function(){showFunc('clin')},50)"><div class="crown-bar"></div><div class="crown-card-inner"><h3>Clinical</h3><p>3 sub-functions &middot; 12 KPIs</p></div></div>
+        <div class="crown-card" style="cursor:pointer" onclick="setLayer(1);setTimeout(function(){showFunc('pa')},50)"><div class="crown-bar"></div><div class="crown-card-inner"><h3>Patient Advocacy</h3><p>3 sub-functions &middot; 11 KPIs</p></div></div>
+      </div>
     </div>
-    <div class="kpi-body">
-      <p class="kpi-subtitle">One platform that gives Medical, Commercial, and Executive leadership a shared, governed view of the competitive landscape &mdash; from L-48 months pre-launch through L+48 post-launch.</p>
-      <div class="kpi-grid">
-        <div class="kpi-card"><div class="kpi-icon icon-cli">&#x1F52C;</div><h3>Clinical</h3><div class="kpi-count">12 KPIs &middot; 58% public</div><p>Trial portfolio tracking, enrollment velocity, endpoint design analysis, PI overlap detection, and readout monitoring.</p><div class="kpi-examples">Example KPIs: Active trial count by phase, enrollment velocity (pts/site/month), PI publication productivity, efficacy delta vs comparator</div></div>
-        <div class="kpi-card"><div class="kpi-icon icon-med">&#x1F3E5;</div><h3>Medical Affairs</h3><div class="kpi-count">30 KPIs &middot; 49% public</div><p>Publication velocity, congress share-of-voice, KOL network mapping, MSL deployment tracking, and HEOR contribution scoring.</p><div class="kpi-examples">Example KPIs: Tier-1 journal share of voice, abstract share of voice at ASCO/ESMO, competitive KOL overlap via Sunshine Act, ICER value-based price benchmark</div></div>
-        <div class="kpi-card"><div class="kpi-icon icon-com">&#x1F4CA;</div><h3>Commercial</h3><div class="kpi-count">14 KPIs &middot; 17% public</div><p>Launch readiness signals, prescriber universe sizing, DTC ad detection, revenue vs analyst consensus, and market share proxies.</p><div class="kpi-examples">Example KPIs: Sales force hiring velocity (LinkedIn), brand trademark filing timing, product revenue growth (10-Q), co-pay card launch timing</div></div>
-        <div class="kpi-card"><div class="kpi-icon icon-mka">&#x1F3DB;</div><h3>Market Access</h3><div class="kpi-count">14 KPIs &middot; 15% public</div><p>Formulary coverage tracking, ASP pricing analysis, HTA decision monitoring across ICER/NICE/CADTH/G-BA, and IRA impact modeling.</p><div class="kpi-examples">Example KPIs: Medicare Part D covered-lives %, prior-auth restriction rate, WAC at launch + annual increases, IRA negotiation eligibility clock</div></div>
-        <div class="kpi-card"><div class="kpi-icon icon-reg">&#x1F4DC;</div><h3>Regulatory</h3><div class="kpi-count">15 KPIs &middot; 62% public</div><p>FDA approval timelines, expedited designations, AdComm vote tracking, label scope analysis, Orange Book patent monitoring.</p><div class="kpi-examples">Example KPIs: PDUFA date tracking, expedited program designations, approved indication scope vs target, FAERS adverse event signal count</div></div>
-        <div class="kpi-card"><div class="kpi-icon icon-pat">&#x1F91D;</div><h3>Patient Advocacy</h3><div class="kpi-count">11 KPIs &middot; 28% public</div><p>Advocacy org funding analysis, patient assistance program benchmarking, unmet need scoring from FDA PFDD transcripts.</p><div class="kpi-examples">Example KPIs: Advocacy org scale (IRS 990 revenue), PAP launch timing, co-pay benefit level vs comp set, FDA PFDD meeting mentions</div></div>
+  </div>
+
+  <div class="container section">
+    <div class="grid-3">
+      <div class="crown-card"><div class="crown-bar"></div><div class="crown-card-inner"><h3>Continuous Ingestion</h3><p>AI agents automatically pull from public sources &mdash; ClinicalTrials.gov, FDA, SEC EDGAR, PubMed, CMS, ICER/NICE/CADTH, and more.</p></div></div>
+      <div class="crown-card"><div class="crown-bar"></div><div class="crown-card-inner"><h3>Governed Semantic Layer</h3><p>KPIs organized across 6 functions with compliance bright lines enforced at the data layer &mdash; not just by prompts.</p></div></div>
+      <div class="crown-card"><div class="crown-bar"></div><div class="crown-card-inner"><h3>AI Agent Workflows</h3><p>Agents surface insights, not dashboards. Ask questions in natural language and get governed answers backed by traceable sources.</p></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     PAGE: INTELLIGENCE
+     ============================================================ -->
+<div id="page-intelligence" class="page">
+  <div class="container section">
+    <div class="section-label">Intelligence</div>
+    <div class="section-title">96 KPIs organized by biopharma function</div>
+    <div class="section-sub">Each metric is sourced primarily from free, public data &mdash; and mapped to the launch timeline so you know exactly when it becomes actionable for your competitive strategy.</div>
+
+    <div class="grid-2">
+      <div class="crown-panel"><div class="crown-bar"></div><div class="crown-header"><span class="crown-header-title">MEDICAL AFFAIRS</span><span class="crown-header-badge">30 KPIs &middot; P0</span></div><div class="crown-body"><p style="font-size:12px;color:rgba(255,255,255,0.5);margin-bottom:10px">Publication velocity, congress SOV, KOL engagement depth, MSL deployment timing, evidence contribution to HTA.</p><div style="display:flex;flex-wrap:wrap;gap:4px"><span class="source-tag" style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.35)">PubMed</span><span class="source-tag" style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.35)">Open Payments</span><span class="source-tag" style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.35)">ICER</span><span class="source-tag" style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.35)">LinkedIn</span></div></div></div>
+      <div class="crown-panel"><div class="crown-bar"></div><div class="crown-header"><span class="crown-header-title">REGULATORY</span><span class="crown-header-badge">15 KPIs &middot; P2</span></div><div class="crown-body"><p style="font-size:12px;color:rgba(255,255,255,0.5);margin-bottom:10px">PDUFA tracking, AdComm votes, label scope analysis, Orange Book exclusivity, FAERS safety signals, OPDP enforcement.</p><div style="display:flex;flex-wrap:wrap;gap:4px"><span class="source-tag" style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.35)">FDA.gov</span><span class="source-tag" style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.35)">Drugs@FDA</span><span class="source-tag" style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.35)">FAERS</span><span class="source-tag" style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.35)">OPDP</span></div></div></div>
+      <div class="crown-panel"><div class="crown-bar"></div><div class="crown-header"><span class="crown-header-title">COMMERCIAL</span><span class="crown-header-badge">14 KPIs &middot; P1</span></div><div class="crown-body"><p style="font-size:12px;color:rgba(255,255,255,0.5);margin-bottom:10px">Launch hiring velocity, brand trademark filing, revenue vs consensus, DTC ad detection, prescriber universe sizing.</p><div style="display:flex;flex-wrap:wrap;gap:4px"><span class="source-tag" style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.35)">LinkedIn</span><span class="source-tag" style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.35)">SEC EDGAR</span><span class="source-tag" style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.35)">USPTO</span></div></div></div>
+      <div class="crown-panel"><div class="crown-bar"></div><div class="crown-header"><span class="crown-header-title">MARKET ACCESS</span><span class="crown-header-badge">14 KPIs &middot; P2</span></div><div class="crown-body"><p style="font-size:12px;color:rgba(255,255,255,0.5);margin-bottom:10px">Part D formulary coverage, ASP tracking, HTA outcomes across Big Four, IRA negotiation eligibility, payer restriction rates.</p><div style="display:flex;flex-wrap:wrap;gap:4px"><span class="source-tag" style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.35)">CMS Formulary</span><span class="source-tag" style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.35)">CMS ASP</span><span class="source-tag" style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.35)">NICE</span><span class="source-tag" style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.35)">CADTH</span></div></div></div>
+      <div class="crown-panel"><div class="crown-bar"></div><div class="crown-header"><span class="crown-header-title">CLINICAL</span><span class="crown-header-badge">12 KPIs &middot; P2</span></div><div class="crown-body"><p style="font-size:12px;color:rgba(255,255,255,0.5);margin-bottom:10px">Active trial portfolio, enrollment velocity, endpoint analysis, PI network overlap, readout monitoring and efficacy delta.</p><div style="display:flex;flex-wrap:wrap;gap:4px"><span class="source-tag" style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.35)">ClinicalTrials.gov</span><span class="source-tag" style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.35)">PubMed</span><span class="source-tag" style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.35)">SEC 8-K</span></div></div></div>
+      <div class="crown-panel"><div class="crown-bar"></div><div class="crown-header"><span class="crown-header-title">PATIENT ADVOCACY</span><span class="crown-header-badge">11 KPIs &middot; P1</span></div><div class="crown-body"><p style="font-size:12px;color:rgba(255,255,255,0.5);margin-bottom:10px">Advocacy org funding from 990s, PFDD unmet need scoring, PAP launch timing, co-pay benchmarking, hub conversion proxies.</p><div style="display:flex;flex-wrap:wrap;gap:4px"><span class="source-tag" style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.35)">ProPublica</span><span class="source-tag" style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.35)">NeedyMeds</span><span class="source-tag" style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.35)">FDA PFDD</span></div></div></div>
+    </div>
+
+    <div class="compliance-panel">
+      <div class="crown-bar"></div>
+      <div class="crown-header"><span class="crown-header-title">COMPLIANCE FRAMEWORK</span><span class="crown-header-badge">Architectural Enforcement</span></div>
+      <div class="compliance-inner">
+        <div class="compliance-grid">
+          <div class="compliance-col measure">
+            <h4>What We Measure</h4>
+            <ul>
+              <li>Clinical knowledge diffusion velocity</li>
+              <li>Guideline adoption and evidence uptake</li>
+              <li>Evidence generation cadence across assets</li>
+              <li>Payer decision acceleration signals</li>
+              <li>Competitive positioning relative to launch</li>
+            </ul>
+          </div>
+          <div class="compliance-col never">
+            <h4>What We Never Measure</h4>
+            <ul>
+              <li>Prescribing volume attribution to field activity</li>
+              <li>Revenue-to-engagement causation</li>
+              <li>MSL or MA compensation links</li>
+              <li>Individual prescriber behavior changes</li>
+              <li>Sales targeting effectiveness</li>
+            </ul>
+          </div>
+        </div>
+        <p style="font-size:11px;color:rgba(255,255,255,0.25);margin-top:16px">These constraints are enforced architecturally at the semantic layer, not just via prompts. Correlation to clinical and organizational outcomes only.</p>
       </div>
     </div>
   </div>
 </div>
 
-<div class="container data-section" id="data">
-  <h2>Built on Public, Auditable Data</h2>
-  <p class="sub">Competitive intelligence grounded in transparent, verifiable sources &mdash; not black-box data brokers.</p>
-  <div class="data-tags">
-    <span class="data-tag">ClinicalTrials.gov</span><span class="data-tag">FDA Orange Book</span><span class="data-tag">FDA Warning Letters</span><span class="data-tag">FDA Labels (SPL)</span><span class="data-tag">SEC EDGAR 10-K/Q</span><span class="data-tag">PubMed / PMC</span><span class="data-tag">CMS Part D</span><span class="data-tag">CMS ASP</span><span class="data-tag">CMS Open Payments</span><span class="data-tag">CMS Formulary Finder</span><span class="data-tag">ICER</span><span class="data-tag">NICE</span><span class="data-tag">CADTH</span><span class="data-tag">USPTO / Google Patents</span><span class="data-tag">NeedyMeds</span><span class="data-tag">ProPublica 990s</span>
-  </div>
-  <div class="arch-flow">
-    <div class="arch-step">Public Sources</div><div class="arch-arrow">&rarr;</div><div class="arch-step">Bronze / Silver / Gold</div><div class="arch-arrow">&rarr;</div><div class="arch-step">Semantic Layer</div><div class="arch-arrow">&rarr;</div><div class="arch-step">AI Agents</div><div class="arch-arrow">&rarr;</div><div class="arch-step">Your Team</div>
-  </div>
-</div>
+<!-- ============================================================
+     PAGE: INSIGHTS
+     ============================================================ -->
+<div id="page-insights" class="page">
+  <div class="container section">
+    <div class="section-label">Insights</div>
+    <div class="section-title">Perspectives on biopharma intelligence</div>
+    <div class="section-sub">Analysis and intelligence reports generated from our platform. Competitive landscape assessments, evidence velocity benchmarks, and market access signal tracking.</div>
 
-<div class="container insights-section" id="insights">
-  <div class="section-label">Insights</div>
-  <div class="section-title">Perspectives on biopharma intelligence</div>
-  <div class="section-sub">Research, analysis, and thought leadership from the Savi team.</div>
-  <div class="insights-grid">
-    <div class="insight-card"><div class="insight-tag">Architecture</div><h3>Why we built a medallion lakehouse for biopharma CI</h3><p>How Bronze/Silver/Gold layers with Iceberg table format create a governed, auditable foundation for competitive intelligence.</p><div class="insight-date">Coming Soon</div></div>
-    <div class="insight-card"><div class="insight-tag">Compliance</div><h3>Bright-line rules: what biopharma CI platforms should never measure</h3><p>Why prescribing-to-revenue joins, MSL compensation tracking, and individual prescriber behavior monitoring are architectural red lines.</p><div class="insight-date">Coming Soon</div></div>
-    <div class="insight-card"><div class="insight-tag">Market Analysis</div><h3>The public data advantage: 96 KPIs from free sources</h3><p>A breakdown of what's trackable from ClinicalTrials.gov, FDA, CMS, SEC EDGAR, and other public sources &mdash; without paying for IQVIA.</p><div class="insight-date">Coming Soon</div></div>
-  </div>
-</div>
+    <div class="grid-3">
+      <div class="insight-card"><div class="insight-tag">Competitive Landscape</div><h3>METex14 NSCLC: competitive signal tracker Q2 2026</h3><p>TEPMETKO vs Tabrecta vs Rybrevant vs savolitinib &mdash; evidence velocity, KOL positioning, and market access readiness compared across the competitive set.</p><div class="insight-date">Coming Soon</div></div>
+      <div class="insight-card"><div class="insight-tag">Evidence Velocity</div><h3>How fast do MET inhibitors move from pivotal data to guideline inclusion?</h3><p>Tracking months from Phase 3 readout to NCCN category 1 listing across the MET inhibitor class &mdash; and what that means for launch strategy.</p><div class="insight-date">Coming Soon</div></div>
+      <div class="insight-card"><div class="insight-tag">Market Access</div><h3>Part D formulary coverage: first 12 months post-launch for targeted oncology</h3><p>How quickly do new targeted therapies achieve Medicare Part D formulary coverage, and what predicts preferred-tier placement?</p><div class="insight-date">Coming Soon</div></div>
+    </div>
 
-<div class="container pricing-section" id="pricing">
-  <div class="pricing-panel">
-    <div class="pricing-crown"></div>
-    <div class="pricing-inner">
-      <h2>Enterprise Intelligence</h2>
-      <p class="pricing-sub">Savi is designed for biopharma organizations that need governed, cross-functional competitive intelligence at scale.</p>
-      <div class="pricing-features">
-        <div class="pricing-feature"><span class="pricing-check">&#x2713;</span>Full access to all 6 functional dashboards</div>
-        <div class="pricing-feature"><span class="pricing-check">&#x2713;</span>96 governed KPIs across launch functions</div>
-        <div class="pricing-feature"><span class="pricing-check">&#x2713;</span>AI agent workflows with natural language queries</div>
-        <div class="pricing-feature"><span class="pricing-check">&#x2713;</span>Indication Arena competitive landscape maps</div>
-        <div class="pricing-feature"><span class="pricing-check">&#x2713;</span>Continuous automated data ingestion</div>
-        <div class="pricing-feature"><span class="pricing-check">&#x2713;</span>Compliance-first architecture with audit trail</div>
-        <div class="pricing-feature"><span class="pricing-check">&#x2713;</span>Custom indication and asset configuration</div>
-        <div class="pricing-feature"><span class="pricing-check">&#x2713;</span>Dedicated onboarding and support</div>
-      </div>
-      <a href="mailto:hello@savi.bio" class="pricing-cta">Contact Us for Pricing</a>
-      <p class="pricing-note">Custom plans available for multi-indication deployments and enterprise teams.</p>
+    <div class="grid-3" style="margin-top:16px">
+      <div class="insight-card"><div class="insight-tag">Architecture</div><h3>Why we built a medallion lakehouse for biopharma CI</h3><p>How Bronze/Silver/Gold layers with Iceberg table format create a governed, auditable foundation for competitive intelligence.</p><div class="insight-date">Coming Soon</div></div>
+      <div class="insight-card"><div class="insight-tag">Compliance</div><h3>Bright-line rules: what biopharma CI platforms should never measure</h3><p>Why prescribing-to-revenue joins, MSL compensation tracking, and individual prescriber behavior monitoring are architectural red lines.</p><div class="insight-date">Coming Soon</div></div>
+      <div class="insight-card"><div class="insight-tag">Data Strategy</div><h3>The public data advantage: what's trackable from free sources</h3><p>A breakdown of what's possible from ClinicalTrials.gov, FDA, CMS, SEC EDGAR, and other public sources &mdash; without paying for IQVIA.</p><div class="insight-date">Coming Soon</div></div>
+    </div>
+
+    <div style="text-align:center;margin-top:36px;padding:28px;border:1.65px dashed rgba(234,179,8,0.2);border-radius:10px">
+      <p style="font-size:13px;color:rgba(255,255,255,0.35)">Full analysis coming as pipelines go live. Subscribe for early access.</p>
+      <div class="email-form" style="margin-top:16px"><input type="email" placeholder="Your work email"><button type="submit">Subscribe</button></div>
     </div>
   </div>
 </div>
 
-<div class="container partner-section" id="partners">
-  <div class="partner-panel">
-    <div class="partner-crown"></div>
-    <div class="partner-header">COLLABORATE WITH US</div>
-    <div class="partner-body">
-      <p class="partner-subtitle">Savi is in active development. We're seeking early design partners and aligned investors who share our vision for transparent, agentic biopharma intelligence.</p>
-      <div class="partner-grid">
-        <div class="partner-box"><div class="partner-box-crown"></div><div class="partner-box-inner"><h3>Design Partners</h3><p>We're looking for biopharma CI, Medical Affairs, and Market Access teams who want early access to shape the product.</p></div></div>
-        <div class="partner-box"><div class="partner-box-crown"></div><div class="partner-box-inner"><h3>Investors &amp; Advisors</h3><p>We're open to conversations with investors who understand health data, AI infrastructure, and the biopharma value chain.</p></div></div>
-      </div>
-      <div class="partner-cta-row"><a href="mailto:hello@savi.bio" class="partner-cta">Get in Touch</a></div>
+<!-- ============================================================
+     PAGE: COLLABORATE
+     ============================================================ -->
+<div id="page-collaborate" class="page">
+  <div class="container section">
+    <div class="section-label">Collaborate</div>
+    <div class="section-title">Two ways to work with us</div>
+    <div class="section-sub">Whether you want to shape the platform as a design partner or need competitive intelligence infrastructure built for your team, we'd like to hear from you.</div>
+
+    <div class="collab-card crown-card"><div class="crown-bar"></div><div class="crown-card-inner">
+      <h3>Design Partners</h3>
+      <p>We're looking for 2&ndash;3 biopharma teams (Medical Affairs, Commercial, Market Access) to shape the platform before general availability.</p>
+      <ul class="collab-bullets">
+        <li>6-week pilot engagement with a dedicated intelligence analyst</li>
+        <li>Your asset, your competitive set, your KPIs &mdash; configured in the platform</li>
+        <li>Direct input on feature priority and metric definitions</li>
+        <li>Pilot pricing with preferred terms at GA</li>
+      </ul>
+    </div></div>
+
+    <div class="collab-card crown-card"><div class="crown-bar"></div><div class="crown-card-inner">
+      <h3>Intelligence Services</h3>
+      <p>Need competitive intelligence infrastructure without building it yourself? Our team builds custom CI pipelines on top of public biopharma data.</p>
+      <ul class="collab-bullets">
+        <li>Custom KPI dashboards for your competitive landscape</li>
+        <li>Automated data pipelines from public sources</li>
+        <li>Medallion architecture (Bronze &rarr; Silver &rarr; Gold) built for your use case</li>
+        <li>Ongoing monitoring and alerting configured to your thresholds</li>
+      </ul>
+    </div></div>
+
+    <div class="collab-card crown-card"><div class="crown-bar"></div><div class="crown-card-inner">
+      <h3>Investors &amp; Advisors</h3>
+      <p>If you're interested in the intersection of agentic AI and biopharma competitive intelligence, we'd like to hear from you. We're open to conversations with investors who understand health data, AI infrastructure, and the biopharma value chain.</p>
+    </div></div>
+
+    <div style="text-align:center;margin-top:24px">
+      <a href="mailto:hello@savi.bio" class="hero-cta" style="text-decoration:none">Get in Touch</a>
     </div>
   </div>
-</div>
-
-<div class="container access-section" id="access">
-  <h2>Be the first to know when Savi launches</h2>
-  <p>Join our early access list and we'll notify you when the platform is ready for beta users.</p>
-  <div class="email-form"><input type="email" placeholder="Your work email"><button type="submit">Request Access</button></div>
 </div>
 
 <footer><p>&copy; 2026 Savi Bio, Inc. All rights reserved. &nbsp;|&nbsp; Delaware C-Corp &nbsp;|&nbsp; <a href="mailto:hello@savi.bio">hello@savi.bio</a></p></footer>
 
 <script>
-(function(){
-  const FC=['#60a5fa','#4ade80','#eab308','#f472b6','#c084fc','#fb923c'];
-  const FL=['Clinical','Regulatory','Commercial','Medical Affairs','Market Access','Patient Advocacy'];
-  const ASSETS={
-    TEP:{name:'TEPMETKO',ref:true,b:0.18,sc:[0.9,0.85,0.7,0.8,0.75,0.6]},
-    TAB:{name:'Tabrecta',ref:false,b:0.13,sc:[0.7,0.7,0.6,0.5,0.65,0.4]},
-    RYB:{name:'Rybrevant',ref:false,b:0.10,sc:[0.8,0.75,0.8,0.6,0.7,0.5]},
-    SAV:{name:'Savolitinib',ref:false,b:0.07,sc:[0.5,0.4,0.3,0.35,0.4,0.3]},
-    AMV:{name:'Amivantamab',ref:false,b:0.09,sc:[0.75,0.65,0.7,0.55,0.6,0.45]},
-    ELA:{name:'Elacestrant',ref:false,b:0.06,sc:[0.4,0.35,0.25,0.3,0.35,0.2]},
-  };
-  const GRID=[];for(let r=0;r<3;r++)for(let c=0;c<6;c++)GRID.push({r,c});
-  const FILLS={1:'TEP',2:'TAB',3:'RYB',7:'AMV',8:'SAV',9:'ELA'};
-  const S=44,GAP=8;
-  function hexPts(cx,cy,s){const p=[];for(let i=0;i<6;i++){const a=Math.PI/180*(60*i-30);p.push([cx+s*Math.cos(a),cy+s*Math.sin(a)]);}return p.map(v=>v[0].toFixed(1)+','+v[1].toFixed(1)).join(' ');}
-  function hexC(r,c){const w=Math.sqrt(3)*S,h=2*S,xOff=(r%2===1)?(w+GAP)/2:0;return{x:c*(w+GAP)+w/2+xOff,y:r*(h*0.75+GAP)+h/2};}
-  const svg=document.getElementById('hexBoard');
-  const pad=14;let mnX=9999,mnY=9999,mxX=0,mxY=0;
-  GRID.forEach(sl=>{const c=hexC(sl.r,sl.c);mnX=Math.min(mnX,c.x-S*0.87);mxX=Math.max(mxX,c.x+S*0.87);mnY=Math.min(mnY,c.y-S);mxY=Math.max(mxY,c.y+S);});
-  const vw=mxX-mnX+pad*2,vh=mxY-mnY+pad*2,ox=-mnX+pad,oy=-mnY+pad;
-  svg.setAttribute('viewBox','0 0 '+vw.toFixed(0)+' '+vh.toFixed(0));
-  svg.setAttribute('width',Math.min(vw,820));
-  svg.setAttribute('height',vh*Math.min(vw,820)/vw);
-  let d='<defs><filter id="gl" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur in="SourceGraphic" stdDeviation="3" result="b"/><feComposite in="SourceGraphic" in2="b" operator="over"/></filter>';
-  Object.entries(ASSETS).forEach(([k,a])=>{d+='<linearGradient id="f_'+k+'" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="rgba(255,255,255,'+(a.b+0.04).toFixed(2)+')"/><stop offset="100%" stop-color="rgba(255,255,255,'+(a.b*0.3).toFixed(2)+')"/></linearGradient>';});
-  d+='</defs>';let c=d;
-  GRID.forEach((sl,idx)=>{
-    const ctr=hexC(sl.r,sl.c),cx=ctr.x+ox,cy=ctr.y+oy,pts=hexPts(cx,cy,S),ak=FILLS[idx];
-    if(ak){
-      const a=ASSETS[ak],sw=a.ref?2.5:1.65;
-      c+='<polygon points="'+pts+'" fill="url(#f_'+ak+')" stroke="#ca9a04" stroke-width="'+sw+'"/>';
-      if(a.ref)c+='<polygon points="'+hexPts(cx,cy,S-4)+'" fill="none" stroke="rgba(234,179,8,0.12)" stroke-width="1" filter="url(#gl)"/>';
-      const avg=Math.round(a.sc.reduce((x,y)=>x+y,0)/6*100);
-      c+='<text x="'+cx+'" y="'+(cy-S*0.32)+'" text-anchor="middle" fill="'+(a.ref?'#eab308':'rgba(255,255,255,0.8)')+'" font-size="14" font-weight="700" font-family="Chakra Petch">'+avg+'</text>';
-      c+='<text x="'+cx+'" y="'+(cy-S*0.16)+'" text-anchor="middle" fill="'+(a.ref?'rgba(234,179,8,0.7)':'rgba(255,255,255,0.55)')+'" font-size="7.5" font-weight="500" font-family="Chakra Petch">'+a.name+'</text>';
-      const bw=S*0.09,bMax=S*0.26,total=6*bw+5*2,sx=cx-total/2,by=cy-S*0.01;
-      a.sc.forEach((v,i)=>{const bx=sx+i*(bw+2),bh=v*bMax;c+='<rect x="'+bx.toFixed(1)+'" y="'+(by+bMax-bh).toFixed(1)+'" width="'+bw.toFixed(1)+'" height="'+bh.toFixed(1)+'" rx="1" fill="'+FC[i]+'" opacity="0.8"/>';});
-      a.sc.forEach((v,i)=>{const bx=sx+i*(bw+2)+bw/2;c+='<text x="'+bx.toFixed(1)+'" y="'+(by+bMax+7).toFixed(1)+'" text-anchor="middle" fill="rgba(255,255,255,0.2)" font-size="3.8" font-family="Chakra Petch">'+FL[i].split(' ')[0].substring(0,3).toUpperCase()+'</text>';});
-    } else {
-      c+='<polygon points="'+pts+'" fill="rgba(255,255,255,0.012)" stroke="rgba(255,255,255,0.06)" stroke-width="1.2" stroke-dasharray="4,3"/>';
-      c+='<text x="'+cx+'" y="'+(cy+3.5)+'" text-anchor="middle" fill="rgba(255,255,255,0.05)" font-size="12" font-family="Chakra Petch">+</text>';
-    }
+function goPage(id) {
+  document.querySelectorAll('.page').forEach(function(p){ p.classList.remove('active'); });
+  document.getElementById('page-' + id).classList.add('active');
+  document.querySelectorAll('.nav-links a').forEach(function(a){ a.classList.remove('active'); });
+  document.querySelectorAll('.nav-links a[data-page="'+id+'"]').forEach(function(a){ a.classList.add('active'); });
+  window.scrollTo(0, 0);
+  if (id !== 'platform') { hideFunc(); }
+}
+
+function setLayer(n) {
+  document.querySelectorAll('.layer').forEach(function(l){ l.classList.remove('active'); });
+  document.getElementById('layer-' + n).classList.add('active');
+  document.querySelectorAll('.toggle-bar button').forEach(function(b, i){
+    b.classList.toggle('active', i === n);
   });
-  svg.innerHTML=c;
-})();
+  hideFunc();
+}
+
+function showFunc(id) {
+  document.getElementById('func-grid').style.display = 'none';
+  document.querySelectorAll('.func-detail').forEach(function(d){ d.classList.remove('active'); });
+  document.getElementById('detail-' + id).classList.add('active');
+}
+
+function hideFunc() {
+  var fg = document.getElementById('func-grid');
+  if (fg) fg.style.display = '';
+  document.querySelectorAll('.func-detail').forEach(function(d){ d.classList.remove('active'); });
+}
 </script>
 </body>
 </html>
