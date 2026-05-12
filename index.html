@@ -299,6 +299,135 @@ footer a { color: var(--gold-500); text-decoration: none; }
 .timeline-mark { font-size: 11px; color: rgba(255,255,255,0.3); font-weight: 500; }
 .timeline-mark.highlight { color: var(--gold-400); font-weight: 700; }
 
+/* ---- INTELLIGENCE DRILL-DOWN ---- */
+.intel-view { display: none; }
+.intel-view.active { display: block; }
+
+.intel-breadcrumb {
+  font-size: 12px; color: rgba(255,255,255,0.35); margin-bottom: 20px;
+  display: flex; align-items: center; gap: 6px; flex-wrap: wrap;
+}
+.intel-breadcrumb span { cursor: pointer; transition: color 0.2s; }
+.intel-breadcrumb span:hover { color: var(--gold-400); }
+.intel-breadcrumb .bc-active { color: var(--gold-400); font-weight: 600; cursor: default; }
+.intel-breadcrumb .bc-sep { color: rgba(255,255,255,0.15); cursor: default; }
+
+.intel-func-header {
+  display: flex; justify-content: space-between; align-items: flex-start;
+  margin-bottom: 28px; gap: 24px; flex-wrap: wrap;
+}
+.intel-func-header h2 { font-size: 26px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+.intel-func-header .func-meta-line { font-size: 12px; color: rgba(255,255,255,0.4); }
+.intel-func-score {
+  text-align: center; min-width: 100px;
+  padding: 16px 24px; background: rgba(234,179,8,0.06);
+  border: 1.65px solid var(--gold-500); border-radius: 10px;
+}
+.intel-func-score .score-val { font-size: 42px; font-weight: 700; color: var(--gold-400); line-height: 1; }
+.intel-func-score .score-label { font-size: 10px; color: rgba(255,255,255,0.35); letter-spacing: 1px; text-transform: uppercase; margin-top: 4px; }
+
+.intel-avail-strip {
+  display: flex; gap: 16px; margin-bottom: 28px; font-size: 12px;
+}
+.intel-avail-strip .avail-item { display: flex; align-items: center; gap: 6px; color: rgba(255,255,255,0.5); }
+.intel-avail-strip .avail-dot { width: 8px; height: 8px; border-radius: 50%; }
+.avail-dot.pub { background: #4ade80; }
+.avail-dot.part { background: #eab308; }
+.avail-dot.priv { background: #f87171; }
+
+.outcome-group { margin-bottom: 24px; }
+.outcome-group-header {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 10px 0; border-bottom: 1.65px solid rgba(234,179,8,0.15);
+  margin-bottom: 12px; cursor: pointer; transition: all 0.2s;
+}
+.outcome-group-header:hover { border-bottom-color: var(--gold-400); }
+.outcome-group-title {
+  font-size: 11px; font-weight: 600; color: var(--gold-400);
+  letter-spacing: 1.5px; text-transform: uppercase;
+}
+.outcome-group-toggle { font-size: 11px; color: rgba(255,255,255,0.25); transition: transform 0.2s; }
+.outcome-group.collapsed .outcome-group-toggle { transform: rotate(-90deg); }
+.outcome-group.collapsed .outcome-group-body { display: none; }
+
+.sf-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 14px 18px; margin-bottom: 8px;
+  border-left: 3px solid rgba(234,179,8,0.2);
+  background: rgba(255,255,255,0.02); border-radius: 0 8px 8px 0;
+  cursor: pointer; transition: all 0.15s;
+}
+.sf-row:hover { border-left-color: var(--gold-400); background: rgba(234,179,8,0.04); }
+.sf-row .sf-name { font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.85); }
+.sf-row .sf-kpi-list { font-size: 11px; color: rgba(255,255,255,0.35); margin-top: 3px; line-height: 1.5; }
+.sf-row .sf-right { text-align: right; flex-shrink: 0; }
+.sf-row .sf-count { font-size: 18px; font-weight: 700; color: var(--gold-400); }
+.sf-row .sf-action { font-size: 10px; color: rgba(255,255,255,0.25); margin-top: 2px; }
+
+/* Layer 3: Competitive CI View */
+.ci-header {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 20px; flex-wrap: wrap; gap: 12px;
+}
+.ci-header h3 { font-size: 20px; font-weight: 700; color: #fff; }
+.ci-header .ci-meta { font-size: 12px; color: rgba(255,255,255,0.35); }
+
+.ci-table { width: 100%; border-collapse: collapse; }
+.ci-table th {
+  font-size: 10px; color: rgba(255,255,255,0.35); letter-spacing: 1px;
+  text-transform: uppercase; text-align: center; padding: 10px 8px;
+  border-bottom: 1.65px solid rgba(255,255,255,0.08);
+}
+.ci-table th:first-child { text-align: left; }
+.ci-table td {
+  font-size: 12px; color: rgba(255,255,255,0.7); text-align: center;
+  padding: 10px 8px; border-bottom: 1px solid rgba(255,255,255,0.03);
+}
+.ci-table td:first-child { text-align: left; }
+.ci-table tr:hover td { background: rgba(255,255,255,0.02); }
+.ci-win { color: #4ade80; font-weight: 600; }
+.ci-gap { color: #f87171; }
+.ci-neutral { color: rgba(255,255,255,0.5); }
+
+.ci-avail-dot {
+  display: inline-block; width: 8px; height: 8px; border-radius: 50%;
+  cursor: help; position: relative;
+}
+
+/* KPI Pop-up Tooltip */
+.kpi-trigger {
+  text-decoration: underline; text-decoration-style: dotted;
+  text-underline-offset: 3px; text-decoration-color: rgba(234,179,8,0.3);
+  cursor: help;
+}
+.kpi-popup {
+  display: none; position: fixed; z-index: 200;
+  background: var(--deep-900); border: 1.65px solid var(--gold-500);
+  border-radius: 10px; padding: 20px; max-width: 360px; min-width: 280px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+}
+.kpi-popup.visible { display: block; }
+.kpi-popup .popup-title { font-size: 14px; font-weight: 700; color: var(--gold-400); margin-bottom: 10px; }
+.kpi-popup .popup-row { display: flex; justify-content: space-between; padding: 4px 0; font-size: 12px; }
+.kpi-popup .popup-label { color: rgba(255,255,255,0.4); }
+.kpi-popup .popup-val { color: rgba(255,255,255,0.8); font-weight: 500; }
+.kpi-popup .popup-def { font-size: 12px; color: rgba(255,255,255,0.5); line-height: 1.6; margin-bottom: 12px; padding-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+.kpi-popup-close { position: absolute; top: 8px; right: 12px; background: none; border: none; color: rgba(255,255,255,0.3); font-size: 16px; cursor: pointer; font-family: 'Chakra Petch', sans-serif; }
+
+.intel-func-card {
+  cursor: pointer; transition: all 0.25s;
+}
+.intel-func-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+}
+.intel-func-card .crown-body { position: relative; }
+.intel-func-card .explore-hint {
+  font-size: 10px; color: var(--gold-500); font-weight: 600;
+  letter-spacing: 0.5px; margin-top: 10px; opacity: 0; transition: opacity 0.2s;
+}
+.intel-func-card:hover .explore-hint { opacity: 1; }
+
 /* ---- RESPONSIVE ---- */
 @media (max-width: 900px) {
   .grid-3 { grid-template-columns: 1fr 1fr; }
@@ -474,12 +603,61 @@ footer a { color: var(--gold-500); text-decoration: none; }
           <div class="kpi-header-bar"><h2>Medical Affairs</h2><span>30 KPIs &middot; 6 Sub-Functions</span></div>
           <div class="kpi-body">
             <button class="back-btn" onclick="hideFunc()">&larr; Back to all functions</button>
-            <div class="subfunc-card"><h4>Publications &amp; Evidence <span>6 KPIs</span></h4><div class="kpi-row"><span>Publication velocity (peer-reviewed pubs/quarter)</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>Tier-1 journal share of voice</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>RWE / registry studies opened</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>Citation impact (2-yr window)</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>Guideline inclusion velocity</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>Evidence quality contribution to payer dossier</span><span class="avail-badge avail-partial">Partial</span></div><div class="source-tags"><span class="source-tag">PubMed</span><span class="source-tag">OpenAlex</span><span class="source-tag">ClinicalTrials.gov</span><span class="source-tag">NCCN</span><span class="source-tag">ICER</span></div></div>
-            <div class="subfunc-card"><h4>Congress Strategy <span>5 KPIs</span></h4><div class="kpi-row"><span>Abstract share of voice</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>Oral + late-breaker count</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>Faculty appearances</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>Post-congress insight adoption rate</span><span class="avail-badge avail-private">Internal</span></div><div class="kpi-row"><span>Social/media share of voice (congress week)</span><span class="avail-badge avail-partial">Partial</span></div><div class="source-tags"><span class="source-tag">ASCO</span><span class="source-tag">ESMO</span><span class="source-tag">ASH</span><span class="source-tag">Twitter/X</span></div></div>
-            <div class="subfunc-card"><h4>KOL Engagement <span>6 KPIs</span></h4><div class="kpi-row"><span>KOL network depth (Tier 1/2/3)</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>Competitive KOL overlap (Sunshine Act)</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>KOL spend depth by competitor</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>KOL faculty share at Tier-1 congresses</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>Pre-launch KOL positioning timing</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>Advisory board quality score</span><span class="avail-badge avail-private">Internal</span></div><div class="source-tags"><span class="source-tag">CMS Open Payments</span><span class="source-tag">PubMed</span><span class="source-tag">Congress programs</span></div></div>
-            <div class="subfunc-card"><h4>MSL Operations <span>5 KPIs</span></h4><div class="kpi-row"><span>MSL deployment timing (first hire)</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>MSL team size growth curve</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>MSL geographic coverage density</span><span class="avail-badge avail-partial">Partial</span></div><div class="kpi-row"><span>MSL insights adopted internally</span><span class="avail-badge avail-private">Internal</span></div><div class="kpi-row"><span>MSL resource allocation efficiency</span><span class="avail-badge avail-partial">Partial</span></div><div class="source-tags"><span class="source-tag">LinkedIn</span><span class="source-tag">NCCN center list</span></div></div>
-            <div class="subfunc-card"><h4>ISS Governance <span>3 KPIs</span></h4><div class="kpi-row"><span>Investigator-initiated studies open</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>IIS publications yield</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>IIS review cycle time</span><span class="avail-badge avail-private">Internal</span></div><div class="source-tags"><span class="source-tag">ClinicalTrials.gov</span><span class="source-tag">PubMed</span></div></div>
-            <div class="subfunc-card"><h4>HEOR Contribution <span>5 KPIs</span></h4><div class="kpi-row"><span>ICER value-based price benchmark vs WAC</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>HTA assessment outcomes (ICER/NICE/CADTH/G-BA)</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>SLR protocols registered (PROSPERO)</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>Patient outcome proxies (diagnostic rates)</span><span class="avail-badge avail-partial">Partial</span></div><div class="kpi-row"><span>Evidence velocity index (composite)</span><span class="avail-badge avail-public">Public</span></div><div class="source-tags"><span class="source-tag">ICER</span><span class="source-tag">NICE</span><span class="source-tag">CADTH</span><span class="source-tag">G-BA</span><span class="source-tag">PROSPERO</span></div></div>
+
+            <div class="subfunc-card">
+              <h4>Publications &amp; Evidence <span>6 KPIs</span></h4>
+              <div class="kpi-row"><span>Publication velocity (peer-reviewed pubs/quarter)</span><span class="avail-badge avail-public">Public</span></div>
+              <div class="kpi-row"><span>Tier-1 journal share of voice</span><span class="avail-badge avail-public">Public</span></div>
+              <div class="kpi-row"><span>RWE / registry studies opened</span><span class="avail-badge avail-public">Public</span></div>
+              <div class="kpi-row"><span>Citation impact (2-yr window)</span><span class="avail-badge avail-public">Public</span></div>
+              <div class="kpi-row"><span>Guideline inclusion velocity</span><span class="avail-badge avail-public">Public</span></div>
+              <div class="kpi-row"><span>Evidence quality contribution to payer dossier</span><span class="avail-badge avail-partial">Partial</span></div>
+              <div class="source-tags"><span class="source-tag">PubMed</span><span class="source-tag">OpenAlex</span><span class="source-tag">ClinicalTrials.gov</span><span class="source-tag">NCCN</span><span class="source-tag">ICER</span></div>
+            </div>
+            <div class="subfunc-card">
+              <h4>Congress Strategy <span>5 KPIs</span></h4>
+              <div class="kpi-row"><span>Abstract share of voice</span><span class="avail-badge avail-public">Public</span></div>
+              <div class="kpi-row"><span>Oral + late-breaker count</span><span class="avail-badge avail-public">Public</span></div>
+              <div class="kpi-row"><span>Faculty appearances</span><span class="avail-badge avail-public">Public</span></div>
+              <div class="kpi-row"><span>Post-congress insight adoption rate</span><span class="avail-badge avail-private">Internal</span></div>
+              <div class="kpi-row"><span>Social/media share of voice (congress week)</span><span class="avail-badge avail-partial">Partial</span></div>
+              <div class="source-tags"><span class="source-tag">ASCO</span><span class="source-tag">ESMO</span><span class="source-tag">ASH</span><span class="source-tag">Twitter/X</span></div>
+            </div>
+            <div class="subfunc-card">
+              <h4>KOL Engagement <span>6 KPIs</span></h4>
+              <div class="kpi-row"><span>KOL network depth (Tier 1/2/3)</span><span class="avail-badge avail-public">Public</span></div>
+              <div class="kpi-row"><span>Competitive KOL overlap (Sunshine Act)</span><span class="avail-badge avail-public">Public</span></div>
+              <div class="kpi-row"><span>KOL spend depth by competitor</span><span class="avail-badge avail-public">Public</span></div>
+              <div class="kpi-row"><span>KOL faculty share at Tier-1 congresses</span><span class="avail-badge avail-public">Public</span></div>
+              <div class="kpi-row"><span>Pre-launch KOL positioning timing</span><span class="avail-badge avail-public">Public</span></div>
+              <div class="kpi-row"><span>Advisory board quality score</span><span class="avail-badge avail-private">Internal</span></div>
+              <div class="source-tags"><span class="source-tag">CMS Open Payments</span><span class="source-tag">PubMed</span><span class="source-tag">Congress programs</span></div>
+            </div>
+            <div class="subfunc-card">
+              <h4>MSL Operations <span>5 KPIs</span></h4>
+              <div class="kpi-row"><span>MSL deployment timing (first hire)</span><span class="avail-badge avail-public">Public</span></div>
+              <div class="kpi-row"><span>MSL team size growth curve</span><span class="avail-badge avail-public">Public</span></div>
+              <div class="kpi-row"><span>MSL geographic coverage density</span><span class="avail-badge avail-partial">Partial</span></div>
+              <div class="kpi-row"><span>MSL insights adopted internally</span><span class="avail-badge avail-private">Internal</span></div>
+              <div class="kpi-row"><span>MSL resource allocation efficiency</span><span class="avail-badge avail-partial">Partial</span></div>
+              <div class="source-tags"><span class="source-tag">LinkedIn</span><span class="source-tag">NCCN center list</span></div>
+            </div>
+            <div class="subfunc-card">
+              <h4>ISS Governance <span>3 KPIs</span></h4>
+              <div class="kpi-row"><span>Investigator-initiated studies open</span><span class="avail-badge avail-public">Public</span></div>
+              <div class="kpi-row"><span>IIS publications yield</span><span class="avail-badge avail-public">Public</span></div>
+              <div class="kpi-row"><span>IIS review cycle time</span><span class="avail-badge avail-private">Internal</span></div>
+              <div class="source-tags"><span class="source-tag">ClinicalTrials.gov</span><span class="source-tag">PubMed</span></div>
+            </div>
+            <div class="subfunc-card">
+              <h4>HEOR Contribution <span>5 KPIs</span></h4>
+              <div class="kpi-row"><span>ICER value-based price benchmark vs WAC</span><span class="avail-badge avail-public">Public</span></div>
+              <div class="kpi-row"><span>HTA assessment outcomes (ICER/NICE/CADTH/G-BA)</span><span class="avail-badge avail-public">Public</span></div>
+              <div class="kpi-row"><span>SLR protocols registered (PROSPERO)</span><span class="avail-badge avail-public">Public</span></div>
+              <div class="kpi-row"><span>Patient outcome proxies (diagnostic rates)</span><span class="avail-badge avail-partial">Partial</span></div>
+              <div class="kpi-row"><span>Evidence velocity index (composite)</span><span class="avail-badge avail-public">Public</span></div>
+              <div class="source-tags"><span class="source-tag">ICER</span><span class="source-tag">NICE</span><span class="source-tag">CADTH</span><span class="source-tag">G-BA</span><span class="source-tag">PROSPERO</span></div>
+            </div>
           </div>
         </div>
       </div>
@@ -489,10 +667,36 @@ footer a { color: var(--gold-500); text-decoration: none; }
           <div class="kpi-header-bar"><h2>Regulatory</h2><span>15 KPIs &middot; 5 Sub-Functions</span></div>
           <div class="kpi-body">
             <button class="back-btn" onclick="hideFunc()">&larr; Back to all functions</button>
-            <div class="subfunc-card"><h4>IND / NDA <span>4 KPIs</span></h4><div class="kpi-row"><span>IND filing date</span><span class="avail-badge avail-partial">Partial</span></div><div class="kpi-row"><span>NDA/BLA acceptance date</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>PDUFA date</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>Expedited program designations</span><span class="avail-badge avail-public">Public</span></div><div class="source-tags"><span class="source-tag">FDA.gov</span><span class="source-tag">Press releases</span><span class="source-tag">SEC 8-K</span></div></div>
-            <div class="subfunc-card"><h4>AdComm <span>2 KPIs</span></h4><div class="kpi-row"><span>Advisory Committee vote outcome</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>AdComm briefing document quality score</span><span class="avail-badge avail-public">Public</span></div><div class="source-tags"><span class="source-tag">FDA AdComm briefing docs</span></div></div>
-            <div class="subfunc-card"><h4>Label &amp; Exclusivity <span>5 KPIs</span></h4><div class="kpi-row"><span>Approved indication scope vs target</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>Boxed warning presence</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>Orange Book exclusivity expiry</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>Orange Book patents listed</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>Paragraph IV certifications filed</span><span class="avail-badge avail-public">Public</span></div><div class="source-tags"><span class="source-tag">FDA Orange Book</span><span class="source-tag">Drugs@FDA</span></div></div>
-            <div class="subfunc-card"><h4>Post-Market <span>3 KPIs</span></h4><div class="kpi-row"><span>PMR/PMC commitments tracker</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>FAERS adverse event signal count</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>Warning letters / OPDP enforcement</span><span class="avail-badge avail-public">Public</span></div><div class="source-tags"><span class="source-tag">FDA FAERS</span><span class="source-tag">FDA OPDP</span><span class="source-tag">FDA PMR/PMC</span></div></div>
+            <div class="subfunc-card">
+              <h4>IND / NDA <span>4 KPIs</span></h4>
+              <div class="kpi-row"><span>IND filing date</span><span class="avail-badge avail-partial">Partial</span></div>
+              <div class="kpi-row"><span>NDA/BLA acceptance date</span><span class="avail-badge avail-public">Public</span></div>
+              <div class="kpi-row"><span>PDUFA date</span><span class="avail-badge avail-public">Public</span></div>
+              <div class="kpi-row"><span>Expedited program designations</span><span class="avail-badge avail-public">Public</span></div>
+              <div class="source-tags"><span class="source-tag">FDA.gov</span><span class="source-tag">Press releases</span><span class="source-tag">SEC 8-K</span></div>
+            </div>
+            <div class="subfunc-card">
+              <h4>AdComm <span>2 KPIs</span></h4>
+              <div class="kpi-row"><span>Advisory Committee vote outcome</span><span class="avail-badge avail-public">Public</span></div>
+              <div class="kpi-row"><span>AdComm briefing document quality score</span><span class="avail-badge avail-public">Public</span></div>
+              <div class="source-tags"><span class="source-tag">FDA AdComm briefing docs</span></div>
+            </div>
+            <div class="subfunc-card">
+              <h4>Label &amp; Exclusivity <span>5 KPIs</span></h4>
+              <div class="kpi-row"><span>Approved indication scope vs target</span><span class="avail-badge avail-public">Public</span></div>
+              <div class="kpi-row"><span>Boxed warning presence</span><span class="avail-badge avail-public">Public</span></div>
+              <div class="kpi-row"><span>Orange Book exclusivity expiry</span><span class="avail-badge avail-public">Public</span></div>
+              <div class="kpi-row"><span>Orange Book patents listed</span><span class="avail-badge avail-public">Public</span></div>
+              <div class="kpi-row"><span>Paragraph IV certifications filed</span><span class="avail-badge avail-public">Public</span></div>
+              <div class="source-tags"><span class="source-tag">FDA Orange Book</span><span class="source-tag">Drugs@FDA</span></div>
+            </div>
+            <div class="subfunc-card">
+              <h4>Post-Market <span>3 KPIs</span></h4>
+              <div class="kpi-row"><span>PMR/PMC commitments tracker</span><span class="avail-badge avail-public">Public</span></div>
+              <div class="kpi-row"><span>FAERS adverse event signal count</span><span class="avail-badge avail-public">Public</span></div>
+              <div class="kpi-row"><span>Warning letters / OPDP enforcement</span><span class="avail-badge avail-public">Public</span></div>
+              <div class="source-tags"><span class="source-tag">FDA FAERS</span><span class="source-tag">FDA OPDP</span><span class="source-tag">FDA PMR/PMC</span></div>
+            </div>
           </div>
         </div>
       </div>
@@ -502,9 +706,32 @@ footer a { color: var(--gold-500); text-decoration: none; }
           <div class="kpi-header-bar"><h2>Commercial</h2><span>14 KPIs &middot; 3 Sub-Functions</span></div>
           <div class="kpi-body">
             <button class="back-btn" onclick="hideFunc()">&larr; Back to all functions</button>
-            <div class="subfunc-card"><h4>Launch Readiness <span>4 KPIs</span></h4><div class="kpi-row"><span>Sales force hiring velocity</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>Commercial team buildout (leadership)</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>Brand domain registration</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>Brand trademark filing</span><span class="avail-badge avail-public">Public</span></div><div class="source-tags"><span class="source-tag">LinkedIn</span><span class="source-tag">WHOIS</span><span class="source-tag">USPTO</span></div></div>
-            <div class="subfunc-card"><h4>Share of Voice &amp; Revenue <span>4 KPIs</span></h4><div class="kpi-row"><span>Revenue vs analyst consensus</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>Product revenue growth (10-Q)</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>TRx/NRx market share</span><span class="avail-badge avail-private">Paid</span></div><div class="kpi-row"><span>Gross-to-net ratio</span><span class="avail-badge avail-partial">Partial</span></div><div class="source-tags"><span class="source-tag">SEC EDGAR 10-Q</span><span class="source-tag">Seeking Alpha</span><span class="source-tag">SSR Health</span></div></div>
-            <div class="subfunc-card"><h4>DTC / Promo &amp; Access <span>6 KPIs</span></h4><div class="kpi-row"><span>DTC TV ad detection + est. spend</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>Branded website traffic (est.)</span><span class="avail-badge avail-partial">Partial</span></div><div class="kpi-row"><span>Social activation speed (approval day)</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>Medicare Part D prescriber universe size</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>Prescriber concentration (HHI)</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>Co-pay card launch timing</span><span class="avail-badge avail-public">Public</span></div><div class="source-tags"><span class="source-tag">iSpot.tv</span><span class="source-tag">SimilarWeb</span><span class="source-tag">CMS Part D</span><span class="source-tag">NeedyMeds</span></div></div>
+            <div class="subfunc-card">
+              <h4>Launch Readiness <span>4 KPIs</span></h4>
+              <div class="kpi-row"><span>Sales force hiring velocity</span><span class="avail-badge avail-public">Public</span></div>
+              <div class="kpi-row"><span>Commercial team buildout (leadership)</span><span class="avail-badge avail-public">Public</span></div>
+              <div class="kpi-row"><span>Brand domain registration</span><span class="avail-badge avail-public">Public</span></div>
+              <div class="kpi-row"><span>Brand trademark filing</span><span class="avail-badge avail-public">Public</span></div>
+              <div class="source-tags"><span class="source-tag">LinkedIn</span><span class="source-tag">WHOIS</span><span class="source-tag">USPTO</span></div>
+            </div>
+            <div class="subfunc-card">
+              <h4>Share of Voice &amp; Revenue <span>4 KPIs</span></h4>
+              <div class="kpi-row"><span>Revenue vs analyst consensus</span><span class="avail-badge avail-public">Public</span></div>
+              <div class="kpi-row"><span>Product revenue growth (10-Q)</span><span class="avail-badge avail-public">Public</span></div>
+              <div class="kpi-row"><span>TRx/NRx market share</span><span class="avail-badge avail-private">Paid</span></div>
+              <div class="kpi-row"><span>Gross-to-net ratio</span><span class="avail-badge avail-partial">Partial</span></div>
+              <div class="source-tags"><span class="source-tag">SEC EDGAR 10-Q</span><span class="source-tag">Seeking Alpha</span><span class="source-tag">SSR Health</span></div>
+            </div>
+            <div class="subfunc-card">
+              <h4>DTC / Promo &amp; Access <span>6 KPIs</span></h4>
+              <div class="kpi-row"><span>DTC TV ad detection + est. spend</span><span class="avail-badge avail-public">Public</span></div>
+              <div class="kpi-row"><span>Branded website traffic (est.)</span><span class="avail-badge avail-partial">Partial</span></div>
+              <div class="kpi-row"><span>Social activation speed (approval day)</span><span class="avail-badge avail-public">Public</span></div>
+              <div class="kpi-row"><span>Medicare Part D prescriber universe size</span><span class="avail-badge avail-public">Public</span></div>
+              <div class="kpi-row"><span>Prescriber concentration (HHI)</span><span class="avail-badge avail-public">Public</span></div>
+              <div class="kpi-row"><span>Co-pay card launch timing</span><span class="avail-badge avail-public">Public</span></div>
+              <div class="source-tags"><span class="source-tag">iSpot.tv</span><span class="source-tag">SimilarWeb</span><span class="source-tag">CMS Part D</span><span class="source-tag">NeedyMeds</span></div>
+            </div>
           </div>
         </div>
       </div>
@@ -514,10 +741,36 @@ footer a { color: var(--gold-500); text-decoration: none; }
           <div class="kpi-header-bar"><h2>Market Access</h2><span>14 KPIs &middot; 4 Sub-Functions</span></div>
           <div class="kpi-body">
             <button class="back-btn" onclick="hideFunc()">&larr; Back to all functions</button>
-            <div class="subfunc-card"><h4>Payer Coverage <span>5 KPIs</span></h4><div class="kpi-row"><span>Medicare Part D covered-lives %</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>Preferred-tier status %</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>Prior-auth / step-therapy restriction rate</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>Commercial payer coverage (top 10 plans)</span><span class="avail-badge avail-partial">Partial</span></div><div class="kpi-row"><span>Medicaid preferred drug list status</span><span class="avail-badge avail-public">Public</span></div><div class="source-tags"><span class="source-tag">CMS Formulary Finder</span><span class="source-tag">State Medicaid PDLs</span></div></div>
-            <div class="subfunc-card"><h4>Pricing / ASP <span>3 KPIs</span></h4><div class="kpi-row"><span>CMS Average Sales Price (Part B)</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>WAC at launch + annual increases</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>Implied net price (SSR Health method)</span><span class="avail-badge avail-partial">Partial</span></div><div class="source-tags"><span class="source-tag">CMS ASP Files</span><span class="source-tag">SSR Health</span><span class="source-tag">46brooklyn</span></div></div>
-            <div class="subfunc-card"><h4>HEOR / Value Assessment <span>4 KPIs</span></h4><div class="kpi-row"><span>ICER value-based price range</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>NICE recommendation</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>CADTH reimbursement recommendation</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>G-BA benefit assessment</span><span class="avail-badge avail-public">Public</span></div><div class="source-tags"><span class="source-tag">ICER</span><span class="source-tag">NICE</span><span class="source-tag">CADTH</span><span class="source-tag">G-BA</span></div></div>
-            <div class="subfunc-card"><h4>IRA Impact <span>2 KPIs</span></h4><div class="kpi-row"><span>IRA negotiation eligibility clock</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>IRA Maximum Fair Price (if selected)</span><span class="avail-badge avail-public">Public</span></div><div class="source-tags"><span class="source-tag">CMS IRA announcements</span></div></div>
+            <div class="subfunc-card">
+              <h4>Payer Coverage <span>5 KPIs</span></h4>
+              <div class="kpi-row"><span>Medicare Part D covered-lives %</span><span class="avail-badge avail-public">Public</span></div>
+              <div class="kpi-row"><span>Preferred-tier status %</span><span class="avail-badge avail-public">Public</span></div>
+              <div class="kpi-row"><span>Prior-auth / step-therapy restriction rate</span><span class="avail-badge avail-public">Public</span></div>
+              <div class="kpi-row"><span>Commercial payer coverage (top 10 plans)</span><span class="avail-badge avail-partial">Partial</span></div>
+              <div class="kpi-row"><span>Medicaid preferred drug list status</span><span class="avail-badge avail-public">Public</span></div>
+              <div class="source-tags"><span class="source-tag">CMS Formulary Finder</span><span class="source-tag">State Medicaid PDLs</span></div>
+            </div>
+            <div class="subfunc-card">
+              <h4>Pricing / ASP <span>3 KPIs</span></h4>
+              <div class="kpi-row"><span>CMS Average Sales Price (Part B)</span><span class="avail-badge avail-public">Public</span></div>
+              <div class="kpi-row"><span>WAC at launch + annual increases</span><span class="avail-badge avail-public">Public</span></div>
+              <div class="kpi-row"><span>Implied net price (SSR Health method)</span><span class="avail-badge avail-partial">Partial</span></div>
+              <div class="source-tags"><span class="source-tag">CMS ASP Files</span><span class="source-tag">SSR Health</span><span class="source-tag">46brooklyn</span></div>
+            </div>
+            <div class="subfunc-card">
+              <h4>HEOR / Value Assessment <span>4 KPIs</span></h4>
+              <div class="kpi-row"><span>ICER value-based price range</span><span class="avail-badge avail-public">Public</span></div>
+              <div class="kpi-row"><span>NICE recommendation</span><span class="avail-badge avail-public">Public</span></div>
+              <div class="kpi-row"><span>CADTH reimbursement recommendation</span><span class="avail-badge avail-public">Public</span></div>
+              <div class="kpi-row"><span>G-BA benefit assessment</span><span class="avail-badge avail-public">Public</span></div>
+              <div class="source-tags"><span class="source-tag">ICER</span><span class="source-tag">NICE</span><span class="source-tag">CADTH</span><span class="source-tag">G-BA</span></div>
+            </div>
+            <div class="subfunc-card">
+              <h4>IRA Impact <span>2 KPIs</span></h4>
+              <div class="kpi-row"><span>IRA negotiation eligibility clock</span><span class="avail-badge avail-public">Public</span></div>
+              <div class="kpi-row"><span>IRA Maximum Fair Price (if selected)</span><span class="avail-badge avail-public">Public</span></div>
+              <div class="source-tags"><span class="source-tag">CMS IRA announcements</span></div>
+            </div>
           </div>
         </div>
       </div>
@@ -527,9 +780,30 @@ footer a { color: var(--gold-500); text-decoration: none; }
           <div class="kpi-header-bar"><h2>Clinical</h2><span>12 KPIs &middot; 3 Sub-Functions</span></div>
           <div class="kpi-body">
             <button class="back-btn" onclick="hideFunc()">&larr; Back to all functions</button>
-            <div class="subfunc-card"><h4>Trial Portfolio &amp; Design <span>5 KPIs</span></h4><div class="kpi-row"><span>Active trial count by phase</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>Pivotal trial status</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>Primary endpoint novelty</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>Comparator choice</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>Planned enrollment (N per arm)</span><span class="avail-badge avail-public">Public</span></div><div class="source-tags"><span class="source-tag">ClinicalTrials.gov</span><span class="source-tag">FDA reviews</span></div></div>
-            <div class="subfunc-card"><h4>Enrollment &amp; Sites <span>3 KPIs</span></h4><div class="kpi-row"><span>Enrollment velocity (pts/site/month)</span><span class="avail-badge avail-partial">Partial</span></div><div class="kpi-row"><span>Enrollment completion delay</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>Site count growth curve</span><span class="avail-badge avail-public">Public</span></div><div class="source-tags"><span class="source-tag">ClinicalTrials.gov</span></div></div>
-            <div class="subfunc-card"><h4>Investigators &amp; Readouts <span>4 KPIs</span></h4><div class="kpi-row"><span>PI overlap with competitors</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>PI publication productivity (H-index)</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>Topline readout events</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>Efficacy delta vs comparator</span><span class="avail-badge avail-public">Public</span></div><div class="source-tags"><span class="source-tag">PubMed</span><span class="source-tag">OpenAlex</span><span class="source-tag">SEC 8-K</span><span class="source-tag">NEJM / Lancet</span></div></div>
+            <div class="subfunc-card">
+              <h4>Trial Portfolio &amp; Design <span>5 KPIs</span></h4>
+              <div class="kpi-row"><span>Active trial count by phase</span><span class="avail-badge avail-public">Public</span></div>
+              <div class="kpi-row"><span>Pivotal trial status</span><span class="avail-badge avail-public">Public</span></div>
+              <div class="kpi-row"><span>Primary endpoint novelty</span><span class="avail-badge avail-public">Public</span></div>
+              <div class="kpi-row"><span>Comparator choice</span><span class="avail-badge avail-public">Public</span></div>
+              <div class="kpi-row"><span>Planned enrollment (N per arm)</span><span class="avail-badge avail-public">Public</span></div>
+              <div class="source-tags"><span class="source-tag">ClinicalTrials.gov</span><span class="source-tag">FDA reviews</span></div>
+            </div>
+            <div class="subfunc-card">
+              <h4>Enrollment &amp; Sites <span>3 KPIs</span></h4>
+              <div class="kpi-row"><span>Enrollment velocity (pts/site/month)</span><span class="avail-badge avail-partial">Partial</span></div>
+              <div class="kpi-row"><span>Enrollment completion delay</span><span class="avail-badge avail-public">Public</span></div>
+              <div class="kpi-row"><span>Site count growth curve</span><span class="avail-badge avail-public">Public</span></div>
+              <div class="source-tags"><span class="source-tag">ClinicalTrials.gov</span></div>
+            </div>
+            <div class="subfunc-card">
+              <h4>Investigators &amp; Readouts <span>4 KPIs</span></h4>
+              <div class="kpi-row"><span>PI overlap with competitors</span><span class="avail-badge avail-public">Public</span></div>
+              <div class="kpi-row"><span>PI publication productivity (H-index)</span><span class="avail-badge avail-public">Public</span></div>
+              <div class="kpi-row"><span>Topline readout events</span><span class="avail-badge avail-public">Public</span></div>
+              <div class="kpi-row"><span>Efficacy delta vs comparator</span><span class="avail-badge avail-public">Public</span></div>
+              <div class="source-tags"><span class="source-tag">PubMed</span><span class="source-tag">OpenAlex</span><span class="source-tag">SEC 8-K</span><span class="source-tag">NEJM / Lancet</span></div>
+            </div>
           </div>
         </div>
       </div>
@@ -539,9 +813,29 @@ footer a { color: var(--gold-500); text-decoration: none; }
           <div class="kpi-header-bar"><h2>Patient Advocacy</h2><span>11 KPIs &middot; 3 Sub-Functions</span></div>
           <div class="kpi-body">
             <button class="back-btn" onclick="hideFunc()">&larr; Back to all functions</button>
-            <div class="subfunc-card"><h4>Advocacy Orgs <span>3 KPIs</span></h4><div class="kpi-row"><span>Advocacy org scale (IRS Form 990 revenue)</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>Pharma donor footprint in org</span><span class="avail-badge avail-partial">Partial</span></div><div class="kpi-row"><span>Advocacy org program spend on indication</span><span class="avail-badge avail-partial">Partial</span></div><div class="source-tags"><span class="source-tag">ProPublica 990s</span><span class="source-tag">Org annual reports</span></div></div>
-            <div class="subfunc-card"><h4>Patient Voice <span>2 KPIs</span></h4><div class="kpi-row"><span>FDA PFDD meeting mentions</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>Unmet need score (PFDD-derived via NLP)</span><span class="avail-badge avail-public">Public</span></div><div class="source-tags"><span class="source-tag">FDA PFDD transcripts</span></div></div>
-            <div class="subfunc-card"><h4>Hub / PAP <span>6 KPIs</span></h4><div class="kpi-row"><span>Patient Assistance Program launch timing</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>Co-pay benefit level vs comp set</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>Free drug program existence + eligibility</span><span class="avail-badge avail-public">Public</span></div><div class="kpi-row"><span>Hub conversion rate</span><span class="avail-badge avail-private">Internal</span></div><div class="kpi-row"><span>Time-to-first-fill</span><span class="avail-badge avail-private">Internal</span></div><div class="kpi-row"><span>Persistence at 6/12 months</span><span class="avail-badge avail-partial">Partial</span></div><div class="source-tags"><span class="source-tag">NeedyMeds</span><span class="source-tag">RxAssist</span><span class="source-tag">CMS Part D</span></div></div>
+            <div class="subfunc-card">
+              <h4>Advocacy Orgs <span>3 KPIs</span></h4>
+              <div class="kpi-row"><span>Advocacy org scale (IRS Form 990 revenue)</span><span class="avail-badge avail-public">Public</span></div>
+              <div class="kpi-row"><span>Pharma donor footprint in org</span><span class="avail-badge avail-partial">Partial</span></div>
+              <div class="kpi-row"><span>Advocacy org program spend on indication</span><span class="avail-badge avail-partial">Partial</span></div>
+              <div class="source-tags"><span class="source-tag">ProPublica 990s</span><span class="source-tag">Org annual reports</span></div>
+            </div>
+            <div class="subfunc-card">
+              <h4>Patient Voice <span>2 KPIs</span></h4>
+              <div class="kpi-row"><span>FDA PFDD meeting mentions</span><span class="avail-badge avail-public">Public</span></div>
+              <div class="kpi-row"><span>Unmet need score (PFDD-derived via NLP)</span><span class="avail-badge avail-public">Public</span></div>
+              <div class="source-tags"><span class="source-tag">FDA PFDD transcripts</span></div>
+            </div>
+            <div class="subfunc-card">
+              <h4>Hub / PAP <span>6 KPIs</span></h4>
+              <div class="kpi-row"><span>Patient Assistance Program launch timing</span><span class="avail-badge avail-public">Public</span></div>
+              <div class="kpi-row"><span>Co-pay benefit level vs comp set</span><span class="avail-badge avail-public">Public</span></div>
+              <div class="kpi-row"><span>Free drug program existence + eligibility</span><span class="avail-badge avail-public">Public</span></div>
+              <div class="kpi-row"><span>Hub conversion rate</span><span class="avail-badge avail-private">Internal</span></div>
+              <div class="kpi-row"><span>Time-to-first-fill</span><span class="avail-badge avail-private">Internal</span></div>
+              <div class="kpi-row"><span>Persistence at 6/12 months</span><span class="avail-badge avail-partial">Partial</span></div>
+              <div class="source-tags"><span class="source-tag">NeedyMeds</span><span class="source-tag">RxAssist</span><span class="source-tag">CMS Part D</span></div>
+            </div>
           </div>
         </div>
       </div>
@@ -571,53 +865,391 @@ footer a { color: var(--gold-500); text-decoration: none; }
 </div>
 
 <!-- ============================================================
-     PAGE: INTELLIGENCE
+     PAGE: INTELLIGENCE (3-Layer Drill-Down)
      ============================================================ -->
 <div id="page-intelligence" class="page">
   <div class="container section">
-    <div class="section-label">Intelligence</div>
-    <div class="section-title">96 KPIs organized by biopharma function</div>
-    <div class="section-sub">Each metric is sourced primarily from free, public data &mdash; and mapped to the launch timeline so you know exactly when it becomes actionable for your competitive strategy.</div>
 
-    <div class="grid-2">
-      <div class="crown-panel"><div class="crown-bar"></div><div class="crown-header"><span class="crown-header-title">MEDICAL AFFAIRS</span><span class="crown-header-badge">30 KPIs &middot; P0</span></div><div class="crown-body"><p style="font-size:12px;color:rgba(255,255,255,0.5);margin-bottom:10px">Publication velocity, congress SOV, KOL engagement depth, MSL deployment timing, evidence contribution to HTA.</p><div style="display:flex;flex-wrap:wrap;gap:4px"><span class="source-tag" style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.35)">PubMed</span><span class="source-tag" style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.35)">Open Payments</span><span class="source-tag" style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.35)">ICER</span><span class="source-tag" style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.35)">LinkedIn</span></div></div></div>
-      <div class="crown-panel"><div class="crown-bar"></div><div class="crown-header"><span class="crown-header-title">REGULATORY</span><span class="crown-header-badge">15 KPIs &middot; P2</span></div><div class="crown-body"><p style="font-size:12px;color:rgba(255,255,255,0.5);margin-bottom:10px">PDUFA tracking, AdComm votes, label scope analysis, Orange Book exclusivity, FAERS safety signals, OPDP enforcement.</p><div style="display:flex;flex-wrap:wrap;gap:4px"><span class="source-tag" style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.35)">FDA.gov</span><span class="source-tag" style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.35)">Drugs@FDA</span><span class="source-tag" style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.35)">FAERS</span><span class="source-tag" style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.35)">OPDP</span></div></div></div>
-      <div class="crown-panel"><div class="crown-bar"></div><div class="crown-header"><span class="crown-header-title">COMMERCIAL</span><span class="crown-header-badge">14 KPIs &middot; P1</span></div><div class="crown-body"><p style="font-size:12px;color:rgba(255,255,255,0.5);margin-bottom:10px">Launch hiring velocity, brand trademark filing, revenue vs consensus, DTC ad detection, prescriber universe sizing.</p><div style="display:flex;flex-wrap:wrap;gap:4px"><span class="source-tag" style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.35)">LinkedIn</span><span class="source-tag" style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.35)">SEC EDGAR</span><span class="source-tag" style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.35)">USPTO</span></div></div></div>
-      <div class="crown-panel"><div class="crown-bar"></div><div class="crown-header"><span class="crown-header-title">MARKET ACCESS</span><span class="crown-header-badge">14 KPIs &middot; P2</span></div><div class="crown-body"><p style="font-size:12px;color:rgba(255,255,255,0.5);margin-bottom:10px">Part D formulary coverage, ASP tracking, HTA outcomes across Big Four, IRA negotiation eligibility, payer restriction rates.</p><div style="display:flex;flex-wrap:wrap;gap:4px"><span class="source-tag" style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.35)">CMS Formulary</span><span class="source-tag" style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.35)">CMS ASP</span><span class="source-tag" style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.35)">NICE</span><span class="source-tag" style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.35)">CADTH</span></div></div></div>
-      <div class="crown-panel"><div class="crown-bar"></div><div class="crown-header"><span class="crown-header-title">CLINICAL</span><span class="crown-header-badge">12 KPIs &middot; P2</span></div><div class="crown-body"><p style="font-size:12px;color:rgba(255,255,255,0.5);margin-bottom:10px">Active trial portfolio, enrollment velocity, endpoint analysis, PI network overlap, readout monitoring and efficacy delta.</p><div style="display:flex;flex-wrap:wrap;gap:4px"><span class="source-tag" style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.35)">ClinicalTrials.gov</span><span class="source-tag" style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.35)">PubMed</span><span class="source-tag" style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.35)">SEC 8-K</span></div></div></div>
-      <div class="crown-panel"><div class="crown-bar"></div><div class="crown-header"><span class="crown-header-title">PATIENT ADVOCACY</span><span class="crown-header-badge">11 KPIs &middot; P1</span></div><div class="crown-body"><p style="font-size:12px;color:rgba(255,255,255,0.5);margin-bottom:10px">Advocacy org funding from 990s, PFDD unmet need scoring, PAP launch timing, co-pay benchmarking, hub conversion proxies.</p><div style="display:flex;flex-wrap:wrap;gap:4px"><span class="source-tag" style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.35)">ProPublica</span><span class="source-tag" style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.35)">NeedyMeds</span><span class="source-tag" style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.35)">FDA PFDD</span></div></div></div>
-    </div>
+    <!-- ======== LAYER 1: Executive Scorecard ======== -->
+    <div id="intel-l1" class="intel-view active">
+      <div class="section-label">Intelligence</div>
+      <div class="section-title">96 KPIs organized by biopharma function</div>
+      <div class="section-sub">Each metric is sourced primarily from free, public data &mdash; and mapped to the launch timeline so you know exactly when it becomes actionable for your competitive strategy. Click any function to explore its intelligence coverage.</div>
 
-    <div class="compliance-panel">
-      <div class="crown-bar"></div>
-      <div class="crown-header"><span class="crown-header-title">COMPLIANCE FRAMEWORK</span><span class="crown-header-badge">Architectural Enforcement</span></div>
-      <div class="compliance-inner">
-        <div class="compliance-grid">
-          <div class="compliance-col measure">
-            <h4>What We Measure</h4>
-            <ul>
-              <li>Clinical knowledge diffusion velocity</li>
-              <li>Guideline adoption and evidence uptake</li>
-              <li>Evidence generation cadence across assets</li>
-              <li>Payer decision acceleration signals</li>
-              <li>Competitive positioning relative to launch</li>
-            </ul>
+      <div class="grid-2">
+        <div class="crown-panel intel-func-card" onclick="showIntelFunc('ma')"><div class="crown-bar"></div><div class="crown-header"><span class="crown-header-title">MEDICAL AFFAIRS</span><span class="crown-header-badge">30 KPIs &middot; P0</span></div><div class="crown-body"><p style="font-size:12px;color:rgba(255,255,255,0.5);margin-bottom:10px">Publication velocity, congress SOV, KOL engagement depth, MSL deployment timing, evidence contribution to HTA.</p><div style="display:flex;flex-wrap:wrap;gap:4px"><span class="source-tag" style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.35)">PubMed</span><span class="source-tag" style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.35)">Open Payments</span><span class="source-tag" style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.35)">ICER</span><span class="source-tag" style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.35)">LinkedIn</span></div><div class="explore-hint">Explore Medical Affairs &rarr;</div></div></div>
+        <div class="crown-panel intel-func-card" onclick="showIntelFunc('reg')"><div class="crown-bar"></div><div class="crown-header"><span class="crown-header-title">REGULATORY</span><span class="crown-header-badge">15 KPIs &middot; P2</span></div><div class="crown-body"><p style="font-size:12px;color:rgba(255,255,255,0.5);margin-bottom:10px">PDUFA tracking, AdComm votes, label scope analysis, Orange Book exclusivity, FAERS safety signals, OPDP enforcement.</p><div style="display:flex;flex-wrap:wrap;gap:4px"><span class="source-tag" style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.35)">FDA.gov</span><span class="source-tag" style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.35)">Drugs@FDA</span><span class="source-tag" style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.35)">FAERS</span><span class="source-tag" style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.35)">OPDP</span></div><div class="explore-hint">Explore Regulatory &rarr;</div></div></div>
+        <div class="crown-panel intel-func-card" onclick="showIntelFunc('comm')"><div class="crown-bar"></div><div class="crown-header"><span class="crown-header-title">COMMERCIAL</span><span class="crown-header-badge">14 KPIs &middot; P1</span></div><div class="crown-body"><p style="font-size:12px;color:rgba(255,255,255,0.5);margin-bottom:10px">Launch hiring velocity, brand trademark filing, revenue vs consensus, DTC ad detection, prescriber universe sizing.</p><div style="display:flex;flex-wrap:wrap;gap:4px"><span class="source-tag" style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.35)">LinkedIn</span><span class="source-tag" style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.35)">SEC EDGAR</span><span class="source-tag" style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.35)">USPTO</span></div><div class="explore-hint">Explore Commercial &rarr;</div></div></div>
+        <div class="crown-panel intel-func-card" onclick="showIntelFunc('access')"><div class="crown-bar"></div><div class="crown-header"><span class="crown-header-title">MARKET ACCESS</span><span class="crown-header-badge">14 KPIs &middot; P2</span></div><div class="crown-body"><p style="font-size:12px;color:rgba(255,255,255,0.5);margin-bottom:10px">Part D formulary coverage, ASP tracking, HTA outcomes across Big Four, IRA negotiation eligibility, payer restriction rates.</p><div style="display:flex;flex-wrap:wrap;gap:4px"><span class="source-tag" style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.35)">CMS Formulary</span><span class="source-tag" style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.35)">CMS ASP</span><span class="source-tag" style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.35)">NICE</span><span class="source-tag" style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.35)">CADTH</span></div><div class="explore-hint">Explore Market Access &rarr;</div></div></div>
+        <div class="crown-panel intel-func-card" onclick="showIntelFunc('clin')"><div class="crown-bar"></div><div class="crown-header"><span class="crown-header-title">CLINICAL</span><span class="crown-header-badge">12 KPIs &middot; P2</span></div><div class="crown-body"><p style="font-size:12px;color:rgba(255,255,255,0.5);margin-bottom:10px">Active trial portfolio, enrollment velocity, endpoint analysis, PI network overlap, readout monitoring and efficacy delta.</p><div style="display:flex;flex-wrap:wrap;gap:4px"><span class="source-tag" style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.35)">ClinicalTrials.gov</span><span class="source-tag" style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.35)">PubMed</span><span class="source-tag" style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.35)">SEC 8-K</span></div><div class="explore-hint">Explore Clinical &rarr;</div></div></div>
+        <div class="crown-panel intel-func-card" onclick="showIntelFunc('pa')"><div class="crown-bar"></div><div class="crown-header"><span class="crown-header-title">PATIENT ADVOCACY</span><span class="crown-header-badge">11 KPIs &middot; P1</span></div><div class="crown-body"><p style="font-size:12px;color:rgba(255,255,255,0.5);margin-bottom:10px">Advocacy org funding from 990s, PFDD unmet need scoring, PAP launch timing, co-pay benchmarking, hub conversion proxies.</p><div style="display:flex;flex-wrap:wrap;gap:4px"><span class="source-tag" style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.35)">ProPublica</span><span class="source-tag" style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.35)">NeedyMeds</span><span class="source-tag" style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.35)">FDA PFDD</span></div><div class="explore-hint">Explore Patient Advocacy &rarr;</div></div></div>
+      </div>
+
+      <div class="compliance-panel">
+        <div class="crown-bar"></div>
+        <div class="crown-header"><span class="crown-header-title">COMPLIANCE FRAMEWORK</span><span class="crown-header-badge">Architectural Enforcement</span></div>
+        <div class="compliance-inner">
+          <div class="compliance-grid">
+            <div class="compliance-col measure"><h4>What We Measure</h4><ul><li>Clinical knowledge diffusion velocity</li><li>Guideline adoption and evidence uptake</li><li>Evidence generation cadence across assets</li><li>Payer decision acceleration signals</li><li>Competitive positioning relative to launch</li></ul></div>
+            <div class="compliance-col never"><h4>What We Never Measure</h4><ul><li>Prescribing volume attribution to field activity</li><li>Revenue-to-engagement causation</li><li>MSL or MA compensation links</li><li>Individual prescriber behavior changes</li><li>Sales targeting effectiveness</li></ul></div>
           </div>
-          <div class="compliance-col never">
-            <h4>What We Never Measure</h4>
-            <ul>
-              <li>Prescribing volume attribution to field activity</li>
-              <li>Revenue-to-engagement causation</li>
-              <li>MSL or MA compensation links</li>
-              <li>Individual prescriber behavior changes</li>
-              <li>Sales targeting effectiveness</li>
-            </ul>
-          </div>
+          <p style="font-size:11px;color:rgba(255,255,255,0.25);margin-top:16px">These constraints are enforced architecturally at the semantic layer, not just via prompts. Correlation to clinical and organizational outcomes only.</p>
         </div>
-        <p style="font-size:11px;color:rgba(255,255,255,0.25);margin-top:16px">These constraints are enforced architecturally at the semantic layer, not just via prompts. Correlation to clinical and organizational outcomes only.</p>
       </div>
     </div>
+
+    <!-- ======== LAYER 2: MEDICAL AFFAIRS FUNCTION OVERVIEW ======== -->
+    <div id="intel-l2-ma" class="intel-view">
+      <div class="intel-breadcrumb">
+        <span onclick="showIntelL1()">Intelligence</span>
+        <span class="bc-sep">&rarr;</span>
+        <span class="bc-active">Medical Affairs</span>
+      </div>
+
+      <div class="intel-func-header">
+        <div>
+          <h2>Medical Affairs</h2>
+          <div class="func-meta-line">30 KPIs &middot; 6 sub-function groups &middot; Priority P0</div>
+        </div>
+        <div class="intel-func-score">
+          <div class="score-val">74</div>
+          <div class="score-label">Function Score</div>
+        </div>
+      </div>
+
+      <div class="intel-avail-strip">
+        <div class="avail-item"><span class="avail-dot pub"></span> Public 83%</div>
+        <div class="avail-item"><span class="avail-dot part"></span> Partial 12%</div>
+        <div class="avail-item"><span class="avail-dot priv"></span> Not Public 5%</div>
+      </div>
+
+      <!-- Business Outcome Group 1: Evidence & Dissemination -->
+      <div class="outcome-group" id="og-evidence">
+        <div class="outcome-group-header" onclick="toggleOutcomeGroup('og-evidence')">
+          <span class="outcome-group-title">Evidence &amp; Dissemination</span>
+          <span class="outcome-group-toggle">&#9660;</span>
+        </div>
+        <div class="outcome-group-body">
+          <div class="sf-row" onclick="showIntelCI('ma','pubs')">
+            <div>
+              <div class="sf-name">Publications &amp; Evidence</div>
+              <div class="sf-kpi-list">Pub velocity &middot; Tier-1 SOV &middot; RWE studies &middot; Citation impact &middot; Guideline inclusion &middot; Payer dossier</div>
+            </div>
+            <div class="sf-right">
+              <div class="sf-count">6</div>
+              <div class="sf-action">View competitive intel &rarr;</div>
+            </div>
+          </div>
+          <div class="sf-row" onclick="showIntelCI('ma','congress')">
+            <div>
+              <div class="sf-name">Congress Strategy</div>
+              <div class="sf-kpi-list">Abstract SOV &middot; Oral + late-breaker count &middot; Faculty appearances &middot; Insight adoption &middot; Social SOV</div>
+            </div>
+            <div class="sf-right">
+              <div class="sf-count">5</div>
+              <div class="sf-action">View competitive intel &rarr;</div>
+            </div>
+          </div>
+          <div class="sf-row" onclick="showIntelCI('ma','iss')">
+            <div>
+              <div class="sf-name">ISS Governance</div>
+              <div class="sf-kpi-list">IIS open &middot; IIS publications yield &middot; IIS review cycle time</div>
+            </div>
+            <div class="sf-right">
+              <div class="sf-count">3</div>
+              <div class="sf-action">View competitive intel &rarr;</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Business Outcome Group 2: Stakeholder Engagement -->
+      <div class="outcome-group" id="og-stakeholder">
+        <div class="outcome-group-header" onclick="toggleOutcomeGroup('og-stakeholder')">
+          <span class="outcome-group-title">Stakeholder Engagement</span>
+          <span class="outcome-group-toggle">&#9660;</span>
+        </div>
+        <div class="outcome-group-body">
+          <div class="sf-row" onclick="showIntelCI('ma','kol')">
+            <div>
+              <div class="sf-name">KOL Engagement</div>
+              <div class="sf-kpi-list">Network depth &middot; Competitive overlap &middot; Spend depth &middot; Faculty share &middot; Pre-launch positioning &middot; Advisory boards</div>
+            </div>
+            <div class="sf-right">
+              <div class="sf-count">6</div>
+              <div class="sf-action">View competitive intel &rarr;</div>
+            </div>
+          </div>
+          <div class="sf-row" onclick="showIntelCI('ma','msl')">
+            <div>
+              <div class="sf-name">MSL Operations</div>
+              <div class="sf-kpi-list">Deployment timing &middot; Team size growth &middot; Geographic coverage &middot; Insights adopted &middot; Resource efficiency</div>
+            </div>
+            <div class="sf-right">
+              <div class="sf-count">5</div>
+              <div class="sf-action">View competitive intel &rarr;</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Business Outcome Group 3: Value, Compliance & Governance -->
+      <div class="outcome-group" id="og-value">
+        <div class="outcome-group-header" onclick="toggleOutcomeGroup('og-value')">
+          <span class="outcome-group-title">Value, Compliance &amp; Governance</span>
+          <span class="outcome-group-toggle">&#9660;</span>
+        </div>
+        <div class="outcome-group-body">
+          <div class="sf-row" onclick="showIntelCI('ma','heor')">
+            <div>
+              <div class="sf-name">HEOR Contribution</div>
+              <div class="sf-kpi-list">ICER VBP benchmark &middot; HTA outcomes &middot; SLR protocols &middot; Patient outcome proxies &middot; Evidence velocity index</div>
+            </div>
+            <div class="sf-right">
+              <div class="sf-count">5</div>
+              <div class="sf-action">View competitive intel &rarr;</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ======== LAYER 3: PUBLICATIONS COMPETITIVE INTELLIGENCE ======== -->
+    <div id="intel-l3-ma-pubs" class="intel-view">
+      <div class="intel-breadcrumb">
+        <span onclick="showIntelL1()">Intelligence</span>
+        <span class="bc-sep">&rarr;</span>
+        <span onclick="showIntelFunc('ma')">Medical Affairs</span>
+        <span class="bc-sep">&rarr;</span>
+        <span class="bc-active">Publications &amp; Evidence</span>
+      </div>
+
+      <div class="ci-header">
+        <h3>Publications &amp; Evidence &mdash; Competitive View</h3>
+        <div class="ci-meta">6 KPIs &middot; METex14 NSCLC competitive set</div>
+      </div>
+
+      <div style="overflow-x:auto">
+        <table class="ci-table">
+          <thead>
+            <tr>
+              <th style="min-width:200px">KPI</th>
+              <th>TEPMETKO</th>
+              <th>Tabrecta</th>
+              <th>Rybrevant</th>
+              <th>Savolitinib</th>
+              <th>Bench.</th>
+              <th>Avail</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="kpi-trigger" onclick="showKpiPopup(event,'pub-velocity','Publication velocity','Peer-reviewed publications per quarter for the asset in the target indication.','PubMed / OpenAlex','Quarterly','Per asset per indication')">Publication velocity (pubs/qtr)</span></td>
+              <td>18/yr</td>
+              <td class="ci-win">24/yr</td>
+              <td>8/yr</td>
+              <td class="ci-gap">3/yr</td>
+              <td class="ci-neutral">&ge;5</td>
+              <td><span class="ci-avail-dot pub" title="Public &mdash; PubMed"></span></td>
+            </tr>
+            <tr>
+              <td><span class="kpi-trigger" onclick="showKpiPopup(event,'t1-sov','Tier-1 journal share of voice','Percentage of indication-relevant publications in top-tier journals (NEJM, Lancet, JCO, JAMA) attributed to this asset.','PubMed / OpenAlex','Quarterly','Per asset per indication')">Tier-1 journal share of voice</span></td>
+              <td>32%</td>
+              <td class="ci-win">38%</td>
+              <td>18%</td>
+              <td class="ci-gap">6%</td>
+              <td class="ci-neutral">&ge;15%</td>
+              <td><span class="ci-avail-dot pub" title="Public &mdash; PubMed"></span></td>
+            </tr>
+            <tr>
+              <td><span class="kpi-trigger" onclick="showKpiPopup(event,'rwe','RWE / registry studies opened','Count of real-world evidence studies and registries actively enrolling for the asset.','ClinicalTrials.gov','Monthly','Per asset')">RWE / registry studies opened</span></td>
+              <td class="ci-win">5</td>
+              <td>3</td>
+              <td>2</td>
+              <td class="ci-gap">0</td>
+              <td class="ci-neutral">&ge;2</td>
+              <td><span class="ci-avail-dot pub" title="Public &mdash; ClinicalTrials.gov"></span></td>
+            </tr>
+            <tr>
+              <td><span class="kpi-trigger" onclick="showKpiPopup(event,'cite','Citation impact (2-yr window)','Cumulative citations for pivotal and key supplementary publications within a 2-year rolling window.','OpenAlex / Semantic Scholar','Monthly','Per publication set')">Citation impact (2-yr window)</span></td>
+              <td>142</td>
+              <td class="ci-win">186</td>
+              <td>62</td>
+              <td class="ci-gap">28</td>
+              <td class="ci-neutral">&ge;100</td>
+              <td><span class="ci-avail-dot pub" title="Public &mdash; OpenAlex"></span></td>
+            </tr>
+            <tr>
+              <td><span class="kpi-trigger" onclick="showKpiPopup(event,'guide','Guideline inclusion velocity','Months from pivotal readout to first NCCN/ESMO guideline inclusion with category rating.','NCCN / ESMO','Event-driven','Per asset per guideline body')">Guideline inclusion velocity</span></td>
+              <td>8 mo</td>
+              <td class="ci-win">6 mo</td>
+              <td>14 mo</td>
+              <td class="ci-gap">N/A</td>
+              <td class="ci-neutral">&le;12 mo</td>
+              <td><span class="ci-avail-dot pub" title="Public &mdash; NCCN guidelines"></span></td>
+            </tr>
+            <tr>
+              <td><span class="kpi-trigger" onclick="showKpiPopup(event,'payer','Evidence quality contribution to payer dossier','Composite score of evidence package strength supporting HTA/payer submissions. Based on RCT quality, comparator data, PRO data, RWE availability.','ICER / NICE / CADTH','Per submission','Per asset per HTA body')">Evidence quality &rarr; payer dossier</span></td>
+              <td>Fair</td>
+              <td class="ci-win">Strong</td>
+              <td>Fair</td>
+              <td class="ci-gap">Weak</td>
+              <td class="ci-neutral">Strong</td>
+              <td><span class="ci-avail-dot part" title="Partial &mdash; ICER + analyst inference"></span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div style="display:flex;gap:16px;margin-top:16px;font-size:11px;color:rgba(255,255,255,0.3)">
+        <div style="display:flex;align-items:center;gap:4px"><span class="ci-avail-dot pub"></span> Public</div>
+        <div style="display:flex;align-items:center;gap:4px"><span class="ci-avail-dot part"></span> Partial</div>
+        <div style="display:flex;align-items:center;gap:4px"><span class="ci-avail-dot priv"></span> Not Public</div>
+        <div style="margin-left:16px"><span class="ci-win">Green</span> = leads competitive set</div>
+        <div><span class="ci-gap">Red</span> = lags competitive set</div>
+      </div>
+
+      <div style="margin-top:24px;padding:16px 20px;background:rgba(234,179,8,0.04);border:1.65px solid rgba(234,179,8,0.15);border-radius:8px">
+        <div style="font-size:11px;font-weight:600;color:var(--gold-400);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px">Key Business Outcomes This Sub-Function Informs</div>
+        <div style="font-size:12px;color:rgba(255,255,255,0.5);line-height:1.7">
+          Evidence credibility &middot; Congress narrative control &middot; Guideline evidence base &middot; Publication governance &middot; Competitive differentiation. These outcomes connect publication strategy directly to HTA submissions, formulary decisions, and clinical practice adoption.
+        </div>
+      </div>
+
+      <div style="margin-top:16px;padding:16px 20px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:8px">
+        <div style="font-size:11px;font-weight:600;color:rgba(255,255,255,0.5);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px">Data Sources</div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px">
+          <span class="source-tag" style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.4)">PubMed</span>
+          <span class="source-tag" style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.4)">OpenAlex</span>
+          <span class="source-tag" style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.4)">ClinicalTrials.gov</span>
+          <span class="source-tag" style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.4)">NCCN Guidelines</span>
+          <span class="source-tag" style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.4)">ICER</span>
+          <span class="source-tag" style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.4)">NICE</span>
+          <span class="source-tag" style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.4)">Semantic Scholar</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ======== LAYER 3: CONGRESS STRATEGY CI ======== -->
+    <div id="intel-l3-ma-congress" class="intel-view">
+      <div class="intel-breadcrumb">
+        <span onclick="showIntelL1()">Intelligence</span><span class="bc-sep">&rarr;</span>
+        <span onclick="showIntelFunc('ma')">Medical Affairs</span><span class="bc-sep">&rarr;</span>
+        <span class="bc-active">Congress Strategy</span>
+      </div>
+      <div class="ci-header"><h3>Congress Strategy &mdash; Competitive View</h3><div class="ci-meta">5 KPIs &middot; METex14 NSCLC</div></div>
+      <div style="overflow-x:auto">
+        <table class="ci-table">
+          <thead><tr><th style="min-width:200px">KPI</th><th>TEPMETKO</th><th>Tabrecta</th><th>Rybrevant</th><th>Savolitinib</th><th>Bench.</th><th>Avail</th></tr></thead>
+          <tbody>
+            <tr><td><span class="kpi-trigger" onclick="showKpiPopup(event,'abs-sov','Abstract share of voice','Percentage of accepted abstracts at major congresses (ASCO, ESMO, WCLC) mentioning this asset vs total indication abstracts.','Congress proceedings','Annual per congress','Per asset per congress')">Abstract share of voice</span></td><td>22%</td><td class="ci-win">31%</td><td>12%</td><td class="ci-gap">6%</td><td class="ci-neutral">&ge;15%</td><td><span class="ci-avail-dot pub"></span></td></tr>
+            <tr><td><span class="kpi-trigger" onclick="showKpiPopup(event,'oral-lb','Oral + late-breaker count','Number of oral presentations and late-breaking abstracts at Tier-1 congresses.','ASCO/ESMO/WCLC programs','Annual','Per asset')">Oral + late-breaker count</span></td><td>4</td><td class="ci-win">7</td><td>3</td><td class="ci-gap">1</td><td class="ci-neutral">&ge;3</td><td><span class="ci-avail-dot pub"></span></td></tr>
+            <tr><td><span class="kpi-trigger" onclick="showKpiPopup(event,'faculty','Faculty appearances','Count of distinct KOLs presenting on behalf of or citing this asset at major congresses.','Congress programs','Annual','Per asset')">Faculty appearances</span></td><td>12</td><td class="ci-win">15</td><td>8</td><td class="ci-gap">3</td><td class="ci-neutral">&ge;5</td><td><span class="ci-avail-dot pub"></span></td></tr>
+            <tr><td>Post-congress insight adoption rate</td><td colspan="4" style="color:rgba(255,255,255,0.25);text-align:center">Internal metric &mdash; not tracked from public sources</td><td></td><td><span class="ci-avail-dot priv"></span></td></tr>
+            <tr><td><span class="kpi-trigger" onclick="showKpiPopup(event,'social-sov','Social/media SOV (congress week)','Share of social media and press mentions during congress week attributed to this asset.','Twitter/X, press releases','Event-driven','Per congress week')">Social/media SOV (congress week)</span></td><td>18%</td><td>22%</td><td class="ci-win">28%</td><td class="ci-gap">4%</td><td class="ci-neutral">&ge;10%</td><td><span class="ci-avail-dot part"></span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ======== LAYER 3: KOL ENGAGEMENT CI ======== -->
+    <div id="intel-l3-ma-kol" class="intel-view">
+      <div class="intel-breadcrumb">
+        <span onclick="showIntelL1()">Intelligence</span><span class="bc-sep">&rarr;</span>
+        <span onclick="showIntelFunc('ma')">Medical Affairs</span><span class="bc-sep">&rarr;</span>
+        <span class="bc-active">KOL Engagement</span>
+      </div>
+      <div class="ci-header"><h3>KOL Engagement &mdash; Competitive View</h3><div class="ci-meta">6 KPIs &middot; METex14 NSCLC</div></div>
+      <div style="overflow-x:auto">
+        <table class="ci-table">
+          <thead><tr><th style="min-width:200px">KPI</th><th>TEPMETKO</th><th>Tabrecta</th><th>Rybrevant</th><th>Savolitinib</th><th>Bench.</th><th>Avail</th></tr></thead>
+          <tbody>
+            <tr><td><span class="kpi-trigger" onclick="showKpiPopup(event,'kol-depth','KOL network depth','Count of Tier 1/2/3 KOLs with documented financial relationships via CMS Open Payments.','CMS Open Payments','Annual','Per company per indication')">KOL network depth (Tier 1/2/3)</span></td><td>47</td><td class="ci-win">62</td><td>38</td><td class="ci-gap">12</td><td class="ci-neutral">&ge;25</td><td><span class="ci-avail-dot pub"></span></td></tr>
+            <tr><td><span class="kpi-trigger" onclick="showKpiPopup(event,'kol-overlap','Competitive KOL overlap','Percentage of your top-20 KOLs who also have financial relationships with a specific competitor.','CMS Open Payments','Annual','Pairwise per company')">Competitive KOL overlap</span></td><td>47%</td><td>52%</td><td class="ci-gap">61%</td><td class="ci-win">18%</td><td class="ci-neutral">Monitor</td><td><span class="ci-avail-dot pub"></span></td></tr>
+            <tr><td><span class="kpi-trigger" onclick="showKpiPopup(event,'kol-spend','KOL spend depth by competitor','Total general payments to indication-relevant physicians per company per year.','CMS Open Payments','Annual','Per company')">KOL spend depth by competitor</span></td><td>$1.2M</td><td class="ci-win">$2.1M</td><td>$1.8M</td><td class="ci-gap">$180K</td><td class="ci-neutral">Relative</td><td><span class="ci-avail-dot pub"></span></td></tr>
+            <tr><td><span class="kpi-trigger" onclick="showKpiPopup(event,'kol-faculty','KOL faculty share at Tier-1 congresses','Percentage of congress faculty presenting on this asset who are also paid KOLs.','Open Payments + Congress programs','Annual','Per asset')">KOL faculty share at Tier-1 congresses</span></td><td>68%</td><td class="ci-win">74%</td><td>55%</td><td class="ci-gap">33%</td><td class="ci-neutral">&ge;50%</td><td><span class="ci-avail-dot pub"></span></td></tr>
+            <tr><td><span class="kpi-trigger" onclick="showKpiPopup(event,'kol-timing','Pre-launch KOL positioning timing','Months before PDUFA when first KOL engagement payments appear in Open Payments data.','CMS Open Payments','Event-driven','Per asset launch')">Pre-launch KOL positioning timing</span></td><td>L-18</td><td class="ci-win">L-24</td><td>L-16</td><td class="ci-gap">L-8</td><td class="ci-neutral">L-18+</td><td><span class="ci-avail-dot pub"></span></td></tr>
+            <tr><td>Advisory board quality score</td><td colspan="4" style="color:rgba(255,255,255,0.25);text-align:center">Internal metric &mdash; not tracked from public sources</td><td></td><td><span class="ci-avail-dot priv"></span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ======== LAYER 3: MSL OPERATIONS CI ======== -->
+    <div id="intel-l3-ma-msl" class="intel-view">
+      <div class="intel-breadcrumb">
+        <span onclick="showIntelL1()">Intelligence</span><span class="bc-sep">&rarr;</span>
+        <span onclick="showIntelFunc('ma')">Medical Affairs</span><span class="bc-sep">&rarr;</span>
+        <span class="bc-active">MSL Operations</span>
+      </div>
+      <div class="ci-header"><h3>MSL Operations &mdash; Competitive View</h3><div class="ci-meta">5 KPIs &middot; METex14 NSCLC</div></div>
+      <div style="overflow-x:auto">
+        <table class="ci-table">
+          <thead><tr><th style="min-width:200px">KPI</th><th>TEPMETKO</th><th>Tabrecta</th><th>Rybrevant</th><th>Savolitinib</th><th>Bench.</th><th>Avail</th></tr></thead>
+          <tbody>
+            <tr><td><span class="kpi-trigger" onclick="showKpiPopup(event,'msl-timing','MSL deployment timing','Months before PDUFA when first MSL hire appears on LinkedIn for the indication.','LinkedIn','Event-driven','Per asset launch')">MSL deployment timing (first hire)</span></td><td>L-12</td><td class="ci-win">L-18</td><td>L-14</td><td class="ci-gap">L-6</td><td class="ci-neutral">L-16+</td><td><span class="ci-avail-dot pub"></span></td></tr>
+            <tr><td><span class="kpi-trigger" onclick="showKpiPopup(event,'msl-size','MSL team size growth curve','Estimated MSL headcount for the indication based on LinkedIn profiles with MSL title + therapeutic area.','LinkedIn','Quarterly','Per company per TA')">MSL team size growth curve</span></td><td>14</td><td class="ci-win">22</td><td>18</td><td class="ci-gap">4</td><td class="ci-neutral">&ge;10</td><td><span class="ci-avail-dot pub"></span></td></tr>
+            <tr><td><span class="kpi-trigger" onclick="showKpiPopup(event,'msl-geo','MSL geographic coverage','Estimated geographic spread of MSL team relative to NCCN-designated cancer centers and high-volume prescribers.','LinkedIn + NCCN center list','Quarterly','Per company')">MSL geographic coverage density</span></td><td>72%</td><td class="ci-win">85%</td><td>78%</td><td class="ci-gap">35%</td><td class="ci-neutral">&ge;70%</td><td><span class="ci-avail-dot part"></span></td></tr>
+            <tr><td>MSL insights adopted internally</td><td colspan="4" style="color:rgba(255,255,255,0.25);text-align:center">Internal metric &mdash; not tracked from public sources</td><td></td><td><span class="ci-avail-dot priv"></span></td></tr>
+            <tr><td>MSL resource allocation efficiency</td><td colspan="4" style="color:rgba(255,255,255,0.25);text-align:center">Partial &mdash; requires internal + external data blend</td><td></td><td><span class="ci-avail-dot part"></span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ======== LAYER 3: ISS GOVERNANCE CI ======== -->
+    <div id="intel-l3-ma-iss" class="intel-view">
+      <div class="intel-breadcrumb">
+        <span onclick="showIntelL1()">Intelligence</span><span class="bc-sep">&rarr;</span>
+        <span onclick="showIntelFunc('ma')">Medical Affairs</span><span class="bc-sep">&rarr;</span>
+        <span class="bc-active">ISS Governance</span>
+      </div>
+      <div class="ci-header"><h3>ISS Governance &mdash; Competitive View</h3><div class="ci-meta">3 KPIs &middot; METex14 NSCLC</div></div>
+      <div style="overflow-x:auto">
+        <table class="ci-table">
+          <thead><tr><th style="min-width:200px">KPI</th><th>TEPMETKO</th><th>Tabrecta</th><th>Rybrevant</th><th>Savolitinib</th><th>Bench.</th><th>Avail</th></tr></thead>
+          <tbody>
+            <tr><td><span class="kpi-trigger" onclick="showKpiPopup(event,'iis-open','IIS open','Count of active investigator-initiated studies on ClinicalTrials.gov for this asset.','ClinicalTrials.gov','Monthly','Per asset')">Investigator-initiated studies open</span></td><td class="ci-win">8</td><td>5</td><td>3</td><td class="ci-gap">1</td><td class="ci-neutral">&ge;3</td><td><span class="ci-avail-dot pub"></span></td></tr>
+            <tr><td><span class="kpi-trigger" onclick="showKpiPopup(event,'iis-pub','IIS publications yield','Number of peer-reviewed publications resulting from IIS for this asset.','PubMed','Annual','Per asset')">IIS publications yield</span></td><td class="ci-win">3</td><td>2</td><td>1</td><td class="ci-gap">0</td><td class="ci-neutral">&ge;1</td><td><span class="ci-avail-dot pub"></span></td></tr>
+            <tr><td>IIS review cycle time</td><td colspan="4" style="color:rgba(255,255,255,0.25);text-align:center">Internal metric &mdash; not tracked from public sources</td><td></td><td><span class="ci-avail-dot priv"></span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ======== LAYER 3: HEOR CONTRIBUTION CI ======== -->
+    <div id="intel-l3-ma-heor" class="intel-view">
+      <div class="intel-breadcrumb">
+        <span onclick="showIntelL1()">Intelligence</span><span class="bc-sep">&rarr;</span>
+        <span onclick="showIntelFunc('ma')">Medical Affairs</span><span class="bc-sep">&rarr;</span>
+        <span class="bc-active">HEOR Contribution</span>
+      </div>
+      <div class="ci-header"><h3>HEOR Contribution &mdash; Competitive View</h3><div class="ci-meta">5 KPIs &middot; METex14 NSCLC</div></div>
+      <div style="overflow-x:auto">
+        <table class="ci-table">
+          <thead><tr><th style="min-width:200px">KPI</th><th>TEPMETKO</th><th>Tabrecta</th><th>Rybrevant</th><th>Savolitinib</th><th>Bench.</th><th>Avail</th></tr></thead>
+          <tbody>
+            <tr><td><span class="kpi-trigger" onclick="showKpiPopup(event,'icer-vbp','ICER VBP benchmark vs WAC','ICER value-based price range compared to WAC. Measures pricing headroom or exposure.','ICER reports','Per review','Per asset')">ICER VBP benchmark vs WAC</span></td><td class="ci-win">$142K vs $158K</td><td>$128K vs $165K</td><td>N/R</td><td class="ci-gap">N/A</td><td class="ci-neutral">VBP &ge; WAC</td><td><span class="ci-avail-dot pub"></span></td></tr>
+            <tr><td><span class="kpi-trigger" onclick="showKpiPopup(event,'hta','HTA assessment outcomes','Reimbursement recommendations from major HTA bodies (ICER, NICE, CADTH, G-BA).','ICER/NICE/CADTH/G-BA','Per review','Per asset per body')">HTA outcomes (ICER/NICE/CADTH/G-BA)</span></td><td>2/4 favorable</td><td class="ci-win">3/4 favorable</td><td>1/4 favorable</td><td class="ci-gap">0/4</td><td class="ci-neutral">&ge;2</td><td><span class="ci-avail-dot pub"></span></td></tr>
+            <tr><td><span class="kpi-trigger" onclick="showKpiPopup(event,'slr','SLR protocols registered','Systematic literature review protocols registered on PROSPERO for the asset or indication.','PROSPERO','Monthly','Per asset')">SLR protocols registered (PROSPERO)</span></td><td class="ci-win">4</td><td>3</td><td>2</td><td class="ci-gap">0</td><td class="ci-neutral">&ge;1</td><td><span class="ci-avail-dot pub"></span></td></tr>
+            <tr><td><span class="kpi-trigger" onclick="showKpiPopup(event,'prox','Patient outcome proxies','Diagnostic rates and treatment patterns as proxies for real-world outcomes.','CMS claims data / SEER','Annual','Per indication')">Patient outcome proxies (diagnostic rates)</span></td><td>Est. 4,200/yr</td><td>Est. 4,200/yr</td><td>Est. 4,200/yr</td><td>Est. 4,200/yr</td><td class="ci-neutral">Shared</td><td><span class="ci-avail-dot part"></span></td></tr>
+            <tr><td><span class="kpi-trigger" onclick="showKpiPopup(event,'evi','Evidence velocity index','Composite score measuring speed from data generation to evidence package completion.','Calculated','Quarterly','Per asset')">Evidence velocity index (composite)</span></td><td>78</td><td class="ci-win">82</td><td>61</td><td class="ci-gap">34</td><td class="ci-neutral">&ge;65</td><td><span class="ci-avail-dot pub"></span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
   </div>
+</div>
+
+<!-- KPI Pop-up Container -->
+<div id="kpi-popup" class="kpi-popup">
+  <button class="kpi-popup-close" onclick="hideKpiPopup()">&times;</button>
+  <div class="popup-title" id="popup-title"></div>
+  <div class="popup-def" id="popup-def"></div>
+  <div class="popup-row"><span class="popup-label">Source</span><span class="popup-val" id="popup-source"></span></div>
+  <div class="popup-row"><span class="popup-label">Refresh</span><span class="popup-val" id="popup-refresh"></span></div>
+  <div class="popup-row"><span class="popup-label">Grain</span><span class="popup-val" id="popup-grain"></span></div>
 </div>
 
 <!-- ============================================================
@@ -693,6 +1325,7 @@ footer a { color: var(--gold-500); text-decoration: none; }
 <footer><p>&copy; 2026 Savi Bio, Inc. All rights reserved. &nbsp;|&nbsp; Delaware C-Corp &nbsp;|&nbsp; <a href="mailto:hello@savi.bio">hello@savi.bio</a></p></footer>
 
 <script>
+/* ---- Page Navigation ---- */
 function goPage(id) {
   document.querySelectorAll('.page').forEach(function(p){ p.classList.remove('active'); });
   document.getElementById('page-' + id).classList.add('active');
@@ -700,8 +1333,12 @@ function goPage(id) {
   document.querySelectorAll('.nav-links a[data-page="'+id+'"]').forEach(function(a){ a.classList.add('active'); });
   window.scrollTo(0, 0);
   if (id !== 'platform') { hideFunc(); }
+  // Reset intelligence drill-down to L1 when navigating away or back to intelligence
+  if (id === 'intelligence' || id !== 'intelligence') { showIntelL1(); }
+  hideKpiPopup();
 }
 
+/* ---- Platform Page Helpers ---- */
 function setLayer(n) {
   document.querySelectorAll('.layer').forEach(function(l){ l.classList.remove('active'); });
   document.getElementById('layer-' + n).classList.add('active');
@@ -722,6 +1359,97 @@ function hideFunc() {
   if (fg) fg.style.display = '';
   document.querySelectorAll('.func-detail').forEach(function(d){ d.classList.remove('active'); });
 }
+
+/* ---- Intelligence 3-Layer Drill-Down ---- */
+function showIntelL1() {
+  document.querySelectorAll('.intel-view').forEach(function(v){ v.classList.remove('active'); });
+  var l1 = document.getElementById('intel-l1');
+  if (l1) l1.classList.add('active');
+  hideKpiPopup();
+  window.scrollTo(0, 0);
+}
+
+function showIntelFunc(id) {
+  document.querySelectorAll('.intel-view').forEach(function(v){ v.classList.remove('active'); });
+  var target = document.getElementById('intel-l2-' + id);
+  if (target) {
+    target.classList.add('active');
+  } else {
+    // Function not yet built — show placeholder and fall back gracefully
+    showIntelL1();
+    return;
+  }
+  hideKpiPopup();
+  window.scrollTo(0, 0);
+}
+
+function showIntelCI(func, subfunc) {
+  document.querySelectorAll('.intel-view').forEach(function(v){ v.classList.remove('active'); });
+  var target = document.getElementById('intel-l3-' + func + '-' + subfunc);
+  if (target) {
+    target.classList.add('active');
+  } else {
+    showIntelFunc(func);
+    return;
+  }
+  hideKpiPopup();
+  window.scrollTo(0, 0);
+}
+
+/* ---- Outcome Group Toggle ---- */
+function toggleOutcomeGroup(id) {
+  var group = document.getElementById(id);
+  if (!group) return;
+  group.classList.toggle('collapsed');
+}
+
+/* ---- KPI Pop-up ---- */
+function showKpiPopup(event, id, title, def, source, refresh, grain) {
+  event.stopPropagation();
+  var popup = document.getElementById('kpi-popup');
+  document.getElementById('popup-title').textContent = title;
+  document.getElementById('popup-def').textContent = def;
+  document.getElementById('popup-source').textContent = source;
+  document.getElementById('popup-refresh').textContent = refresh;
+  document.getElementById('popup-grain').textContent = grain;
+
+  popup.style.display = 'block';
+
+  // Position near the click (popup is position:fixed, so use viewport coords)
+  var rect = event.target.getBoundingClientRect();
+  var popW = 340;
+  var popH = 220;
+  var x = rect.left;
+  var y = rect.bottom + 8;
+
+  // Keep within viewport horizontally
+  if (x + popW > window.innerWidth - 20) {
+    x = window.innerWidth - popW - 20;
+  }
+  if (x < 20) x = 20;
+
+  // If would go below visible area, show above instead
+  if (rect.bottom + popH > window.innerHeight) {
+    y = rect.top - popH - 8;
+  }
+
+  popup.style.left = x + 'px';
+  popup.style.top = y + 'px';
+}
+
+function hideKpiPopup() {
+  var popup = document.getElementById('kpi-popup');
+  if (popup) popup.style.display = 'none';
+}
+
+/* ---- Global click-outside handler for KPI popup ---- */
+document.addEventListener('click', function(e) {
+  var popup = document.getElementById('kpi-popup');
+  if (!popup || popup.style.display === 'none') return;
+  if (!popup.contains(e.target) && !e.target.classList.contains('kpi-trigger')) {
+    hideKpiPopup();
+  }
+});
 </script>
 </body>
 </html>
