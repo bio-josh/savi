@@ -9,7 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 /* ============================================================
-   SAVI BIO — LANDING PAGE v0.7
+   SAVI BIO — LANDING PAGE v0.7.1
    Hextech Command Center Design System
    Color: Dark Navy-Blue-Grey + Gold
    ============================================================ */
@@ -235,16 +235,134 @@ footer { padding: 32px 40px; text-align: center; border-top: 1px solid rgba(255,
 footer p { font-size: 11px; color: rgba(255,255,255,0.15); }
 footer a { color: var(--gold-500); text-decoration: none; }
 
+/* --- Tablet breakpoint --- */
+@media (max-width: 900px) {
+  .product-grid, .insights-grid { grid-template-columns: 1fr 1fr; }
+  .kpi-grid { grid-template-columns: 1fr 1fr; }
+  .partner-grid { grid-template-columns: 1fr; }
+}
+
+/* --- Mobile breakpoint --- */
 @media (max-width: 768px) {
-  nav { padding: 14px 20px; }
+  /* Nav */
+  nav { padding: 12px 16px; }
   .nav-links a:not(.nav-cta) { display: none; }
-  .hero { padding: 130px 0 60px; }
-  .hero h1 { font-size: 30px; }
-  .ps-grid, .kpi-grid, .partner-grid, .product-grid, .insights-grid { grid-template-columns: 1fr; }
-  .pricing-features { grid-template-columns: 1fr; }
-  .metrics-strip { flex-wrap: wrap; }
-  .metric-card { min-width: calc(50% - 6px); }
-  .email-form { flex-direction: column; }
+  .nav-cta { font-size: 11px !important; padding: 6px 14px !important; }
+  .nav-logo { font-size: 19px; }
+
+  /* Container */
+  .container { padding: 0 16px; }
+
+  /* Hero */
+  .hero { padding: 110px 0 48px; }
+  .hero-badge { font-size: 10px; padding: 5px 14px; margin-bottom: 20px; letter-spacing: 1.5px; }
+  .hero h1 { font-size: 26px; line-height: 1.2; margin-bottom: 14px; }
+  .hero p { font-size: 14px; line-height: 1.6; margin-bottom: 24px; }
+  .hero-cta { padding: 12px 32px; font-size: 13px; }
+
+  /* Demo / Command Center */
+  .demo-section { padding: 0 0 48px; }
+  .demo-header { padding: 10px 14px 6px; flex-direction: column; align-items: flex-start; gap: 2px; }
+  .demo-header-title { font-size: 12px; }
+  .demo-header-badge { font-size: 9px; }
+  .demo-body { padding: 6px 12px 14px; }
+  .metrics-strip { flex-wrap: wrap; gap: 8px; }
+  .metric-card { min-width: calc(50% - 4px); flex: none; }
+  .metric-val { font-size: 18px; }
+  .metric-lbl { font-size: 8px; }
+  .metric-inner { padding: 10px 6px; }
+
+  /* Hex Board */
+  .hex-board-area { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .hex-board-body { min-width: 500px; padding: 4px 0 10px; }
+  .hex-board-header { padding: 8px 12px 2px; }
+  .hex-board-header span:first-child { font-size: 10px; }
+  .hex-legend { gap: 8px; padding: 0 10px 10px; }
+  .hex-legend-item { font-size: 8px; }
+
+  /* Product Section */
+  .product-section { padding: 48px 0; }
+  .section-label { font-size: 10px; letter-spacing: 1.5px; margin-bottom: 8px; }
+  .section-title { font-size: 22px; margin-bottom: 8px; }
+  .section-sub { font-size: 13px; margin-bottom: 24px; }
+  .product-grid { grid-template-columns: 1fr; gap: 12px; }
+  .product-card-inner { padding: 18px 16px; }
+  .product-card-icon { font-size: 24px; margin-bottom: 10px; }
+  .product-card h3 { font-size: 14px; }
+  .product-card p { font-size: 12px; }
+
+  /* Problem / Solution */
+  .ps-section { padding: 48px 0; }
+  .ps-grid { grid-template-columns: 1fr; gap: 14px; }
+  .ps-body h3 { font-size: 17px; margin-bottom: 12px; }
+  .ps-list li { font-size: 12px; padding: 10px 0; }
+
+  /* KPI Section */
+  .kpi-section { padding: 48px 0; }
+  .kpi-header-bar { padding: 12px 14px; flex-direction: column; align-items: flex-start; gap: 4px; }
+  .kpi-header-bar h2 { font-size: 14px; }
+  .kpi-body { padding: 14px; }
+  .kpi-subtitle { font-size: 12px; margin-bottom: 16px; }
+  .kpi-grid { grid-template-columns: 1fr; gap: 12px; }
+  .kpi-card { padding: 16px; }
+  .kpi-card h3 { font-size: 14px; }
+  .kpi-card .kpi-count { font-size: 10px; }
+  .kpi-card p { font-size: 11px; }
+  .kpi-card .kpi-examples { font-size: 10px; }
+
+  /* Data Section */
+  .data-section { padding: 48px 0; }
+  .data-section h2 { font-size: 20px; }
+  .data-section .sub { font-size: 13px; margin-bottom: 20px; }
+  .data-tags { gap: 6px; margin-bottom: 20px; }
+  .data-tag { padding: 5px 12px; font-size: 11px; }
+  .arch-flow { gap: 6px; }
+  .arch-step { padding: 8px 12px; font-size: 11px; }
+  .arch-arrow { font-size: 12px; }
+
+  /* Insights Section */
+  .insights-section { padding: 48px 0; }
+  .insights-grid { grid-template-columns: 1fr; gap: 12px; }
+  .insight-card { padding: 18px; }
+  .insight-card h3 { font-size: 14px; }
+
+  /* Pricing Section */
+  .pricing-section { padding: 48px 0; }
+  .pricing-inner { padding: 32px 20px; }
+  .pricing-inner h2 { font-size: 22px; }
+  .pricing-inner .pricing-sub { font-size: 13px; margin-bottom: 24px; }
+  .pricing-features { grid-template-columns: 1fr; gap: 8px; margin-bottom: 24px; }
+  .pricing-feature { font-size: 12px; }
+  .pricing-cta { padding: 12px 32px; font-size: 13px; }
+
+  /* Partners Section */
+  .partner-section { padding: 48px 0; }
+  .partner-grid { grid-template-columns: 1fr; gap: 12px; }
+  .partner-subtitle { font-size: 13px; }
+  .partner-box-inner { padding: 16px; }
+  .partner-box h3 { font-size: 14px; }
+  .partner-box p { font-size: 12px; }
+
+  /* Access / CTA Section */
+  .access-section { padding: 48px 0; }
+  .access-section h2 { font-size: 22px; }
+  .access-section p { font-size: 13px; margin-bottom: 20px; }
+  .email-form { flex-direction: column; gap: 8px; }
+  .email-form input { padding: 12px 14px; font-size: 13px; }
+  .email-form button { padding: 12px 20px; font-size: 13px; }
+
+  /* Footer */
+  footer { padding: 24px 16px; }
+  footer p { font-size: 10px; }
+}
+
+/* --- Small phone breakpoint --- */
+@media (max-width: 380px) {
+  .hero h1 { font-size: 22px; }
+  .hero p { font-size: 13px; }
+  .section-title { font-size: 20px; }
+  .metric-card { min-width: 100%; }
+  .pricing-inner { padding: 24px 14px; }
 }
 </style>
 </head>
