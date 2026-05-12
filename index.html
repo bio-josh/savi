@@ -9,44 +9,40 @@
 <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 /* ============================================================
-   SAVI BIO — LANDING PAGE v0.6
+   SAVI BIO — LANDING PAGE v0.7
    Hextech Command Center Design System
+   Color: Dark Navy-Blue-Grey + Gold
    ============================================================ */
 
-/* --- Reset --- */
 *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
 html { scroll-behavior:smooth; }
 body {
   font-family: 'Chakra Petch', -apple-system, BlinkMacSystemFont, sans-serif;
-  background: #150d2e;
+  background: #0f1320;
   color: rgba(255,255,255,0.9);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
 }
 
-/* --- Tokens --- */
 :root {
-  --purple-950:#150d2e; --purple-900:#211247; --purple-800:#341c6e;
-  --purple-700:#4a2899; --purple-600:#6035c2; --purple-500:#8058f2;
-  --purple-400:#a17ef7; --purple-300:#bfa4fa; --purple-200:#dcd0fc;
-  --purple-100:#eee9fd; --purple-50:#f6f4fe;
+  --deep-950:#0f1320; --deep-900:#161d2f; --deep-800:#1f2b44;
+  --deep-700:#2c3d5e; --deep-600:#3d5280; --deep-500:#5169a0;
+  --deep-400:#7189bd; --deep-300:#9aacce; --deep-200:#c3cfdf;
+  --deep-100:#e1e7f0; --deep-50:#f0f3f7;
   --gold-600:#a27c02; --gold-500:#ca9a04; --gold-400:#eab308;
   --gold-300:#facc15; --gold-200:#fde047; --gold-100:#fef3c7;
-  --light-surface:#f1eff7;
+  --light-surface:#eef0f4;
   --crown: linear-gradient(90deg, #a27c02 0%, #eab308 35%, #facc15 50%, #eab308 65%, #a27c02 100%);
-  --glass-blur: blur(16px) saturate(150%);
 }
 
-/* --- Layout --- */
 .container { max-width: 1140px; margin: 0 auto; padding: 0 32px; }
 
-/* ========== NAV ========== */
 nav {
   position: fixed; top:0; left:0; width:100%; z-index:100;
   padding: 16px 40px;
   display: flex; justify-content: space-between; align-items: center;
-  background: rgba(21,13,46,0.8);
+  background: rgba(15,19,32,0.85);
   backdrop-filter: blur(16px) saturate(150%);
   border-bottom: 1px solid rgba(255,255,255,0.06);
 }
@@ -57,10 +53,10 @@ nav {
 .nav-logo .savi { color: var(--gold-400); }
 .nav-logo .bio { color: rgba(255,255,255,0.9); }
 .nav-logo svg { width:14px; height:16px; }
-.nav-links { display: flex; align-items: center; gap: 8px; }
+.nav-links { display: flex; align-items: center; gap: 4px; }
 .nav-links a {
-  color: rgba(255,255,255,0.5); text-decoration: none; font-size: 13px;
-  font-weight: 500; padding: 8px 14px; border-radius: 6px; transition: all 0.2s;
+  color: rgba(255,255,255,0.45); text-decoration: none; font-size: 12px;
+  font-weight: 500; padding: 7px 12px; border-radius: 6px; transition: all 0.2s;
   letter-spacing: 0.3px;
 }
 .nav-links a:hover { color: rgba(255,255,255,0.85); }
@@ -69,185 +65,107 @@ nav {
   border: 1px solid rgba(234,179,8,0.3) !important;
   color: var(--gold-400) !important;
 }
-.nav-cta:hover {
-  background: rgba(234,179,8,0.2) !important;
-  color: var(--gold-300) !important;
-}
+.nav-cta:hover { background: rgba(234,179,8,0.2) !important; color: var(--gold-300) !important; }
 
-/* ========== HERO ========== */
 .hero {
-  padding: 160px 0 80px;
-  text-align: center;
-  position: relative;
+  padding: 160px 0 80px; text-align: center; position: relative;
 }
 .hero::before {
   content:''; position:absolute; top:0; left:50%; transform:translateX(-50%);
   width:800px; height:600px;
-  background: radial-gradient(ellipse at center, rgba(234,179,8,0.06) 0%, transparent 60%);
+  background: radial-gradient(ellipse at center, rgba(234,179,8,0.05) 0%, transparent 60%);
   pointer-events: none;
 }
 .hero-badge {
-  display: inline-block;
-  background: rgba(234,179,8,0.08);
-  border: 1px solid rgba(234,179,8,0.2);
-  color: var(--gold-400);
-  padding: 6px 18px; border-radius: 20px;
-  font-size: 11px; font-weight: 600;
-  letter-spacing: 2px; text-transform: uppercase;
-  margin-bottom: 28px;
+  display: inline-block; background: rgba(234,179,8,0.08);
+  border: 1px solid rgba(234,179,8,0.2); color: var(--gold-400);
+  padding: 6px 18px; border-radius: 20px; font-size: 11px; font-weight: 600;
+  letter-spacing: 2px; text-transform: uppercase; margin-bottom: 28px;
 }
-.hero h1 {
-  font-size: 48px; font-weight: 700; line-height: 1.15;
-  margin-bottom: 20px; letter-spacing: 0.5px;
-  color: #fff;
-}
+.hero h1 { font-size: 48px; font-weight: 700; line-height: 1.15; margin-bottom: 20px; color: #fff; }
 .hero h1 em {
   font-style: normal;
   background: linear-gradient(135deg, var(--gold-400), var(--gold-300));
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-  background-clip: text;
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
 }
-.hero p {
-  font-size: 17px; color: rgba(255,255,255,0.5); max-width: 620px;
-  margin: 0 auto 36px; line-height: 1.7; font-weight: 400;
-}
+.hero p { font-size: 17px; color: rgba(255,255,255,0.45); max-width: 620px; margin: 0 auto 36px; line-height: 1.7; }
 .hero-cta {
-  display: inline-block;
-  background: linear-gradient(135deg, var(--gold-500), var(--gold-400));
-  color: var(--purple-950);
-  padding: 14px 40px; border-radius: 8px;
-  font-size: 14px; font-weight: 700;
-  text-decoration: none; letter-spacing: 0.5px;
-  transition: all 0.25s;
-  border: none;
+  display: inline-block; background: linear-gradient(135deg, var(--gold-500), var(--gold-400));
+  color: var(--deep-950); padding: 14px 40px; border-radius: 8px;
+  font-size: 14px; font-weight: 700; text-decoration: none; transition: all 0.25s; border: none;
 }
-.hero-cta:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 30px rgba(234,179,8,0.25);
-}
+.hero-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(234,179,8,0.25); }
 
-/* ========== DASHBOARD DEMO (L0 panel) ========== */
-.demo-section { padding: 0 0 80px; position: relative; }
+.demo-section { padding: 0 0 80px; }
 .demo-panel {
-  border: 1.65px solid var(--gold-500);
-  border-radius: 10px;
-  overflow: hidden;
-  background: var(--purple-950);
-  box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+  border: 1.65px solid var(--gold-500); border-radius: 10px; overflow: hidden;
+  background: var(--deep-950); box-shadow: 0 20px 60px rgba(0,0,0,0.5);
 }
 .demo-crown { height: 3.3px; background: var(--crown); }
-.demo-header {
-  padding: 14px 24px 8px;
-  display: flex; justify-content: space-between; align-items: center;
-}
+.demo-header { padding: 14px 24px 8px; display: flex; justify-content: space-between; align-items: center; }
 .demo-header-title { font-size: 14px; font-weight: 700; color: var(--gold-400); letter-spacing: 0.5px; }
-.demo-header-badge {
-  font-size: 10px; color: rgba(255,255,255,0.35);
-  letter-spacing: 1.5px; text-transform: uppercase;
-}
+.demo-header-badge { font-size: 10px; color: rgba(255,255,255,0.3); letter-spacing: 1.5px; text-transform: uppercase; }
 .demo-body { padding: 8px 24px 24px; }
 
-/* Metrics row */
-.metrics-strip {
-  display: flex; gap: 12px; margin-bottom: 16px;
-}
-.metric-card {
-  flex: 1;
-  background: rgba(255,255,255,0.04);
-  border: 1.65px solid var(--gold-500);
-  border-radius: 6px;
-  overflow: hidden;
-  text-align: center;
-}
+.metrics-strip { display: flex; gap: 12px; margin-bottom: 16px; }
+.metric-card { flex: 1; background: rgba(255,255,255,0.03); border: 1.65px solid var(--gold-500); border-radius: 6px; overflow: hidden; text-align: center; }
 .metric-crown { height: 3.3px; background: var(--crown); }
 .metric-inner { padding: 12px 8px; }
 .metric-val { font-size: 22px; font-weight: 700; color: #fff; }
-.metric-lbl { font-size: 9px; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.8px; margin-top: 2px; }
+.metric-lbl { font-size: 9px; color: rgba(255,255,255,0.35); text-transform: uppercase; letter-spacing: 0.8px; margin-top: 2px; }
 
-/* Hex board inside demo */
-.hex-board-area {
-  background: rgba(255,255,255,0.02);
-  border: 1.65px solid var(--gold-500);
-  border-radius: 8px;
-  overflow: hidden;
-}
+.hex-board-area { background: rgba(255,255,255,0.02); border: 1.65px solid var(--gold-500); border-radius: 8px; overflow: hidden; }
 .hex-board-crown { height: 3.3px; background: var(--crown); }
-.hex-board-header {
-  padding: 10px 16px 4px;
-  display: flex; justify-content: space-between; align-items: center;
-}
+.hex-board-header { padding: 10px 16px 4px; display: flex; justify-content: space-between; align-items: center; }
 .hex-board-header span:first-child { font-size: 12px; font-weight: 600; color: rgba(234,179,8,0.65); }
 .hex-board-header span:last-child { font-size: 9px; color: rgba(255,255,255,0.25); letter-spacing: 1px; }
 .hex-board-body { display:flex; justify-content:center; padding: 8px 0 16px; overflow-x:auto; }
-.hex-legend {
-  display:flex; justify-content:center; gap:14px; padding: 0 16px 12px; flex-wrap:wrap;
-}
+.hex-legend { display:flex; justify-content:center; gap:14px; padding: 0 16px 12px; flex-wrap:wrap; }
 .hex-legend-item { display:flex; align-items:center; gap:4px; font-size:9px; color:rgba(255,255,255,0.3); }
 .hex-legend-dot { width:6px; height:6px; border-radius:50%; }
 
-/* ========== PROBLEM / SOLUTION (L1 panels) ========== */
+.product-section { padding: 80px 0; }
+.section-label { font-size: 11px; font-weight: 600; color: var(--gold-400); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px; }
+.section-title { font-size: 28px; font-weight: 700; color: #fff; margin-bottom: 10px; }
+.section-sub { font-size: 14px; color: rgba(255,255,255,0.4); margin-bottom: 36px; max-width: 600px; }
+.product-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.product-card { background: rgba(255,255,255,0.03); border: 1.65px solid var(--gold-500); border-radius: 8px; overflow: hidden; transition: all 0.25s; }
+.product-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
+.product-card-crown { height: 3.3px; background: var(--crown); }
+.product-card-inner { padding: 24px 20px; }
+.product-card-icon { font-size: 28px; margin-bottom: 14px; }
+.product-card h3 { font-size: 16px; font-weight: 700; color: rgba(234,179,8,0.8); margin-bottom: 8px; }
+.product-card p { font-size: 12px; color: rgba(255,255,255,0.5); line-height: 1.6; }
+
 .ps-section { padding: 80px 0; }
 .ps-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-.ps-panel {
-  background: rgba(255,255,255,0.04);
-  backdrop-filter: blur(16px);
-  border: 1.65px solid var(--gold-500);
-  border-radius: 8px;
-  overflow: hidden;
-}
+.ps-panel { background: rgba(255,255,255,0.03); backdrop-filter: blur(16px); border: 1.65px solid var(--gold-500); border-radius: 8px; overflow: hidden; }
 .ps-crown { height: 3.3px; background: var(--crown); }
-.ps-header { padding: 12px 20px 4px; font-size: 13px; font-weight: 600; color: rgba(234,179,8,0.65); letter-spacing: 0.3px; }
+.ps-header { padding: 12px 20px 4px; font-size: 13px; font-weight: 600; color: rgba(234,179,8,0.65); }
 .ps-body { padding: 8px 20px 20px; }
 .ps-body h3 { font-size: 20px; font-weight: 700; color: #fff; margin-bottom: 16px; }
 .ps-list { list-style: none; }
-.ps-list li {
-  padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.04);
-  font-size: 13px; color: rgba(255,255,255,0.7); display: flex; align-items: flex-start; gap: 10px;
-}
+.ps-list li { padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.04); font-size: 13px; color: rgba(255,255,255,0.65); display: flex; align-items: flex-start; gap: 10px; }
 .ps-list li:last-child { border-bottom: none; }
-.ps-dot {
-  width: 7px; height: 7px; border-radius: 50%; margin-top: 6px; flex-shrink: 0;
-}
+.ps-dot { width: 7px; height: 7px; border-radius: 50%; margin-top: 6px; flex-shrink: 0; }
 .ps-dot.red { background: #f87171; }
 .ps-dot.green { background: #4ade80; }
 
-/* ========== KPI SECTION (L3 light panel) ========== */
 .kpi-section { padding: 80px 0; }
-.kpi-outer {
-  background: var(--light-surface);
-  border: 1.65px solid var(--purple-700);
-  border-radius: 8px;
-  overflow: hidden;
-}
-.kpi-header-bar {
-  background: var(--purple-950);
-  padding: 14px 24px;
-  display: flex; justify-content: space-between; align-items: center;
-}
-.kpi-header-bar h2 { font-size: 16px; font-weight: 700; color: rgba(255,255,255,0.9); letter-spacing: 0.5px; margin:0; }
-.kpi-header-bar span { font-size: 10px; color: rgba(255,255,255,0.35); letter-spacing: 1.5px; text-transform: uppercase; }
+.kpi-outer { background: var(--light-surface); border: 1.65px solid var(--deep-700); border-radius: 8px; overflow: hidden; }
+.kpi-header-bar { background: var(--deep-950); padding: 14px 24px; display: flex; justify-content: space-between; align-items: center; }
+.kpi-header-bar h2 { font-size: 16px; font-weight: 700; color: rgba(255,255,255,0.9); margin:0; }
+.kpi-header-bar span { font-size: 10px; color: rgba(255,255,255,0.3); letter-spacing: 1.5px; text-transform: uppercase; }
 .kpi-body { padding: 20px 24px; }
-.kpi-subtitle { font-size: 14px; color: #475569; margin-bottom: 24px; max-width: 600px; }
+.kpi-subtitle { font-size: 13px; color: #475569; margin-bottom: 24px; max-width: 640px; }
 .kpi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
-.kpi-card {
-  background: #fff;
-  border: 1.65px solid var(--purple-600);
-  border-radius: 6px;
-  padding: 20px;
-  transition: all 0.2s;
-}
-.kpi-card:hover {
-  box-shadow: 0 4px 20px rgba(96,53,194,0.1);
-  transform: translateY(-2px);
-}
-.kpi-icon {
-  width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center;
-  font-size: 18px; margin-bottom: 12px;
-}
-.kpi-card h3 { font-size: 15px; font-weight: 700; color: var(--purple-950); margin-bottom: 6px; }
-.kpi-card p { font-size: 12px; color: #64748b; line-height: 1.6; }
-
-/* Icon backgrounds per function */
+.kpi-card { background: #fff; border: 1.65px solid var(--deep-600); border-radius: 6px; padding: 20px; transition: all 0.2s; }
+.kpi-card:hover { box-shadow: 0 4px 20px rgba(44,61,94,0.1); transform: translateY(-2px); }
+.kpi-icon { width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 18px; margin-bottom: 12px; }
+.kpi-card h3 { font-size: 15px; font-weight: 700; color: var(--deep-950); margin-bottom: 6px; }
+.kpi-card .kpi-count { font-size: 11px; font-weight: 600; color: var(--deep-600); margin-bottom: 8px; }
+.kpi-card p { font-size: 11.5px; color: #64748b; line-height: 1.6; }
+.kpi-card .kpi-examples { font-size: 10.5px; color: #94a3b8; margin-top: 10px; padding-top: 10px; border-top: 1px solid #e2e8f0; line-height: 1.5; }
 .icon-cli { background: rgba(96,165,250,0.12); }
 .icon-med { background: rgba(244,114,182,0.12); }
 .icon-com { background: rgba(234,179,8,0.12); }
@@ -255,126 +173,83 @@ nav {
 .icon-reg { background: rgba(74,222,128,0.12); }
 .icon-pat { background: rgba(251,146,60,0.12); }
 
-/* ========== DATA SOURCES ========== */
 .data-section { padding: 80px 0; text-align: center; }
 .data-section h2 { font-size: 24px; font-weight: 700; color: var(--gold-400); margin-bottom: 8px; }
-.data-section .sub { font-size: 14px; color: rgba(255,255,255,0.4); margin-bottom: 32px; max-width: 560px; margin-left: auto; margin-right: auto; }
+.data-section .sub { font-size: 14px; color: rgba(255,255,255,0.35); margin-bottom: 32px; max-width: 560px; margin-left: auto; margin-right: auto; }
 .data-tags { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; max-width: 800px; margin: 0 auto 32px; }
-.data-tag {
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.08);
-  padding: 7px 16px; border-radius: 6px;
-  font-size: 12px; color: rgba(255,255,255,0.6); font-weight: 500;
-  transition: all 0.2s;
-}
-.data-tag:hover { border-color: rgba(234,179,8,0.25); color: rgba(255,255,255,0.8); }
-
-/* Architecture flow */
-.arch-flow {
-  display: flex; align-items: center; justify-content: center;
-  gap: 10px; flex-wrap: wrap; margin-top: 16px;
-}
-.arch-step {
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.1);
-  padding: 10px 20px; border-radius: 6px;
-  font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.7);
-}
+.data-tag { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07); padding: 7px 16px; border-radius: 6px; font-size: 12px; color: rgba(255,255,255,0.5); font-weight: 500; transition: all 0.2s; }
+.data-tag:hover { border-color: rgba(234,179,8,0.25); color: rgba(255,255,255,0.75); }
+.arch-flow { display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap; margin-top: 16px; }
+.arch-step { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); padding: 10px 20px; border-radius: 6px; font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.6); }
 .arch-arrow { color: var(--gold-500); font-size: 16px; }
 
-/* ========== PARTNERS (L1 panel) ========== */
+.insights-section { padding: 80px 0; }
+.insights-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.insight-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px; padding: 24px; transition: all 0.2s; }
+.insight-card:hover { border-color: rgba(234,179,8,0.2); }
+.insight-tag { font-size: 10px; font-weight: 600; color: var(--gold-500); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 10px; }
+.insight-card h3 { font-size: 15px; font-weight: 700; color: rgba(255,255,255,0.85); margin-bottom: 8px; line-height: 1.4; }
+.insight-card p { font-size: 12px; color: rgba(255,255,255,0.35); line-height: 1.6; }
+.insight-card .insight-date { font-size: 10px; color: rgba(255,255,255,0.2); margin-top: 14px; }
+
+.pricing-section { padding: 80px 0; }
+.pricing-panel { background: rgba(255,255,255,0.03); border: 1.65px solid var(--gold-500); border-radius: 10px; overflow: hidden; max-width: 800px; margin: 0 auto; }
+.pricing-crown { height: 3.3px; background: var(--crown); }
+.pricing-inner { padding: 48px 40px; text-align: center; }
+.pricing-inner h2 { font-size: 28px; font-weight: 700; color: #fff; margin-bottom: 12px; }
+.pricing-inner .pricing-sub { font-size: 14px; color: rgba(255,255,255,0.4); margin-bottom: 36px; max-width: 500px; margin-left: auto; margin-right: auto; }
+.pricing-features { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; text-align: left; margin-bottom: 36px; max-width: 560px; margin-left: auto; margin-right: auto; }
+.pricing-feature { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; color: rgba(255,255,255,0.6); padding: 8px 0; }
+.pricing-check { color: var(--gold-400); font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+.pricing-cta { display: inline-block; background: linear-gradient(135deg, var(--gold-500), var(--gold-400)); color: var(--deep-950); padding: 14px 40px; border-radius: 8px; font-size: 14px; font-weight: 700; text-decoration: none; transition: all 0.25s; }
+.pricing-cta:hover { transform: translateY(-2px); box-shadow: 0 6px 24px rgba(234,179,8,0.2); }
+.pricing-note { font-size: 11px; color: rgba(255,255,255,0.2); margin-top: 16px; }
+
 .partner-section { padding: 80px 0; }
-.partner-panel {
-  background: rgba(255,255,255,0.04);
-  backdrop-filter: blur(16px);
-  border: 1.65px solid var(--gold-500);
-  border-radius: 8px;
-  overflow: hidden;
-}
+.partner-panel { background: rgba(255,255,255,0.03); backdrop-filter: blur(16px); border: 1.65px solid var(--gold-500); border-radius: 8px; overflow: hidden; }
 .partner-crown { height: 3.3px; background: var(--crown); }
-.partner-header { padding: 14px 24px 6px; font-size: 14px; font-weight: 700; color: var(--gold-400); letter-spacing: 0.5px; }
+.partner-header { padding: 14px 24px 6px; font-size: 14px; font-weight: 700; color: var(--gold-400); }
 .partner-body { padding: 8px 24px 24px; }
-.partner-subtitle { font-size: 14px; color: rgba(255,255,255,0.45); margin-bottom: 24px; max-width: 600px; }
+.partner-subtitle { font-size: 14px; color: rgba(255,255,255,0.4); margin-bottom: 24px; max-width: 600px; }
 .partner-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 24px; }
-.partner-box {
-  background: rgba(255,255,255,0.06);
-  border: 1.65px solid var(--gold-500);
-  border-radius: 6px;
-  overflow: hidden;
-}
+.partner-box { background: rgba(255,255,255,0.04); border: 1.65px solid var(--gold-500); border-radius: 6px; overflow: hidden; }
 .partner-box-crown { height: 3.3px; background: var(--crown); }
 .partner-box-inner { padding: 20px; }
 .partner-box h3 { font-size: 15px; font-weight: 700; color: rgba(234,179,8,0.55); margin-bottom: 8px; }
-.partner-box p { font-size: 12px; color: rgba(255,255,255,0.55); line-height: 1.6; }
+.partner-box p { font-size: 12px; color: rgba(255,255,255,0.5); line-height: 1.6; }
 .partner-cta-row { text-align: center; }
-.partner-cta {
-  display: inline-block;
-  background: linear-gradient(135deg, var(--gold-500), var(--gold-400));
-  color: var(--purple-950);
-  padding: 12px 36px; border-radius: 8px;
-  font-size: 14px; font-weight: 700;
-  text-decoration: none; letter-spacing: 0.3px;
-  transition: all 0.25s;
-}
+.partner-cta { display: inline-block; background: linear-gradient(135deg, var(--gold-500), var(--gold-400)); color: var(--deep-950); padding: 12px 36px; border-radius: 8px; font-size: 14px; font-weight: 700; text-decoration: none; transition: all 0.25s; }
 .partner-cta:hover { transform: translateY(-2px); box-shadow: 0 6px 24px rgba(234,179,8,0.2); }
 
-/* ========== EARLY ACCESS ========== */
 .access-section { padding: 80px 0; text-align: center; }
 .access-section h2 { font-size: 28px; font-weight: 700; color: #fff; margin-bottom: 10px; }
-.access-section p { font-size: 14px; color: rgba(255,255,255,0.4); margin-bottom: 28px; }
-.email-form {
-  display: flex; gap: 10px; justify-content: center;
-  max-width: 460px; margin: 0 auto;
-}
-.email-form input {
-  flex: 1; padding: 12px 18px;
-  background: rgba(255,255,255,0.06);
-  border: 1.65px solid rgba(255,255,255,0.12);
-  border-radius: 8px; color: #fff;
-  font-size: 13px; font-family: 'Chakra Petch', sans-serif;
-  outline: none; transition: border-color 0.2s;
-}
-.email-form input::placeholder { color: rgba(255,255,255,0.25); }
+.access-section p { font-size: 14px; color: rgba(255,255,255,0.35); margin-bottom: 28px; }
+.email-form { display: flex; gap: 10px; justify-content: center; max-width: 460px; margin: 0 auto; }
+.email-form input { flex: 1; padding: 12px 18px; background: rgba(255,255,255,0.05); border: 1.65px solid rgba(255,255,255,0.1); border-radius: 8px; color: #fff; font-size: 13px; font-family: 'Chakra Petch', sans-serif; outline: none; transition: border-color 0.2s; }
+.email-form input::placeholder { color: rgba(255,255,255,0.2); }
 .email-form input:focus { border-color: var(--gold-500); }
-.email-form button {
-  background: linear-gradient(135deg, var(--gold-500), var(--gold-400));
-  color: var(--purple-950);
-  padding: 12px 28px; border: none; border-radius: 8px;
-  font-size: 13px; font-weight: 700; cursor: pointer;
-  font-family: 'Chakra Petch', sans-serif;
-  letter-spacing: 0.3px; white-space: nowrap;
-  transition: all 0.2s;
-}
+.email-form button { background: linear-gradient(135deg, var(--gold-500), var(--gold-400)); color: var(--deep-950); padding: 12px 28px; border: none; border-radius: 8px; font-size: 13px; font-weight: 700; cursor: pointer; font-family: 'Chakra Petch', sans-serif; white-space: nowrap; transition: all 0.2s; }
 .email-form button:hover { box-shadow: 0 4px 16px rgba(234,179,8,0.25); }
 
-/* ========== FOOTER ========== */
-footer {
-  padding: 32px 40px;
-  text-align: center;
-  border-top: 1px solid rgba(255,255,255,0.04);
-}
-footer p { font-size: 11px; color: rgba(255,255,255,0.2); letter-spacing: 0.5px; }
+footer { padding: 32px 40px; text-align: center; border-top: 1px solid rgba(255,255,255,0.04); }
+footer p { font-size: 11px; color: rgba(255,255,255,0.15); }
 footer a { color: var(--gold-500); text-decoration: none; }
-footer a:hover { color: var(--gold-400); }
 
-/* ========== RESPONSIVE ========== */
 @media (max-width: 768px) {
   nav { padding: 14px 20px; }
   .nav-links a:not(.nav-cta) { display: none; }
   .hero { padding: 130px 0 60px; }
   .hero h1 { font-size: 30px; }
-  .hero p { font-size: 15px; }
-  .ps-grid, .kpi-grid, .partner-grid { grid-template-columns: 1fr; }
+  .ps-grid, .kpi-grid, .partner-grid, .product-grid, .insights-grid { grid-template-columns: 1fr; }
+  .pricing-features { grid-template-columns: 1fr; }
   .metrics-strip { flex-wrap: wrap; }
   .metric-card { min-width: calc(50% - 6px); }
-  .demo-header, .demo-body { padding-left: 16px; padding-right: 16px; }
   .email-form { flex-direction: column; }
 }
 </style>
 </head>
 <body>
 
-<!-- ========== NAVIGATION ========== -->
 <nav>
   <a href="#" class="nav-logo">
     <span class="savi">savi</span>
@@ -385,24 +260,25 @@ footer a:hover { color: var(--gold-400); }
   </a>
   <div class="nav-links">
     <a href="#platform">Platform</a>
+    <a href="#product">Product</a>
+    <a href="#insights">Insights</a>
     <a href="#data">Data</a>
+    <a href="#pricing">Pricing</a>
     <a href="#partners">Partners</a>
     <a href="#access" class="nav-cta">Request Access</a>
   </div>
 </nav>
 
-<!-- ========== HERO ========== -->
 <div class="container">
   <div class="hero">
     <div class="hero-badge">Now Building &mdash; Early Access Coming Soon</div>
     <h1>Competitive intelligence for <em>biopharma</em>, powered by AI agents</h1>
-    <p>Savi is an agentic platform that continuously monitors public data sources to track KPIs across all six biopharma functions &mdash; so your team can make faster, better-informed decisions.</p>
+    <p>Savi is an agentic platform that continuously monitors public data sources to track KPIs across all six biopharma launch functions &mdash; so your team can make faster, better-informed decisions.</p>
     <a href="#access" class="hero-cta">Request Early Access</a>
   </div>
 </div>
 
-<!-- ========== LIVE DASHBOARD DEMO ========== -->
-<div class="container demo-section">
+<div class="container demo-section" id="platform">
   <div class="demo-panel">
     <div class="demo-crown"></div>
     <div class="demo-header">
@@ -410,176 +286,117 @@ footer a:hover { color: var(--gold-400); }
       <span class="demo-header-badge">METex14 NSCLC &mdash; Live Demo</span>
     </div>
     <div class="demo-body">
-
-      <!-- Metrics strip (L2 cards) -->
       <div class="metrics-strip">
-        <div class="metric-card">
-          <div class="metric-crown"></div>
-          <div class="metric-inner">
-            <div class="metric-val">47</div>
-            <div class="metric-lbl">Active Trials</div>
-          </div>
-        </div>
-        <div class="metric-card">
-          <div class="metric-crown"></div>
-          <div class="metric-inner">
-            <div class="metric-val">12</div>
-            <div class="metric-lbl">Pipeline Assets</div>
-          </div>
-        </div>
-        <div class="metric-card">
-          <div class="metric-crown"></div>
-          <div class="metric-inner">
-            <div class="metric-val">89%</div>
-            <div class="metric-lbl">Formulary Coverage</div>
-          </div>
-        </div>
-        <div class="metric-card">
-          <div class="metric-crown"></div>
-          <div class="metric-inner">
-            <div class="metric-val">6</div>
-            <div class="metric-lbl">Functions Tracked</div>
-          </div>
-        </div>
+        <div class="metric-card"><div class="metric-crown"></div><div class="metric-inner"><div class="metric-val">47</div><div class="metric-lbl">Active Trials</div></div></div>
+        <div class="metric-card"><div class="metric-crown"></div><div class="metric-inner"><div class="metric-val">12</div><div class="metric-lbl">Pipeline Assets</div></div></div>
+        <div class="metric-card"><div class="metric-crown"></div><div class="metric-inner"><div class="metric-val">89%</div><div class="metric-lbl">Formulary Coverage</div></div></div>
+        <div class="metric-card"><div class="metric-crown"></div><div class="metric-inner"><div class="metric-val">6</div><div class="metric-lbl">Functions Tracked</div></div></div>
       </div>
-
-      <!-- Hex Board (L1 panel) -->
       <div class="hex-board-area">
         <div class="hex-board-crown"></div>
         <div class="hex-board-header">
-          <span>INDICATION BATTLE ARENA</span>
+          <span>INDICATION ARENA</span>
           <span>Competitive Landscape</span>
         </div>
-        <div class="hex-board-body">
-          <svg id="hexBoard" style="display:block;"></svg>
-        </div>
+        <div class="hex-board-body"><svg id="hexBoard" style="display:block;"></svg></div>
         <div class="hex-legend">
           <div class="hex-legend-item"><div class="hex-legend-dot" style="background:#60a5fa;"></div>Clinical</div>
           <div class="hex-legend-item"><div class="hex-legend-dot" style="background:#4ade80;"></div>Regulatory</div>
           <div class="hex-legend-item"><div class="hex-legend-dot" style="background:#eab308;"></div>Commercial</div>
-          <div class="hex-legend-item"><div class="hex-legend-dot" style="background:#f472b6;"></div>Med Affairs</div>
-          <div class="hex-legend-item"><div class="hex-legend-dot" style="background:#c084fc;"></div>Mkt Access</div>
-          <div class="hex-legend-item"><div class="hex-legend-dot" style="background:#fb923c;"></div>Pat Advocacy</div>
+          <div class="hex-legend-item"><div class="hex-legend-dot" style="background:#f472b6;"></div>Medical Affairs</div>
+          <div class="hex-legend-item"><div class="hex-legend-dot" style="background:#c084fc;"></div>Market Access</div>
+          <div class="hex-legend-item"><div class="hex-legend-dot" style="background:#fb923c;"></div>Patient Advocacy</div>
         </div>
       </div>
-
     </div>
   </div>
 </div>
 
-<!-- ========== PROBLEM / SOLUTION ========== -->
-<div class="container ps-section" id="platform">
+<div class="container product-section" id="product">
+  <div class="section-label">Product</div>
+  <div class="section-title">An intelligence platform built for biopharma launch teams</div>
+  <div class="section-sub">From L-48 months through post-launch, Savi tracks your competitive landscape across all six functions using governed, auditable data.</div>
+  <div class="product-grid">
+    <div class="product-card"><div class="product-card-crown"></div><div class="product-card-inner"><div class="product-card-icon">&#x1F50D;</div><h3>Continuous Data Ingestion</h3><p>AI agents automatically pull from 15+ public sources &mdash; ClinicalTrials.gov, FDA, SEC EDGAR, PubMed, CMS, ICER/NICE/CADTH, and more.</p></div></div>
+    <div class="product-card"><div class="product-card-crown"></div><div class="product-card-inner"><div class="product-card-icon">&#x1F3DB;</div><h3>Governed Semantic Layer</h3><p>96 KPIs organized across 6 functions with compliance bright lines enforced at the data layer &mdash; not just by prompts.</p></div></div>
+    <div class="product-card"><div class="product-card-crown"></div><div class="product-card-inner"><div class="product-card-icon">&#x2B22;</div><h3>Indication Arenas</h3><p>Hexagonal competitive landscape maps per indication. Compare every asset across functional scores at a glance.</p></div></div>
+    <div class="product-card"><div class="product-card-crown"></div><div class="product-card-inner"><div class="product-card-icon">&#x1F916;</div><h3>AI Agent Workflows</h3><p>Agents surface insights, not dashboards. Ask questions in natural language and get governed answers backed by traceable sources.</p></div></div>
+    <div class="product-card"><div class="product-card-crown"></div><div class="product-card-inner"><div class="product-card-icon">&#x1F512;</div><h3>Compliance-First Architecture</h3><p>Bright-line rules enforced architecturally: no prescribing-to-revenue joins, no MSL compensation tracking.</p></div></div>
+    <div class="product-card"><div class="product-card-crown"></div><div class="product-card-inner"><div class="product-card-icon">&#x1F4CA;</div><h3>Launch Timeline Intelligence</h3><p>Track competitor milestones from IND filing through LOE across L-48 to L+48 months around PDUFA date.</p></div></div>
+  </div>
+</div>
+
+<div class="container ps-section">
   <div class="ps-grid">
-    <div class="ps-panel">
-      <div class="ps-crown"></div>
-      <div class="ps-header">THE PROBLEM</div>
-      <div class="ps-body">
-        <h3>Competitive intelligence in biopharma is broken</h3>
-        <ul class="ps-list">
-          <li><span class="ps-dot red"></span>CI teams manually pull data from dozens of disconnected sources</li>
-          <li><span class="ps-dot red"></span>Insights arrive weeks or months after competitive events</li>
-          <li><span class="ps-dot red"></span>Analysts spend 80% of time on data wrangling, not analysis</li>
-          <li><span class="ps-dot red"></span>No single view across Medical Affairs, Commercial, Market Access, Clinical, Regulatory, and Patient Advocacy</li>
-        </ul>
-      </div>
-    </div>
-    <div class="ps-panel">
-      <div class="ps-crown"></div>
-      <div class="ps-header">OUR SOLUTION</div>
-      <div class="ps-body">
-        <h3>Always-on AI agents that do the work for you</h3>
-        <ul class="ps-list">
-          <li><span class="ps-dot green"></span>Automated ingestion from 15+ public data sources, updated continuously</li>
-          <li><span class="ps-dot green"></span>Governed metrics across all six biopharma functions via a semantic layer</li>
-          <li><span class="ps-dot green"></span>AI agents that surface insights, not just dashboards that display data</li>
-          <li><span class="ps-dot green"></span>Built on a compliance-first architecture &mdash; bright-line rules enforced at the data layer</li>
-        </ul>
-      </div>
-    </div>
+    <div class="ps-panel"><div class="ps-crown"></div><div class="ps-header">THE PROBLEM</div><div class="ps-body"><h3>Competitive intelligence in biopharma is broken</h3><ul class="ps-list"><li><span class="ps-dot red"></span>CI teams manually pull data from dozens of disconnected sources</li><li><span class="ps-dot red"></span>Insights arrive weeks or months after competitive events</li><li><span class="ps-dot red"></span>Analysts spend 80% of time on data wrangling, not analysis</li><li><span class="ps-dot red"></span>No single view across Medical Affairs, Commercial, Market Access, Clinical, Regulatory, and Patient Advocacy</li></ul></div></div>
+    <div class="ps-panel"><div class="ps-crown"></div><div class="ps-header">OUR SOLUTION</div><div class="ps-body"><h3>Always-on AI agents that do the work for you</h3><ul class="ps-list"><li><span class="ps-dot green"></span>Automated ingestion from 15+ public data sources, updated continuously</li><li><span class="ps-dot green"></span>Governed metrics across all six biopharma functions via a semantic layer</li><li><span class="ps-dot green"></span>AI agents that surface insights, not just dashboards that display data</li><li><span class="ps-dot green"></span>Built on a compliance-first architecture &mdash; bright-line rules enforced at the data layer</li></ul></div></div>
   </div>
 </div>
 
-<!-- ========== KPI SECTION (L3 Light Panel) ========== -->
 <div class="container kpi-section">
   <div class="kpi-outer">
     <div class="kpi-header-bar">
-      <h2>KPIs Across Every Biopharma Function</h2>
-      <span>Coverage</span>
+      <h2>KPIs Across Biopharma Launch Functions</h2>
+      <span>96 KPIs &middot; 6 Functions</span>
     </div>
     <div class="kpi-body">
-      <p class="kpi-subtitle">One platform that gives Medical, Commercial, and Executive leadership a shared, governed view of the competitive landscape.</p>
+      <p class="kpi-subtitle">One platform that gives Medical, Commercial, and Executive leadership a shared, governed view of the competitive landscape &mdash; from L-48 months pre-launch through L+48 post-launch.</p>
       <div class="kpi-grid">
-        <div class="kpi-card">
-          <div class="kpi-icon icon-cli">&#x1F52C;</div>
-          <h3>Clinical</h3>
-          <p>Trial enrollment velocity, endpoint design analysis, competitive pipeline tracking from ClinicalTrials.gov</p>
-        </div>
-        <div class="kpi-card">
-          <div class="kpi-icon icon-med">&#x1F3E5;</div>
-          <h3>Medical Affairs</h3>
-          <p>Publication velocity, congress share-of-voice, KOL engagement mapping from PubMed and conference data</p>
-        </div>
-        <div class="kpi-card">
-          <div class="kpi-icon icon-com">&#x1F4CA;</div>
-          <h3>Commercial</h3>
-          <p>Market share signals, pricing benchmarks, SEC filing analysis from CMS ASP and EDGAR filings</p>
-        </div>
-        <div class="kpi-card">
-          <div class="kpi-icon icon-mka">&#x1F3DB;</div>
-          <h3>Market Access</h3>
-          <p>Formulary coverage tracking, HTA decisions, payer landscape from CMS Formulary Finder and ICER/NICE/CADTH</p>
-        </div>
-        <div class="kpi-card">
-          <div class="kpi-icon icon-reg">&#x1F4DC;</div>
-          <h3>Regulatory</h3>
-          <p>FDA approval timelines, warning letter monitoring, label change tracking from FDA databases</p>
-        </div>
-        <div class="kpi-card">
-          <div class="kpi-icon icon-pat">&#x1F91D;</div>
-          <h3>Patient Advocacy</h3>
-          <p>Patient assistance program benchmarking, advocacy org funding analysis from NeedyMeds and ProPublica 990s</p>
-        </div>
+        <div class="kpi-card"><div class="kpi-icon icon-cli">&#x1F52C;</div><h3>Clinical</h3><div class="kpi-count">12 KPIs &middot; 58% public</div><p>Trial portfolio tracking, enrollment velocity, endpoint design analysis, PI overlap detection, and readout monitoring.</p><div class="kpi-examples">Example KPIs: Active trial count by phase, enrollment velocity (pts/site/month), PI publication productivity, efficacy delta vs comparator</div></div>
+        <div class="kpi-card"><div class="kpi-icon icon-med">&#x1F3E5;</div><h3>Medical Affairs</h3><div class="kpi-count">30 KPIs &middot; 49% public</div><p>Publication velocity, congress share-of-voice, KOL network mapping, MSL deployment tracking, and HEOR contribution scoring.</p><div class="kpi-examples">Example KPIs: Tier-1 journal share of voice, abstract share of voice at ASCO/ESMO, competitive KOL overlap via Sunshine Act, ICER value-based price benchmark</div></div>
+        <div class="kpi-card"><div class="kpi-icon icon-com">&#x1F4CA;</div><h3>Commercial</h3><div class="kpi-count">14 KPIs &middot; 17% public</div><p>Launch readiness signals, prescriber universe sizing, DTC ad detection, revenue vs analyst consensus, and market share proxies.</p><div class="kpi-examples">Example KPIs: Sales force hiring velocity (LinkedIn), brand trademark filing timing, product revenue growth (10-Q), co-pay card launch timing</div></div>
+        <div class="kpi-card"><div class="kpi-icon icon-mka">&#x1F3DB;</div><h3>Market Access</h3><div class="kpi-count">14 KPIs &middot; 15% public</div><p>Formulary coverage tracking, ASP pricing analysis, HTA decision monitoring across ICER/NICE/CADTH/G-BA, and IRA impact modeling.</p><div class="kpi-examples">Example KPIs: Medicare Part D covered-lives %, prior-auth restriction rate, WAC at launch + annual increases, IRA negotiation eligibility clock</div></div>
+        <div class="kpi-card"><div class="kpi-icon icon-reg">&#x1F4DC;</div><h3>Regulatory</h3><div class="kpi-count">15 KPIs &middot; 62% public</div><p>FDA approval timelines, expedited designations, AdComm vote tracking, label scope analysis, Orange Book patent monitoring.</p><div class="kpi-examples">Example KPIs: PDUFA date tracking, expedited program designations, approved indication scope vs target, FAERS adverse event signal count</div></div>
+        <div class="kpi-card"><div class="kpi-icon icon-pat">&#x1F91D;</div><h3>Patient Advocacy</h3><div class="kpi-count">11 KPIs &middot; 28% public</div><p>Advocacy org funding analysis, patient assistance program benchmarking, unmet need scoring from FDA PFDD transcripts.</p><div class="kpi-examples">Example KPIs: Advocacy org scale (IRS 990 revenue), PAP launch timing, co-pay benefit level vs comp set, FDA PFDD meeting mentions</div></div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ========== DATA SOURCES ========== -->
 <div class="container data-section" id="data">
   <h2>Built on Public, Auditable Data</h2>
-  <p class="sub">We believe competitive intelligence should be grounded in transparent, verifiable sources &mdash; not black-box data brokers.</p>
+  <p class="sub">Competitive intelligence grounded in transparent, verifiable sources &mdash; not black-box data brokers.</p>
   <div class="data-tags">
-    <span class="data-tag">ClinicalTrials.gov</span>
-    <span class="data-tag">FDA Orange Book</span>
-    <span class="data-tag">FDA Warning Letters</span>
-    <span class="data-tag">FDA Labels (SPL)</span>
-    <span class="data-tag">SEC EDGAR 10-K/Q</span>
-    <span class="data-tag">PubMed / PMC</span>
-    <span class="data-tag">CMS Part D</span>
-    <span class="data-tag">CMS ASP</span>
-    <span class="data-tag">CMS Open Payments</span>
-    <span class="data-tag">CMS Formulary Finder</span>
-    <span class="data-tag">ICER</span>
-    <span class="data-tag">NICE</span>
-    <span class="data-tag">CADTH</span>
-    <span class="data-tag">USPTO / Google Patents</span>
-    <span class="data-tag">NeedyMeds</span>
-    <span class="data-tag">ProPublica 990s</span>
+    <span class="data-tag">ClinicalTrials.gov</span><span class="data-tag">FDA Orange Book</span><span class="data-tag">FDA Warning Letters</span><span class="data-tag">FDA Labels (SPL)</span><span class="data-tag">SEC EDGAR 10-K/Q</span><span class="data-tag">PubMed / PMC</span><span class="data-tag">CMS Part D</span><span class="data-tag">CMS ASP</span><span class="data-tag">CMS Open Payments</span><span class="data-tag">CMS Formulary Finder</span><span class="data-tag">ICER</span><span class="data-tag">NICE</span><span class="data-tag">CADTH</span><span class="data-tag">USPTO / Google Patents</span><span class="data-tag">NeedyMeds</span><span class="data-tag">ProPublica 990s</span>
   </div>
   <div class="arch-flow">
-    <div class="arch-step">Public Sources</div>
-    <div class="arch-arrow">&rarr;</div>
-    <div class="arch-step">Bronze / Silver / Gold</div>
-    <div class="arch-arrow">&rarr;</div>
-    <div class="arch-step">Semantic Layer</div>
-    <div class="arch-arrow">&rarr;</div>
-    <div class="arch-step">AI Agents</div>
-    <div class="arch-arrow">&rarr;</div>
-    <div class="arch-step">Your Team</div>
+    <div class="arch-step">Public Sources</div><div class="arch-arrow">&rarr;</div><div class="arch-step">Bronze / Silver / Gold</div><div class="arch-arrow">&rarr;</div><div class="arch-step">Semantic Layer</div><div class="arch-arrow">&rarr;</div><div class="arch-step">AI Agents</div><div class="arch-arrow">&rarr;</div><div class="arch-step">Your Team</div>
   </div>
 </div>
 
-<!-- ========== PARTNERS ========== -->
+<div class="container insights-section" id="insights">
+  <div class="section-label">Insights</div>
+  <div class="section-title">Perspectives on biopharma intelligence</div>
+  <div class="section-sub">Research, analysis, and thought leadership from the Savi team.</div>
+  <div class="insights-grid">
+    <div class="insight-card"><div class="insight-tag">Architecture</div><h3>Why we built a medallion lakehouse for biopharma CI</h3><p>How Bronze/Silver/Gold layers with Iceberg table format create a governed, auditable foundation for competitive intelligence.</p><div class="insight-date">Coming Soon</div></div>
+    <div class="insight-card"><div class="insight-tag">Compliance</div><h3>Bright-line rules: what biopharma CI platforms should never measure</h3><p>Why prescribing-to-revenue joins, MSL compensation tracking, and individual prescriber behavior monitoring are architectural red lines.</p><div class="insight-date">Coming Soon</div></div>
+    <div class="insight-card"><div class="insight-tag">Market Analysis</div><h3>The public data advantage: 96 KPIs from free sources</h3><p>A breakdown of what's trackable from ClinicalTrials.gov, FDA, CMS, SEC EDGAR, and other public sources &mdash; without paying for IQVIA.</p><div class="insight-date">Coming Soon</div></div>
+  </div>
+</div>
+
+<div class="container pricing-section" id="pricing">
+  <div class="pricing-panel">
+    <div class="pricing-crown"></div>
+    <div class="pricing-inner">
+      <h2>Enterprise Intelligence</h2>
+      <p class="pricing-sub">Savi is designed for biopharma organizations that need governed, cross-functional competitive intelligence at scale.</p>
+      <div class="pricing-features">
+        <div class="pricing-feature"><span class="pricing-check">&#x2713;</span>Full access to all 6 functional dashboards</div>
+        <div class="pricing-feature"><span class="pricing-check">&#x2713;</span>96 governed KPIs across launch functions</div>
+        <div class="pricing-feature"><span class="pricing-check">&#x2713;</span>AI agent workflows with natural language queries</div>
+        <div class="pricing-feature"><span class="pricing-check">&#x2713;</span>Indication Arena competitive landscape maps</div>
+        <div class="pricing-feature"><span class="pricing-check">&#x2713;</span>Continuous automated data ingestion</div>
+        <div class="pricing-feature"><span class="pricing-check">&#x2713;</span>Compliance-first architecture with audit trail</div>
+        <div class="pricing-feature"><span class="pricing-check">&#x2713;</span>Custom indication and asset configuration</div>
+        <div class="pricing-feature"><span class="pricing-check">&#x2713;</span>Dedicated onboarding and support</div>
+      </div>
+      <a href="mailto:hello@savi.bio" class="pricing-cta">Contact Us for Pricing</a>
+      <p class="pricing-note">Custom plans available for multi-indication deployments and enterprise teams.</p>
+    </div>
+  </div>
+</div>
+
 <div class="container partner-section" id="partners">
   <div class="partner-panel">
     <div class="partner-crown"></div>
@@ -587,48 +404,26 @@ footer a:hover { color: var(--gold-400); }
     <div class="partner-body">
       <p class="partner-subtitle">Savi is in active development. We're seeking early design partners and aligned investors who share our vision for transparent, agentic biopharma intelligence.</p>
       <div class="partner-grid">
-        <div class="partner-box">
-          <div class="partner-box-crown"></div>
-          <div class="partner-box-inner">
-            <h3>Design Partners</h3>
-            <p>We're looking for biopharma CI, Medical Affairs, and Market Access teams who want early access to shape the product. Help us build what you actually need.</p>
-          </div>
-        </div>
-        <div class="partner-box">
-          <div class="partner-box-crown"></div>
-          <div class="partner-box-inner">
-            <h3>Investors &amp; Advisors</h3>
-            <p>We're open to conversations with investors who understand health data, AI infrastructure, and the biopharma value chain. Reach out to learn more about our roadmap.</p>
-          </div>
-        </div>
+        <div class="partner-box"><div class="partner-box-crown"></div><div class="partner-box-inner"><h3>Design Partners</h3><p>We're looking for biopharma CI, Medical Affairs, and Market Access teams who want early access to shape the product.</p></div></div>
+        <div class="partner-box"><div class="partner-box-crown"></div><div class="partner-box-inner"><h3>Investors &amp; Advisors</h3><p>We're open to conversations with investors who understand health data, AI infrastructure, and the biopharma value chain.</p></div></div>
       </div>
-      <div class="partner-cta-row">
-        <a href="mailto:hello@savi.bio" class="partner-cta">Get in Touch</a>
-      </div>
+      <div class="partner-cta-row"><a href="mailto:hello@savi.bio" class="partner-cta">Get in Touch</a></div>
     </div>
   </div>
 </div>
 
-<!-- ========== EARLY ACCESS ========== -->
 <div class="container access-section" id="access">
   <h2>Be the first to know when Savi launches</h2>
   <p>Join our early access list and we'll notify you when the platform is ready for beta users.</p>
-  <div class="email-form">
-    <input type="email" placeholder="Your work email">
-    <button type="submit">Request Access</button>
-  </div>
+  <div class="email-form"><input type="email" placeholder="Your work email"><button type="submit">Request Access</button></div>
 </div>
 
-<!-- ========== FOOTER ========== -->
-<footer>
-  <p>&copy; 2026 Savi Bio, Inc. All rights reserved. &nbsp;|&nbsp; Delaware C-Corp &nbsp;|&nbsp; <a href="mailto:hello@savi.bio">hello@savi.bio</a></p>
-</footer>
+<footer><p>&copy; 2026 Savi Bio, Inc. All rights reserved. &nbsp;|&nbsp; Delaware C-Corp &nbsp;|&nbsp; <a href="mailto:hello@savi.bio">hello@savi.bio</a></p></footer>
 
-<!-- ========== HEX BOARD SCRIPT ========== -->
 <script>
 (function(){
   const FC=['#60a5fa','#4ade80','#eab308','#f472b6','#c084fc','#fb923c'];
-  const FL=['CLI','REG','COM','MED','MKA','PAT'];
+  const FL=['Clinical','Regulatory','Commercial','Medical Affairs','Market Access','Patient Advocacy'];
   const ASSETS={
     TEP:{name:'TEPMETKO',ref:true,b:0.18,sc:[0.9,0.85,0.7,0.8,0.75,0.6]},
     TAB:{name:'Tabrecta',ref:false,b:0.13,sc:[0.7,0.7,0.6,0.5,0.65,0.4]},
@@ -639,23 +434,19 @@ footer a:hover { color: var(--gold-400); }
   };
   const GRID=[];for(let r=0;r<3;r++)for(let c=0;c<6;c++)GRID.push({r,c});
   const FILLS={1:'TEP',2:'TAB',3:'RYB',7:'AMV',8:'SAV',9:'ELA'};
-  const S=40,GAP=7;
-
+  const S=44,GAP=8;
   function hexPts(cx,cy,s){const p=[];for(let i=0;i<6;i++){const a=Math.PI/180*(60*i-30);p.push([cx+s*Math.cos(a),cy+s*Math.sin(a)]);}return p.map(v=>v[0].toFixed(1)+','+v[1].toFixed(1)).join(' ');}
   function hexC(r,c){const w=Math.sqrt(3)*S,h=2*S,xOff=(r%2===1)?(w+GAP)/2:0;return{x:c*(w+GAP)+w/2+xOff,y:r*(h*0.75+GAP)+h/2};}
-
   const svg=document.getElementById('hexBoard');
-  const pad=12;let mnX=9999,mnY=9999,mxX=0,mxY=0;
+  const pad=14;let mnX=9999,mnY=9999,mxX=0,mxY=0;
   GRID.forEach(sl=>{const c=hexC(sl.r,sl.c);mnX=Math.min(mnX,c.x-S*0.87);mxX=Math.max(mxX,c.x+S*0.87);mnY=Math.min(mnY,c.y-S);mxY=Math.max(mxY,c.y+S);});
   const vw=mxX-mnX+pad*2,vh=mxY-mnY+pad*2,ox=-mnX+pad,oy=-mnY+pad;
   svg.setAttribute('viewBox','0 0 '+vw.toFixed(0)+' '+vh.toFixed(0));
-  svg.setAttribute('width',Math.min(vw,780));
-  svg.setAttribute('height',vh*Math.min(vw,780)/vw);
-
+  svg.setAttribute('width',Math.min(vw,820));
+  svg.setAttribute('height',vh*Math.min(vw,820)/vw);
   let d='<defs><filter id="gl" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur in="SourceGraphic" stdDeviation="3" result="b"/><feComposite in="SourceGraphic" in2="b" operator="over"/></filter>';
   Object.entries(ASSETS).forEach(([k,a])=>{d+='<linearGradient id="f_'+k+'" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="rgba(255,255,255,'+(a.b+0.04).toFixed(2)+')"/><stop offset="100%" stop-color="rgba(255,255,255,'+(a.b*0.3).toFixed(2)+')"/></linearGradient>';});
   d+='</defs>';let c=d;
-
   GRID.forEach((sl,idx)=>{
     const ctr=hexC(sl.r,sl.c),cx=ctr.x+ox,cy=ctr.y+oy,pts=hexPts(cx,cy,S),ak=FILLS[idx];
     if(ak){
@@ -663,14 +454,14 @@ footer a:hover { color: var(--gold-400); }
       c+='<polygon points="'+pts+'" fill="url(#f_'+ak+')" stroke="#ca9a04" stroke-width="'+sw+'"/>';
       if(a.ref)c+='<polygon points="'+hexPts(cx,cy,S-4)+'" fill="none" stroke="rgba(234,179,8,0.12)" stroke-width="1" filter="url(#gl)"/>';
       const avg=Math.round(a.sc.reduce((x,y)=>x+y,0)/6*100);
-      c+='<text x="'+cx+'" y="'+(cy-S*0.32)+'" text-anchor="middle" fill="'+(a.ref?'#eab308':'rgba(255,255,255,0.8)')+'" font-size="13" font-weight="700" font-family="Chakra Petch">'+avg+'</text>';
+      c+='<text x="'+cx+'" y="'+(cy-S*0.32)+'" text-anchor="middle" fill="'+(a.ref?'#eab308':'rgba(255,255,255,0.8)')+'" font-size="14" font-weight="700" font-family="Chakra Petch">'+avg+'</text>';
       c+='<text x="'+cx+'" y="'+(cy-S*0.16)+'" text-anchor="middle" fill="'+(a.ref?'rgba(234,179,8,0.7)':'rgba(255,255,255,0.55)')+'" font-size="7.5" font-weight="500" font-family="Chakra Petch">'+a.name+'</text>';
       const bw=S*0.09,bMax=S*0.26,total=6*bw+5*2,sx=cx-total/2,by=cy-S*0.01;
       a.sc.forEach((v,i)=>{const bx=sx+i*(bw+2),bh=v*bMax;c+='<rect x="'+bx.toFixed(1)+'" y="'+(by+bMax-bh).toFixed(1)+'" width="'+bw.toFixed(1)+'" height="'+bh.toFixed(1)+'" rx="1" fill="'+FC[i]+'" opacity="0.8"/>';});
-      a.sc.forEach((v,i)=>{const bx=sx+i*(bw+2)+bw/2;c+='<text x="'+bx.toFixed(1)+'" y="'+(by+bMax+6.5).toFixed(1)+'" text-anchor="middle" fill="rgba(255,255,255,0.18)" font-size="4" font-family="Chakra Petch">'+FL[i]+'</text>';});
+      a.sc.forEach((v,i)=>{const bx=sx+i*(bw+2)+bw/2;c+='<text x="'+bx.toFixed(1)+'" y="'+(by+bMax+7).toFixed(1)+'" text-anchor="middle" fill="rgba(255,255,255,0.2)" font-size="3.8" font-family="Chakra Petch">'+FL[i].split(' ')[0].substring(0,3).toUpperCase()+'</text>';});
     } else {
-      c+='<polygon points="'+pts+'" fill="rgba(255,255,255,0.012)" stroke="rgba(255,255,255,0.08)" stroke-width="1.2" stroke-dasharray="4,3"/>';
-      c+='<text x="'+cx+'" y="'+(cy+3.5)+'" text-anchor="middle" fill="rgba(255,255,255,0.06)" font-size="12" font-family="Chakra Petch">+</text>';
+      c+='<polygon points="'+pts+'" fill="rgba(255,255,255,0.012)" stroke="rgba(255,255,255,0.06)" stroke-width="1.2" stroke-dasharray="4,3"/>';
+      c+='<text x="'+cx+'" y="'+(cy+3.5)+'" text-anchor="middle" fill="rgba(255,255,255,0.05)" font-size="12" font-family="Chakra Petch">+</text>';
     }
   });
   svg.innerHTML=c;
